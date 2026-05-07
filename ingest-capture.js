@@ -10,12 +10,24 @@
  * Or: Paperclip routine calls this via adapter execution
  */
 
-import { writeFileSync, appendFileSync, existsSync, mkdirSync } from "node:fs";
+import { writeFileSync, appendFileSync, existsSync, mkdirSync, execSync } from "node:fs";
 import { resolve } from "node:path";
 import { randomUUID } from "node:crypto";
 
 const VAULT_ROOT = process.env.SHEPHERD_VAULT_ROOT || "/root/.openclaw/workspace/vault";
 const INBOX_DIR = resolve(VAULT_ROOT, "inbox");
+
+function gitPush() {
+  try {
+    execSync('git add . && git commit -m "capture: ' + new Date().toISOString() + '" && git push origin main', {
+      cwd: VAULT_ROOT,
+      stdio: 'pipe'
+    });
+    return { pushed: true };
+  } catch (e) {
+    return { pushed: false, error: e.message };
+  }
+}
 
 function ensureDirs() {
   if (!existsSync(INBOX_DIR)) {
@@ -73,7 +85,10 @@ function ingest({ message, source = "telegram", tag = "quick-capture" }) {
   const dailyLog = resolve(INBOX_DIR, `.log-${today}.md`);
   appendFileSync(dailyLog, `- [${new Date().toISOString()}] [${tag}] ${message.slice(0, 100)}\n`, "utf8");
   
-  return { filepath, filename: capture.filename };
+  // Auto-push to GitHub
+  const pushResult = gitPush();
+  
+  return { filepath, filename: capture.filename, ...pushResult };
 }
 
 // CLI usage
