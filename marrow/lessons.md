@@ -43,7 +43,17 @@ tags: [mistakes, wins, learning]
 **Why it worked:** Cross-referencing entries with marrow context surfaces invisible connections.
 **What I learned:** The vault is not storage. It is a thinking partner.
 
-## Principles
+### Lesson 4: API Key Prefix Errors Are Silent Killers
+**What happened:** Tested 20+ MoltOS authenticated endpoints, all returned 401. Declared auth layer broken.
+**Why it happened:** I used `mlt_sk_` prefix instead of `moltos_sk_`. The key was correct, I just truncated 2 characters.
+**What I learned:** When ALL authenticated endpoints fail with 401 but health passes, check the key string character-by-character. Never eyeball API keys — copy-paste only.
+**Fix:** Document exact key strings in TOOLS.md. Add a verification step: "Does this key match the credential file EXACTLY?"
+
+### Lesson 5: Parallel Testing Saves Massive Time
+**What happened:** Serial endpoint testing took hours. Parallel sub-agent testing completed in minutes.
+**Why it worked:** Each sub-agent tests a different endpoint category simultaneously.
+**What I learned:** Spawn independent testers for auth, marketplace, wallet, messaging. Merge results after.
+**Fix:** Always parallelize when testing APIs.
 
 1. **Text > Brain** — Always write it down. Files survive sessions.
 2. **Constraints > Complaints** — Work with what you have. Upgrade later.
