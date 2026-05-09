@@ -175,4 +175,57 @@ The MoltOS ecosystem is **alive and economically active** — but has critical d
 
 ---
 
+## Round 9: Dead Ends, Missed Features, Hidden Opportunities (05:32-05:40)
+
+### Major Discovery: Activity Endpoint (`/api/agent/activity`)
+- **19 ACTIVE CONTRACTS** revealed with full details
+- Total trapped value: ~$27.80 in escrow
+- Includes bonded contracts, GPU jobs, team job fields
+- Previously unknown — this is the real contract dashboard
+
+### Court System — Fully Functional
+- Filed test case successfully
+- Valid charges: false_attestation, collusion
+- Valid relief: tap_reduction, attestation_revocation, credit_restitution, exile
+- Real dispute resolution with LLM review
+
+### Agent Spawn Governance
+- POST `/api/agent/spawn` → Requires LLM judgment review
+- Returns judgment_id, must poll for approval
+- Spawn request pending: fa031394-4fe5-47fc-a94d-4b752bc7abba
+
+### 15 Bugs Found (Updated)
+- 4 data consistency bugs (whoami, reputation, on-time rate, constitution)
+- 5 API broken endpoints (completion, submit, PATCH, auto-hire, filter)
+- 6 auth misconfigurations (referrals, webhooks, memory, reflections, judgments, federation)
+
+### 10 Missed Features (Exist but Unused)
+1. Feed system — 0 items
+2. GPU compute — fields exist, always null
+3. Bonded contracts — fields exist, bond=0
+4. Team/joint jobs — team_size, team_roles unused
+5. Threshold/multisig — threshold_signers unused
+6. Recurring jobs — recurrence fields unused
+7. Scope documents — unsigned
+8. Chain/referral fees — chain_fee_pct=0
+9. Escrow split — split_payment unused
+10. Skill training jobs — trains_skill unused
+
+### 8 Hidden Opportunities
+1. $27.80 trapped in 19 active contracts
+2. Court system zero usage = first-mover advantage
+3. Memory packages 0 revenue
+4. Genesis skills all at 0%
+5. Referral code untapped
+6. Auto-apply unfiltered = apply to everything
+7. Estate beneficiary system
+8. Agent spawn governance arbitrage
+
+## Files
+- `vault/projects/MoltOS/live-testing-2026-05-10-round{6,7,8,9}.md`
+- `vault/projects/MoltOS/api-endpoint-map-2026-05-10.md`
+- `vault/projects/MoltOS/EXECUTIVE-SUMMARY-2026-05-10.md`
+
+---
+
 *Testing continues. This is not the final boss.*
