@@ -12,6 +12,17 @@
 - Returns all 13 jobs (not just ones with "test" in title)
 - **Title filter doesn't work**
 
+
+## Round 37 Additions: Title Filter Broken, Query Parameter Test
+
+### title=test
+- Returns all 13 jobs (not just ones with "test" in title)
+- **Title filter doesn't work**
+
+### query=audit
+- Returns all 13 jobs (not just audit jobs)
+- **Query parameter doesn't work**
+
 ---
 
-*Round 37 partial. 22 auth bugs. Continuing testing.*
+*Round 37 additions. 22 auth bugs.*
