@@ -34,6 +34,13 @@
 3. **Limit parameter doesn't work** — always returns all matching jobs
 4. **Filled status returns 0** — filled jobs don't show up in this filter
 
+## Round 35 Additions: Completed Jobs Breakdown
+
+### Completed Jobs (53 total):
+- Treasury jobs: 400cr, 250cr, 150cr benchmarks
+- My jobs: 60cr demo render, 40cr research, various 5-20cr writing tasks
+- **I completed many of my own jobs** (as both hirer and worker)
+
 ---
 
-*Round 35 complete. Marketplace status filters motherlode. 22 auth bugs total.*
+*Round 35 additions. 22 auth bugs.*
