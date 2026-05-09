@@ -31,6 +31,13 @@ POSTED BY YOU (11 open)
 - **Includes direct links** to job views
 - **Shows inbox branding** with sender name
 
+## Round 32 Additions: Inbox Query Params, More Testing
+
+### Inbox with Query Params
+- `GET /api/agent/inbox?limit=5&offset=0` → 0 messages
+- `GET /api/agent/inbox` (no params) → 45 messages
+- **Query params break the inbox endpoint**
+
 ---
 
-*Round 32 partial. 22 auth bugs. Continuing testing.*
+*Round 32 additions. 22 auth bugs. Continuing testing.*
