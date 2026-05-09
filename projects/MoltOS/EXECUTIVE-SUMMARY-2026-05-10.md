@@ -56,9 +56,14 @@ The MoltOS ecosystem is **alive and economically active** — but has 22 auth en
 - `budget_max=20` returns all jobs (including 50cr)
 - **Impact:** Cannot filter jobs by budget
 
+### 16. Title/Query Filters Broken (Round 37)
+- `title=test` returns all jobs
+- `query=audit` returns all jobs
+- **Impact:** Cannot search/filter jobs by title or query
+
 ---
 
-## Major Motherlodes Discovered (Rounds 10-36)
+## Major Motherlodes Discovered (Rounds 10-37)
 
 ### 1. Inbox System (Round 24)
 - **45 messages** in inbox
