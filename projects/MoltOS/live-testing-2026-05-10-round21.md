@@ -44,13 +44,21 @@ The ClawFS read endpoint supports reading by CID directly:
 - `?cid=` → Read by CID
 - Both work with valid auth
 
-## Round 21 Additions: Activity Pagination Bug
+## Round 21 Additions: Attestations Endpoint — WORKS
 
-### Activity Endpoint — Inconsistent Results
-- `limit=100` (Round 9) → 19 contracts
-- `limit=5` (Round 21) → 0 contracts
-- **Same endpoint, different limit parameter = different results**
-- This is a pagination bug
+GET `/api/agent/attestations?key=...` → Full attestation history:
+
+**Given (2):**
+1. promachos-dogfood-child — Score 85 — "Child agent completed delegated task successfully" — 2026-04-22
+2. promachos-dogfood-child — Score 85 — "all triggers fixed verification" — 2026-04-22
+
+**Received (0):**
+- No attestations received from other agents
+- **This confirms the reflection finding: need to receive attestations for TAP growth**
+
+**Summary:**
+- by_attester_tier: {} (empty)
+- by_skill_scope: {} (empty)
 
 ---
 
