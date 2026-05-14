@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Dialog,
   DialogContent,
@@ -31,6 +31,14 @@ export function CreateTaskModal({ onTaskCreated }: CreateTaskModalProps) {
   const [tagInput, setTagInput] = useState("");
   const [tags, setTags] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
 
   function addTag() {
     if (tagInput.trim() && !tags.includes(tagInput.trim())) {
@@ -88,46 +96,51 @@ export function CreateTaskModal({ onTaskCreated }: CreateTaskModalProps) {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button className="gap-2">
-          <Plus className="h-4 w-4" />
-          New Task
+        <Button
+          className={`gap-2 ${isMobile ? "rounded-full h-14 w-14 p-0 shadow-lg" : ""}`}
+          size={isMobile ? "icon" : "default"}
+        >
+          <Plus className="h-5 w-5" />
+          {!isMobile && <span>New Task</span>}
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[500px]">
-        <DialogHeader>
+      <DialogContent className={isMobile ? "w-[95vw] max-w-[95vw] h-[90vh] max-h-[90vh] p-4 gap-2" : "sm:max-w-[500px]"}>
+        <DialogHeader className={isMobile ? "pb-2" : ""}>
           <DialogTitle>Create New Task</DialogTitle>
           <DialogDescription>
             Add a task to the Shepherd Team Dashboard
           </DialogDescription>
         </DialogHeader>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="space-y-2">
+        <form onSubmit={handleSubmit} className="space-y-3 md:space-y-4 overflow-y-auto flex-1">
+          <div className="space-y-1.5 md:space-y-2">
             <label className="text-sm font-medium">Title</label>
             <Input
               placeholder="Task title..."
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               required
+              className="h-11 md:h-10"
             />
           </div>
 
-          <div className="space-y-2">
+          <div className="space-y-1.5 md:space-y-2">
             <label className="text-sm font-medium">Description</label>
             <Textarea
               placeholder="What needs to be done?"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              rows={3}
+              rows={isMobile ? 3 : 3}
+              className="min-h-[80px]"
             />
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
-            <div className="space-y-2">
+          <div className="grid grid-cols-2 gap-3 md:gap-4">
+            <div className="space-y-1.5 md:space-y-2">
               <label className="text-sm font-medium">Priority</label>
               <select
                 value={priority}
                 onChange={(e) => setPriority(e.target.value)}
-                className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+                className="flex h-11 md:h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
               >
                 <option value="low">Low</option>
                 <option value="medium">Medium</option>
@@ -136,22 +149,23 @@ export function CreateTaskModal({ onTaskCreated }: CreateTaskModalProps) {
               </select>
             </div>
 
-            <div className="space-y-2">
+            <div className="space-y-1.5 md:space-y-2">
               <label className="text-sm font-medium">Owner</label>
               <Input
-                placeholder="ava, hermes, eve, nathan..."
+                placeholder="ava, hermes, eve..."
                 value={owner}
                 onChange={(e) => setOwner(e.target.value)}
+                className="h-11 md:h-10"
               />
             </div>
           </div>
 
-          <div className="space-y-2">
+          <div className="space-y-1.5 md:space-y-2">
             <label className="text-sm font-medium">Agent Type</label>
             <select
               value={agentType}
               onChange={(e) => setAgentType(e.target.value)}
-              className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+              className="flex h-11 md:h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
             >
               <option value="">Select type...</option>
               <option value="openclaw">OpenClaw</option>
@@ -160,7 +174,7 @@ export function CreateTaskModal({ onTaskCreated }: CreateTaskModalProps) {
             </select>
           </div>
 
-          <div className="space-y-2">
+          <div className="space-y-1.5 md:space-y-2">
             <label className="text-sm font-medium">Tags</label>
             <div className="flex gap-2">
               <Input
@@ -173,14 +187,15 @@ export function CreateTaskModal({ onTaskCreated }: CreateTaskModalProps) {
                     addTag();
                   }
                 }}
+                className="h-11 md:h-10"
               />
-              <Button type="button" variant="outline" onClick={addTag}>
+              <Button type="button" variant="outline" onClick={addTag} className="h-11 md:h-10">
                 Add
               </Button>
             </div>
             <div className="flex flex-wrap gap-1">
               {tags.map((tag) => (
-                <Badge key={tag} variant="secondary" className="gap-1">
+                <Badge key={tag} variant="secondary" className="gap-1 text-sm py-1 px-2">
                   {tag}
                   <X
                     className="h-3 w-3 cursor-pointer"
@@ -190,16 +205,15 @@ export function CreateTaskModal({ onTaskCreated }: CreateTaskModalProps) {
               ))}
             </div>
           </div>
-
-          <DialogFooter>
-            <Button type="button" variant="outline" onClick={() => setOpen(false)}>
-              Cancel
-            </Button>
-            <Button type="submit" disabled={loading || !title.trim()}>
-              {loading ? "Creating..." : "Create Task"}
-            </Button>
-          </DialogFooter>
         </form>
+        <DialogFooter className={isMobile ? "pt-2 gap-2" : ""}>
+          <Button type="button" variant="outline" onClick={() => setOpen(false)} className="h-11 md:h-10">
+            Cancel
+          </Button>
+          <Button type="submit" disabled={loading || !title.trim()} onClick={handleSubmit} className="h-11 md:h-10">
+            {loading ? "Creating..." : "Create Task"}
+          </Button>
+        </DialogFooter>
       </DialogContent>
     </Dialog>
   );

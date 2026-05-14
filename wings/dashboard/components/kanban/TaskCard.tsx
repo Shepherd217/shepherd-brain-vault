@@ -25,14 +25,14 @@ export function TaskCard({ task, index }: TaskCardProps) {
           ref={provided.innerRef}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
-          className={`mb-2 rounded-lg border bg-popover p-3 shadow-sm transition-shadow ${
+          className={`mb-2 md:mb-3 rounded-lg border bg-popover p-3 md:p-3 shadow-sm transition-shadow active:scale-[0.98] ${
             snapshot.isDragging ? "shadow-lg ring-2 ring-primary" : "hover:shadow-md"
           }`}
         >
-          <div className="mb-2 flex items-start justify-between">
-            <h3 className="text-sm font-medium">{task.title}</h3>
+          <div className="mb-2 flex items-start justify-between gap-2">
+            <h3 className="text-sm md:text-sm font-medium leading-snug">{task.title}</h3>
             <span
-              className={`rounded-full px-2 py-0.5 text-xs ${
+              className={`rounded-full px-2 py-0.5 text-[10px] md:text-xs flex-shrink-0 ${
                 priorityColors[task.priority] || "bg-gray-100"
               }`}
             >
@@ -41,7 +41,7 @@ export function TaskCard({ task, index }: TaskCardProps) {
           </div>
 
           {task.description && (
-            <p className="mb-2 text-xs text-muted-foreground line-clamp-2">
+            <p className="mb-2 text-xs text-muted-foreground line-clamp-2 leading-relaxed">
               {task.description}
             </p>
           )}
@@ -50,7 +50,7 @@ export function TaskCard({ task, index }: TaskCardProps) {
             {tags.map((tag: string) => (
               <span
                 key={tag}
-                className="rounded bg-muted px-1.5 py-0.5 text-xs text-muted-foreground"
+                className="rounded bg-muted px-1.5 py-0.5 text-[10px] md:text-xs text-muted-foreground"
               >
                 {tag}
               </span>
@@ -58,12 +58,12 @@ export function TaskCard({ task, index }: TaskCardProps) {
           </div>
 
           {task.owner && (
-            <div className="mt-2 flex items-center gap-1 text-xs text-muted-foreground">
+            <div className="mt-2 flex items-center gap-1 text-[10px] md:text-xs text-muted-foreground">
               <span className="rounded-full bg-primary/10 px-2 py-0.5">
                 @{task.owner}
               </span>
               {task.agentType && (
-                <span className="text-xs">({task.agentType})</span>
+                <span className="text-[10px] md:text-xs">({task.agentType})</span>
               )}
             </div>
           )}

@@ -9,7 +9,7 @@ interface ColumnProps {
 
 export function Column({ tasks }: ColumnProps) {
   return (
-    <div className="flex flex-1 flex-col gap-1 overflow-y-auto">
+    <div className="flex flex-1 flex-col gap-2 overflow-y-auto min-h-0 pb-4">
       {tasks.map((task, index) => (
         <TaskCard key={task.id} task={task} index={index} />
       ))}

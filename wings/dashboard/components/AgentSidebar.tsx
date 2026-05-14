@@ -1,140 +1,117 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Activity, Cpu, Globe, User } from "lucide-react";
-import type { Agent, AgentStatus } from "@/types";
+import { useEffect, useState } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Activity, CheckCircle, Clock, AlertCircle, PauseCircle } from "lucide-react";
 
-const MOCK_AGENTS: Agent[] = [
-  {
-    id: "ava",
-    name: "Ava",
-    agentType: "openclaw",
-    gatewayId: "default",
-    gatewayType: "openclaw",
-    gatewayUrl: "ws://localhost:18789",
-    status: "working",
-    currentTask: "2026-05-14-003",
-    models: ["kimi/k2p6"],
-    skills: ["research", "architecture", "coding"],
-    surfaces: ["telegram"],
-    createdAt: new Date("2026-05-12"),
-    updatedAt: new Date(),
-  },
-  {
-    id: "hermes",
-    name: "Hermes",
-    agentType: "hermes",
-    gatewayId: "default",
-    gatewayType: "hermes",
-    gatewayUrl: "http://localhost:9119",
-    status: "idle",
-    currentTask: null,
-    models: ["minimax2.7"],
-    skills: ["infrastructure", "deployment", "devops"],
-    surfaces: ["cli", "dashboard"],
-    createdAt: new Date("2026-05-12"),
-    updatedAt: new Date(),
-  },
-  {
-    id: "eve",
-    name: "Eve",
-    agentType: "openclaw",
-    gatewayId: "default",
-    gatewayType: "openclaw",
-    gatewayUrl: "ws://localhost:18789",
-    status: "offline",
-    currentTask: null,
-    models: ["nemotron"],
-    skills: ["memory", "audit", "knowledge"],
-    surfaces: ["telegram"],
-    createdAt: new Date("2026-05-13"),
-    updatedAt: new Date(),
-  },
-];
-
-const STATUS_COLORS: Record<AgentStatus, string> = {
-  idle: "bg-green-500",
-  working: "bg-amber-500",
-  stalled: "bg-red-500",
-  error: "bg-red-600",
-  offline: "bg-gray-400",
-};
-
-const STATUS_LABELS: Record<AgentStatus, string> = {
-  idle: "Idle",
-  working: "Working",
-  stalled: "Stalled",
-  error: "Error",
-  offline: "Offline",
-};
+interface Agent {
+  id: string;
+  name: string;
+  type: string;
+  status: "idle" | "working" | "offline" | "error" | "paused";
+  currentTask: string | null;
+  lastSeen: Date;
+}
 
 export function AgentSidebar() {
-  const [agents] = useState<Agent[]>(MOCK_AGENTS);
-  const [time, setTime] = useState(new Date());
+  const [agents, setAgents] = useState<Agent[]>([
+    {
+      id: "ava",
+      name: "Ava",
+      type: "openclaw",
+      status: "working",
+      currentTask: "Building dashboard...",
+      lastSeen: new Date(),
+    },
+    {
+      id: "hermes",
+      name: "Hermes",
+      type: "hermes",
+      status: "idle",
+      currentTask: null,
+      lastSeen: new Date(),
+    },
+    {
+      id: "eve",
+      name: "Eve",
+      type: "openclaw",
+      status: "offline",
+      currentTask: null,
+      lastSeen: new Date(Date.now() - 86400000),
+    },
+  ]);
 
   useEffect(() => {
-    const interval = setInterval(() => setTime(new Date()), 1000);
+    // Poll for real agent status updates via WebSocket in Phase 2
+    const interval = setInterval(() => {
+      setAgents((prev) =>
+        prev.map((a) => ({
+          ...a,
+          lastSeen: a.status === "working" ? new Date() : a.lastSeen,
+        }))
+      );
+    }, 30000);
     return () => clearInterval(interval);
   }, []);
 
-  return (
-    <div className="w-64 border-l bg-card flex flex-col">
-      <div className="border-b p-4">
-        <div className="flex items-center gap-2">
-          <Activity className="h-5 w-5 text-primary" />
-          <h2 className="font-semibold">Team Status</h2>
-        </div>
-        <p className="mt-1 text-xs text-muted-foreground">
-          {time.toLocaleTimeString()} · {agents.filter(a => a.status !== "offline").length} online
-        </p>
-      </div>
+  const statusConfig = {
+    idle: { icon: Clock, color: "text-green-500", bg: "bg-green-50", label: "Idle" },
+    working: { icon: Activity, color: "text-yellow-500", bg: "bg-yellow-50", label: "Working" },
+    offline: { icon: PauseCircle, color: "text-gray-400", bg: "bg-gray-50", label: "Offline" },
+    error: { icon: AlertCircle, color: "text-red-500", bg: "bg-red-50", label: "Error" },
+    paused: { icon: PauseCircle, color: "text-orange-500", bg: "bg-orange-50", label: "Paused" },
+  };
 
-      <div className="flex-1 overflow-y-auto p-3 space-y-3">
-        {agents.map((agent) => (
-          <Card key={agent.id} className="overflow-hidden">
-            <CardHeader className="p-3 pb-2">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <div className={`h-2.5 w-2.5 rounded-full ${STATUS_COLORS[agent.status]}`} />
-                  <span className="text-sm font-medium">{agent.name}</span>
-                </div>
-                <Badge variant="outline" className="text-xs">
-                  {agent.agentType}
-                </Badge>
-              </div>
-            </CardHeader>
-            <CardContent className="p-3 pt-0 space-y-2">
-              <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                <User className="h-3.5 w-3.5" />
-                <span>{STATUS_LABELS[agent.status]}</span>
+  const activeAgents = agents.filter((a) => a.status === "working").length;
+
+  return (
+    <div className="flex flex-col h-full p-3 md:p-4 gap-3 overflow-y-auto">
+      <Card>
+        <CardHeader className="pb-2">
+          <CardTitle className="text-xs md:text-sm font-semibold flex items-center gap-2">
+            <CheckCircle className="h-3.5 w-3.5 text-green-500" />
+            Team Status
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="pt-0">
+          <div className="text-2xl md:text-3xl font-bold">{activeAgents}</div>
+          <p className="text-xs text-muted-foreground">active now</p>
+          <div className="mt-2 flex gap-2 text-[10px] md:text-xs">
+            <span className="text-muted-foreground">{agents.length} total</span>
+            <span className="text-muted-foreground">·</span>
+            <span className="text-yellow-500">{agents.filter((a) => a.status === "working").length} working</span>
+          </div>
+        </CardContent>
+      </Card>
+
+      <div className="space-y-2">
+        <h3 className="text-xs md:text-sm font-semibold text-muted-foreground uppercase tracking-wider">Agents</h3>
+        {agents.map((agent) => {
+          const config = statusConfig[agent.status];
+          const StatusIcon = config.icon;
+          return (
+            <div
+              key={agent.id}
+              className={`rounded-lg border p-2 md:p-3 transition-colors hover:bg-accent/50 ${config.bg}`}
+            >
+              <div className="flex items-center gap-2 mb-1">
+                <StatusIcon className={`h-3.5 w-3.5 ${config.color}`} />
+                <span className="font-medium text-xs md:text-sm">{agent.name}</span>
+                <span className={`ml-auto text-[10px] md:text-xs px-1.5 py-0.5 rounded-full bg-background font-medium ${config.color}`}>
+                  {config.label}
+                </span>
               </div>
               {agent.currentTask && (
-                <div className="flex items-center gap-2 text-xs">
-                  <Cpu className="h-3.5 w-3.5 text-primary" />
-                  <span className="truncate text-muted-foreground">
-                    Task: {agent.currentTask}
-                  </span>
-                </div>
+                <p className="text-[10px] md:text-xs text-muted-foreground truncate">
+                  {agent.currentTask}
+                </p>
               )}
-              <div className="flex flex-wrap gap-1 pt-1">
-                {agent.models.map((model) => (
-                  <Badge key={model} variant="secondary" className="text-[10px]">
-                    <Globe className="mr-1 h-2.5 w-2.5" />
-                    {model.split("/").pop()}
-                  </Badge>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
-
-      <div className="border-t p-3">
-        <p className="text-xs text-muted-foreground text-center">
-          Shepherd Team v0.1.0
-        </p>
+              <p className="text-[10px] text-muted-foreground mt-1">
+                {agent.type} · {Math.round((Date.now() - agent.lastSeen.getTime()) / 60000)}m ago
+              </p>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
