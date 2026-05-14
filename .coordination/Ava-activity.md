@@ -102,7 +102,84 @@ Standing by for Nathan's direction on whether to break into relay tasks.
 
 ---
 
-## N1 Decision — 2026-05-14 ~23:14 CST
+## Phase 1 Dashboard Foundation — BUILT SOLO — 2026-05-14 ~23:41 CST
+
+**Agent:** Ava  
+**Context:** Team busy, Nathan asked Ava to pick up slack and build Phase 1 solo  
+**Status:** ✅ DONE — 23 files committed + pushed to vault
+
+### What Was Built (Solo Sprint)
+
+**H1 + H2 + H4 (all done by Ava):**
+1. **Next.js 14 project scaffold** — App Router, TypeScript strict, Tailwind + shadcn theme system
+2. **Drizzle ORM + SQLite** — Database schema (tasks, agents, worktrees, events), connection layer
+3. **Task Queue REST API** — 8 endpoints with status transition validation
+4. **Kanban Board UI** — 6 columns, drag-and-drop (react-beautiful-dnd), task cards with priority colors
+5. **OpenClaw Adapter** — WebSocket client with auto-reconnect, heartbeat, EventEmitter events
+6. **ADR-001** — Architecture spec in `wings/dashboard/docs/`
+7. **README + .env.example** — Setup instructions for Nathan
+
+### Files Created (23 total)
+```
+wings/dashboard/
+├── app/
+│   ├── api/tasks/route.ts          # List + create tasks
+│   ├── api/tasks/[id]/route.ts     # Get + update + delete + status transitions
+│   ├── globals.css                 # shadcn/ui theme system
+│   ├── layout.tsx                  # Root layout
+│   └── page.tsx                    # Dashboard home (Kanban)
+├── components/kanban/
+│   ├── Board.tsx                   # Main board with drag-and-drop
+│   ├── Column.tsx                  # Status column
+│   └── TaskCard.tsx                # Draggable task card
+├── lib/
+│   ├── adapters/openclaw.ts        # WebSocket adapter
+│   ├── db/
+│   │   ├── schema.ts               # Drizzle ORM schema
+│   │   └── index.ts                # Database connection
+│   └── utils.ts                    # cn() helper
+├── types/index.ts                  # Shared TypeScript interfaces
+├── docs/adr-001-unified-architecture.md  # Architecture spec
+├── package.json                    # Dependencies
+├── next.config.js                  # Next.js config (serverComponentsExternalPackages)
+├── tailwind.config.ts              # Tailwind + CSS variables
+├── tsconfig.json                   # TypeScript config
+├── drizzle.config.ts               # Drizzle Kit config
+├── postcss.config.js               # PostCSS
+├── .env.example                    # Environment template
+├── README.md                       # Setup guide
+└── .gitignore
+```
+
+### Commit
+- **Hash:** `c35029f`
+- **Message:** `feat: Phase 1 dashboard foundation`
+- **Files:** 23 files, 1,267 insertions
+
+### What's Next (Nathan's Turn)
+1. **Deploy to Vercel:** Import `Shepherd217/shepherd-brain-vault`, set root directory to `wings/dashboard/`
+2. **Environment variables:** Set `DATABASE_URL` (Vercel KV or Neon recommended for serverless)
+3. **Install dependencies:** `npm install` in dashboard directory
+4. **Run migrations:** `npm run db:migrate`
+
+### Known Limitations
+- **No shadcn/ui components installed yet** — `npx shadcn-ui@latest init` needed
+- **No Create Task modal** — placeholder button in Kanban header
+- **OpenClaw adapter stubs** — `spawnTask`/`steer`/`kill` need actual gateway integration
+- **Polling only** — WebSocket real-time sync in Phase 2
+- **SQLite local** — For Vercel serverless, switch to Vercel KV or Neon PostgreSQL
+
+### Ava's Status
+- ✅ A1 (architecture spec) — DONE
+- ✅ A2 (adapter interface) — DONE
+- ✅ H1 (repo setup) — DONE (solo)
+- ✅ H2 (SQLite API) — DONE (solo)
+- ✅ H4 (Kanban UI) — DONE (solo)
+- ⏳ H3 (adapter implementation) — Partial (stubs, needs gateway testing)
+- ⏳ E1 (ClawMem strategy) — Available for Eve when ready
+- ⏳ N1 (hosting) — DECIDED (Vercel)
+
+---
 
 **Agent:** Nathan (human decision)  
 **Task:** N1 — Decide dashboard hosting strategy  
