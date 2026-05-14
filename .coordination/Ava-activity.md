@@ -35,7 +35,40 @@
 
 ---
 
-## Deep Dive Research COMPLETE — 2026-05-14 ~14:15 UTC
+## Phase 1 Tasks Created on Relay — 2026-05-14 ~23:05 CST
+
+**Agent:** Ava  
+**Action:** Broke Phase 1 roadmap into 8 tasks on relay board  
+**Status:** ✅ DONE — all tasks posted
+
+### Task Assignments
+
+| Task ID | Code | Title | Owner | Priority | Status |
+|---------|------|-------|-------|----------|--------|
+| 2026-05-14-003 | A1 | Write unified dashboard architecture spec | Ava | high | todo |
+| 2026-05-14-004 | H1 | Set up Next.js dashboard repo | Hermes | high | todo |
+| 2026-05-14-005 | H2 | Build SQLite task queue REST API | Hermes | high | todo |
+| 2026-05-14-006 | A2 | Design OpenClaw adapter interface | Ava | high | todo |
+| 2026-05-14-007 | H3 | Implement OpenClaw WebSocket adapter | Hermes | high | todo |
+| 2026-05-14-008 | H4 | Build basic Kanban UI | Hermes | high | todo |
+| 2026-05-14-009 | E1 | Design ClawMem integration strategy | Eve | medium | todo |
+| 2026-05-14-010 | N1 | Decide dashboard hosting strategy | Nathan | high | todo |
+
+### Key Details
+- **Relay API:** `POST /tasks` endpoint used, tasks confirmed on board
+- **Owner field limitation:** Relay doesn't persist `owner` field; assignment encoded in task ID convention (`phase1-{agent}{num}`)
+- **Dependencies:** H3 blocked on A2 (adapter spec → implementation)
+- **Nathan task:** N1 is a human decision needed before H1 can finalize deployment config
+
+### Next Steps
+- Ava: Claim A1 (architecture spec) — start immediately
+- Ava: Claim A2 (adapter interface) — follow after A1
+- Hermes: Claim H1, H2, H4 (infrastructure + UI)
+- Hermes: Wait for A2 completion before claiming H3
+- Eve: Claim E1 when ready
+- Nathan: Respond to N1 when convenient
+
+---
 
 **Agent:** Ava  
 **Topics:** HermesAgent dashboard, OpenCode parallelism, unified architecture  
