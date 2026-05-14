@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Droppable } from "react-beautiful-dnd";
 import { TaskCard } from "./TaskCard";
+import { QuickAddCard } from "./QuickAddCard";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import type { Task, TaskStatus } from "@/types";
@@ -21,9 +22,11 @@ const COLUMN_CONFIG: Record<TaskStatus, { title: string; emoji: string; color: s
 interface MobileColumnViewProps {
   tasks: Task[];
   onColumnChange?: (column: TaskStatus) => void;
+  onTaskClick?: (task: Task) => void;
+  onQuickAdd?: (column: string, title: string) => void;
 }
 
-export function MobileColumnView({ tasks, onColumnChange }: MobileColumnViewProps) {
+export function MobileColumnView({ tasks, onColumnChange, onTaskClick, onQuickAdd }: MobileColumnViewProps) {
   const [activeColumn, setActiveColumn] = useState(0);
   const column = COLUMNS[activeColumn];
   const config = COLUMN_CONFIG[column];
@@ -117,10 +120,13 @@ export function MobileColumnView({ tasks, onColumnChange }: MobileColumnViewProp
               </div>
               <div className="space-y-2">
                 {columnTasks.map((task, index) => (
-                  <TaskCard key={task.id} task={task} index={index} />
+                  <TaskCard key={task.id} task={task} index={index} onClick={onTaskClick} />
                 ))}
               </div>
               {provided.placeholder}
+              <div className="mt-2 pt-2 border-t border-border/30">
+                <QuickAddCard columnId={column} onAdd={(title) => onQuickAdd?.(column, title)} />
+              </div>
             </div>
           )}
         </Droppable>

@@ -15,7 +15,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { Plus, X } from "lucide-react";
-import type { Task, AgentType } from "@/types";
+import type { Task } from "@/types";
 
 interface CreateTaskModalProps {
   open?: boolean;
@@ -34,7 +34,6 @@ export function CreateTaskModal({ open: controlledOpen, onOpenChange, onTaskCrea
   const [description, setDescription] = useState("");
   const [priority, setPriority] = useState("medium");
   const [owner, setOwner] = useState("");
-  const [agentType, setAgentType] = useState("");
   const [tagInput, setTagInput] = useState("");
   const [tags, setTags] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
@@ -72,7 +71,7 @@ export function CreateTaskModal({ open: controlledOpen, onOpenChange, onTaskCrea
       status: "backlog",
       priority: priority as any,
       owner: owner.trim() || null,
-      agentType: (agentType as AgentType) || null,
+      agentType: null,
       tags,
       projectId: "shepherd",
       dependencies: [],
@@ -102,7 +101,6 @@ export function CreateTaskModal({ open: controlledOpen, onOpenChange, onTaskCrea
           description: description.trim() || undefined,
           priority,
           owner: owner.trim() || undefined,
-          agentType: agentType || undefined,
           tags,
         }),
       });
@@ -118,7 +116,6 @@ export function CreateTaskModal({ open: controlledOpen, onOpenChange, onTaskCrea
     setDescription("");
     setPriority("medium");
     setOwner("");
-    setAgentType("");
     setTags([]);
     setTagInput("");
   }
@@ -190,20 +187,6 @@ export function CreateTaskModal({ open: controlledOpen, onOpenChange, onTaskCrea
                 className="h-11 md:h-10"
               />
             </div>
-          </div>
-
-          <div className="space-y-1.5 md:space-y-2">
-            <label className="text-sm font-medium">Agent Type</label>
-            <select
-              value={agentType}
-              onChange={(e) => setAgentType(e.target.value)}
-              className="flex h-11 md:h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
-            >
-              <option value="">Select type...</option>
-              <option value="openclaw">OpenClaw</option>
-              <option value="hermes">Hermes</option>
-              <option value="human">Human</option>
-            </select>
           </div>
 
           <div className="space-y-1.5 md:space-y-2">
