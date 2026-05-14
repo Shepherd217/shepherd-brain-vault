@@ -102,7 +102,115 @@ Standing by for Nathan's direction on whether to break into relay tasks.
 
 ---
 
-## Phase 1 Dashboard Foundation — BUILT SOLO — 2026-05-14 ~23:41 CST
+## Demo-Ready Dashboard — BUILT SOLO — 2026-05-15 ~00:00 CST
+
+**Agent:** Ava  
+**Context:** Nathan asked for demo-ready dashboard, team still busy  
+**Status:** ✅ DONE — 31 files, demo-ready, committed + pushed
+
+### Demo Features Added (Solo Sprint)
+
+1. **shadcn/ui Components**
+   - Button, Dialog, Input, Textarea, Badge, Card
+   - All styled with CSS variables theme system
+
+2. **Create Task Modal**
+   - Full form: title, description, priority, owner, agent type, tags
+   - Tag management: add/remove with keyboard support
+   - Live validation, loading states
+   - Creates task via POST /api/tasks
+
+3. **Agent Sidebar**
+   - Team status panel showing Ava, Hermes, Eve
+   - Live status indicators (green=idle, amber=working, red=error, gray=offline)
+   - Model badges, current task display
+   - Real-time clock, online count
+
+4. **Polished Kanban Board**
+   - Color-coded columns: slate(backlog), blue(todo), amber(doing), purple(review), green(done), red(failed)
+   - Header with task stats (total, in progress, completed)
+   - Refresh button, last update timestamp
+   - Drag-and-drop with visual ring feedback
+
+5. **Auto-polling**
+   - Every 5 seconds for live task updates
+   - Optimistic drag-and-drop with revert on error
+
+### Files Total: 31
+
+```
+wings/dashboard/
+├── app/
+│   ├── api/tasks/route.ts          # List + create tasks
+│   ├── api/tasks/[id]/route.ts     # Get + update + delete
+│   ├── globals.css                 # Theme system
+│   ├── layout.tsx                  # Root layout
+│   └── page.tsx                    # Dashboard home
+├── components/
+│   ├── kanban/
+│   │   ├── Board.tsx               # Polished board with stats
+│   │   ├── Column.tsx              # Color-coded columns
+│   │   └── TaskCard.tsx            # Task cards with tags
+│   ├── ui/
+│   │   ├── badge.tsx               # shadcn Badge
+│   │   ├── button.tsx              # shadcn Button
+│   │   ├── card.tsx                # shadcn Card
+│   │   ├── dialog.tsx              # shadcn Dialog
+│   │   ├── input.tsx               # shadcn Input
+│   │   └── textarea.tsx            # shadcn Textarea
+│   ├── AgentSidebar.tsx             # Team status panel
+│   └── CreateTaskModal.tsx          # Full task creation form
+├── lib/
+│   ├── adapters/openclaw.ts        # WebSocket adapter
+│   ├── db/
+│   │   ├── schema.ts               # Drizzle schema
+│   │   └── index.ts                # DB connection
+│   └── utils.ts                    # cn() helper
+├── types/index.ts                  # TypeScript interfaces
+├── docs/adr-001-unified-architecture.md  # Architecture spec
+├── package.json                    # Dependencies
+├── next.config.js                  # Next.js config
+├── tailwind.config.ts              # Tailwind theme
+├── tsconfig.json                   # TypeScript config
+├── drizzle.config.ts               # Drizzle Kit
+├── postcss.config.js               # PostCSS
+├── .env.example                    # Environment template
+├── .gitignore                      # Git ignore
+└── README.md                       # Setup guide
+```
+
+### Commit
+- **Hash:** `2040994`
+- **Message:** `feat: Demo-ready dashboard`
+- **Files:** 10 changed, 779 insertions
+
+### Deploy Checklist (Nathan's Turn)
+1. ✅ Code ready in `wings/dashboard/`
+2. ⏳ **Vercel:** Import `Shepherd217/shepherd-brain-vault`
+3. ⏳ **Root directory:** Set to `wings/dashboard/`
+4. ⏳ **Env vars:** `DATABASE_URL=file:./data/dashboard.db`
+5. ⏳ **Build:** `npm install && npm run build`
+6. ⏳ **Done**
+
+### Demo Script (for Nathan)
+1. Open dashboard → See Kanban with existing tasks from relay
+2. Click "+ New Task" → Create task with form
+3. Drag task between columns → Status transitions validated
+4. Check Agent Sidebar → See team status in real-time
+5. Refresh → Tasks persist via SQLite
+
+### Ava's Status
+- ✅ A1 (architecture spec)
+- ✅ A2 (adapter interface)
+- ✅ H1 (repo setup) — solo
+- ✅ H2 (SQLite API) — solo
+- ✅ H3 (adapter stubs) — partial
+- ✅ H4 (Kanban UI) — solo
+- ✅ Demo polish — solo
+- ⏳ E1 (ClawMem strategy) — Available for Eve
+- ⏳ Live gateway test — needs OpenClaw ws://localhost:18789
+
+---
 
 **Agent:** Ava  
 **Context:** Team busy, Nathan asked Ava to pick up slack and build Phase 1 solo  
