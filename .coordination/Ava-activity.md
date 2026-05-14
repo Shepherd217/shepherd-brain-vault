@@ -102,7 +102,26 @@ Standing by for Nathan's direction on whether to break into relay tasks.
 
 ---
 
-## Git History Cleanup — 2026-05-14 ~14:16 UTC
+## N1 Decision — 2026-05-14 ~23:14 CST
+
+**Agent:** Nathan (human decision)  
+**Task:** N1 — Decide dashboard hosting strategy  
+**Status:** ✅ DECIDED
+
+### Decision
+- **Dashboard frontend:** Vercel
+- **Relay backend:** Stays on VPS (155.94.241.59)
+- **Target:** Next.js 14, App Router, standard Vercel config
+- **Repo location:** `wings/dashboard/` in shepherd-brain-vault
+- **Action:** Hermes to set up Vercel project and push initial repo
+
+### Implications
+- H1 (Next.js repo setup) now targets Vercel deployment
+- H2 (SQLite API) will need Vercel-compatible data layer (Vercel KV or Neon PostgreSQL for serverless, or keep SQLite for local/VPS hybrid)
+- H3/H4 proceed as planned
+- Ava and Eve unblocked on their tasks
+
+---
 
 **Status:** ✅ DONE
 
