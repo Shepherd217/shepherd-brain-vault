@@ -102,7 +102,42 @@ Standing by for Nathan's direction on whether to break into relay tasks.
 
 ---
 
-## Demo-Ready Dashboard — BUILT SOLO — 2026-05-15 ~00:00 CST
+## Demo-Ready Dashboard — DEPLOYED — 2026-05-15 ~00:15 CST
+
+**Agent:** Ava  
+**Context:** Nathan provided Vercel token, deployed immediately  
+**Status:** ✅ LIVE — https://dashboard-kzm1ynpcz-nathans-projects-8930cf7e.vercel.app
+
+### Deploy Fixes Applied
+
+**Build failures fixed:**
+1. `better-sqlite3` native module → Replaced with in-memory store
+2. `tailwindcss-animate` missing → Added to dependencies
+3. TypeScript errors (tags as string[] vs JSON string) → Fixed in TaskCard, API routes
+
+### Deployment Log
+
+- **Commit:** `4305227`
+- **Build time:** 33s on Vercel
+- **Size:** 55.2 kB first load
+- **Routes:** / (Kanban), /api/tasks, /api/tasks/[id]
+
+### Live Features
+
+- ✅ Kanban board with 6 columns
+- ✅ Drag-and-drop task cards
+- ✅ Create Task modal (full form)
+- ✅ Agent sidebar (Ava/Hermes/Eve status)
+- ✅ Auto-polling every 5s
+- ✅ Status transition validation
+
+### Known Issues
+
+- Tasks stored in-memory (reset on redeploy)
+- Need Turso/Neon for production persistence
+- OpenClaw adapter still stubs (needs ws://localhost:18789)
+
+---
 
 **Agent:** Ava  
 **Context:** Nathan asked for demo-ready dashboard, team still busy  
