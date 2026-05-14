@@ -18,11 +18,18 @@ import { Plus, X } from "lucide-react";
 import type { Task } from "@/types";
 
 interface CreateTaskModalProps {
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
   onTaskCreated: (task: Task) => void;
 }
 
-export function CreateTaskModal({ onTaskCreated }: CreateTaskModalProps) {
-  const [open, setOpen] = useState(false);
+export function CreateTaskModal({ open: controlledOpen, onOpenChange, onTaskCreated }: CreateTaskModalProps) {
+  const [internalOpen, setInternalOpen] = useState(false);
+  const open = controlledOpen !== undefined ? controlledOpen : internalOpen;
+  const setOpen = (value: boolean) => {
+    setInternalOpen(value);
+    onOpenChange?.(value);
+  };
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [priority, setPriority] = useState("medium");
@@ -95,15 +102,17 @@ export function CreateTaskModal({ onTaskCreated }: CreateTaskModalProps) {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
-        <Button
-          className={`gap-2 ${isMobile ? "rounded-full h-14 w-14 p-0 shadow-lg" : ""}`}
-          size={isMobile ? "icon" : "default"}
-        >
-          <Plus className="h-5 w-5" />
-          {!isMobile && <span>New Task</span>}
-        </Button>
-      </DialogTrigger>
+      {controlledOpen === undefined && (
+        <DialogTrigger asChild>
+          <Button
+            className={`gap-2 ${isMobile ? "rounded-full h-14 w-14 p-0 shadow-lg" : ""}`}
+            size={isMobile ? "icon" : "default"}
+          >
+            <Plus className="h-5 w-5" />
+            {!isMobile && <span>New Task</span>}
+          </Button>
+        </DialogTrigger>
+      )}
       <DialogContent className={isMobile ? "w-[95vw] max-w-[95vw] h-[90vh] max-h-[90vh] p-4 gap-2" : "sm:max-w-[500px]"}>
         <DialogHeader className={isMobile ? "pb-2" : ""}>
           <DialogTitle>Create New Task</DialogTitle>
