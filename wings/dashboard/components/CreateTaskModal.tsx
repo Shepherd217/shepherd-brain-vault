@@ -15,7 +15,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { Plus, X } from "lucide-react";
-import type { Task } from "@/types";
+import type { Task, AgentType } from "@/types";
 
 interface CreateTaskModalProps {
   open?: boolean;
@@ -63,8 +63,38 @@ export function CreateTaskModal({ open: controlledOpen, onOpenChange, onTaskCrea
     if (!title.trim()) return;
 
     setLoading(true);
+
+    // Create task locally immediately (localStorage is primary storage)
+    const newTask: Task = {
+      id: crypto.randomUUID(),
+      title: title.trim(),
+      description: description.trim() || null,
+      status: "backlog",
+      priority: priority as any,
+      owner: owner.trim() || null,
+      agentType: (agentType as AgentType) || null,
+      tags,
+      projectId: "shepherd",
+      dependencies: [],
+      createdAt: new Date(),
+      startedAt: null,
+      completedAt: null,
+      attempts: 0,
+      maxRetries: 3,
+      worktreeId: null,
+      result: null,
+      error: null,
+      requiresReview: false,
+      nextTask: null,
+    };
+
+    onTaskCreated(newTask);
+    setOpen(false);
+    resetForm();
+
+    // Also try to sync to API (fire-and-forget)
     try {
-      const res = await fetch("/api/tasks", {
+      await fetch("/api/tasks", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -76,15 +106,8 @@ export function CreateTaskModal({ open: controlledOpen, onOpenChange, onTaskCrea
           tags,
         }),
       });
-
-      if (res.ok) {
-        const data = await res.json();
-        onTaskCreated(data.task);
-        setOpen(false);
-        resetForm();
-      }
-    } catch (error) {
-      console.error("Failed to create task:", error);
+    } catch {
+      // API may fail, localStorage has it
     } finally {
       setLoading(false);
     }

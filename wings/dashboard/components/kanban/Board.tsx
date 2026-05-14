@@ -8,6 +8,7 @@ import { MobileColumnView } from "./MobileColumnView";
 import { CreateTaskModal } from "../CreateTaskModal";
 import { Button } from "@/components/ui/button";
 import { RefreshCw, LayoutDashboard } from "lucide-react";
+import { usePersistentTasks } from "@/lib/usePersistentTasks";
 import type { Task, TaskStatus } from "@/types";
 
 const COLUMNS: TaskStatus[] = ["backlog", "todo", "doing", "review", "done", "failed"];
@@ -26,8 +27,7 @@ interface KanbanBoardProps {
 }
 
 export function KanbanBoard({ onToggleSidebar }: KanbanBoardProps) {
-  const [tasks, setTasks] = useState<Task[]>([]);
-  const [loading, setLoading] = useState(true);
+  const { tasks, loaded, addTask, updateTask, refresh } = usePersistentTasks();
   const [lastUpdate, setLastUpdate] = useState<Date>(new Date());
   const [isMobile, setIsMobile] = useState(false);
 
@@ -39,45 +39,20 @@ export function KanbanBoard({ onToggleSidebar }: KanbanBoardProps) {
   }, []);
 
   useEffect(() => {
-    fetchTasks();
-    const interval = setInterval(fetchTasks, 5000);
-    return () => clearInterval(interval);
-  }, []);
-
-  async function fetchTasks() {
-    try {
-      const res = await fetch("/api/tasks");
-      const data = await res.json();
-      setTasks(data.tasks || []);
+    if (loaded) {
       setLastUpdate(new Date());
-    } catch (error) {
-      console.error("Failed to fetch tasks:", error);
-    } finally {
-      setLoading(false);
     }
-  }
+  }, [loaded, tasks]);
 
   async function handleDragEnd(result: DropResult) {
     if (!result.destination) return;
     const taskId = result.draggableId;
     const newStatus = result.destination.droppableId as TaskStatus;
-    setTasks((prev) =>
-      prev.map((t) => (t.id === taskId ? { ...t, status: newStatus } : t))
-    );
-    try {
-      const res = await fetch(`/api/tasks/${taskId}`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ status: newStatus }),
-      });
-      if (!res.ok) fetchTasks();
-    } catch {
-      fetchTasks();
-    }
+    await updateTask(taskId, { status: newStatus });
   }
 
-  function handleTaskCreated(newTask: Task) {
-    setTasks((prev) => [...prev, newTask]);
+  function handleTaskCreated(taskData: Partial<Task>) {
+    addTask(taskData);
   }
 
   const stats = {
@@ -86,7 +61,7 @@ export function KanbanBoard({ onToggleSidebar }: KanbanBoardProps) {
     done: tasks.filter((t) => t.status === "done").length,
   };
 
-  if (loading) {
+  if (!loaded) {
     return (
       <div className="flex h-screen items-center justify-center bg-background">
         <div className="flex flex-col items-center gap-3">
@@ -115,7 +90,7 @@ export function KanbanBoard({ onToggleSidebar }: KanbanBoardProps) {
             <span className="text-[10px] text-muted-foreground hidden sm:inline">
               Updated {lastUpdate.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
             </span>
-            <Button variant="outline" size="sm" onClick={fetchTasks} className="gap-1 h-8">
+            <Button variant="outline" size="sm" onClick={refresh} className="gap-1 h-8">
               <RefreshCw className="h-3.5 w-3.5" />
             </Button>
             <div className="hidden md:block">

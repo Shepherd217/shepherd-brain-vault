@@ -2,7 +2,13 @@ import { NextResponse } from "next/server";
 import type { Task, TaskStatus } from "@/types";
 
 // In-memory task store for serverless demo (replaces SQLite)
+// NOTE: On serverless, this resets per-instance. Frontend uses localStorage for persistence.
 const tasks: Task[] = [];
+
+// Load demo tasks if empty
+function getTasks(): Task[] {
+  return tasks;
+}
 
 const validTransitions: Record<TaskStatus, TaskStatus[]> = {
   backlog: ["todo"],
