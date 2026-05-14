@@ -102,7 +102,49 @@ Standing by for Nathan's direction on whether to break into relay tasks.
 
 ---
 
-## Mobile-Friendly Dashboard — DEPLOYED — 2026-05-15 ~01:00 CST
+## Agent Manager + HTML Office — DEPLOYED — 2026-05-15 ~01:15 CST
+
+**Agent:** Ava  
+**Context:** Nathan requested fully functioning agent manager with /goal system and HTML office dashboard  
+**Status:** ✅ LIVE — https://dashboard-19beqhrk4-nathans-projects-8930cf7e.vercel.app
+
+### What Was Built
+
+**1. Goal System (`/goal` equivalent)**
+- `skills/goal-system/GOAL.md` — Documentation
+- `skills/goal-system/tracker.js` — Tracks turns, time, tokens, evaluates completion
+- `skills/goal-system/evaluator.ts` — Checks if goal condition is met after each turn
+- Active goals stored in `.coordination/goals/active.json`
+- Commands: `/goal <condition>`, `/goal status`, `/goal clear`
+
+**2. Status Reporter**
+- `skills/status-reporter/reporter.js` — Agents report status every 30s
+- Stored in `.coordination/status/agents.json`
+- Tracks: agent ID, status (idle/working/offline), current task, last seen
+
+**3. Dashboard "HTML Office" Components**
+- `ActivityFeed.tsx` — Real-time log of agent actions (goals set, tasks created, deploys, messages)
+- `CommandBar.tsx` — Nathan can send messages to agents or set goals
+- `AgentPresence.tsx` — Live panel showing who's online and what they're doing
+- `page.tsx` — Updated layout with CommandBar at bottom, right panel with ActivityFeed + Presence
+
+**4. API Routes**
+- `GET/POST /api/activity` — Log and retrieve agent activities
+- `GET/POST /api/messages` — Agent-to-agent messaging
+- `GET/POST /api/tasks` — Task management (existing)
+
+**5. Bug Fixes**
+- Fixed CreateTaskModal: Submit button was outside form — moved inside form, now works
+- Fixed TaskCard: Removed JSON.parse for tags (now string[])
+
+### Deployment Log
+
+- **Commit:** `54ebb6d`
+- **Build time:** 14s (cached)
+- **Size:** 57.6 kB first load
+- **Routes:** 5 dynamic API routes
+
+---
 
 **Agent:** Ava  
 **Context:** Nathan requested mobile-friendly dashboard  
@@ -384,3 +426,4 @@ wings/dashboard/
 - All actual work content preserved
 - Remote now at `3d0b81e`
 
+[2026-05-15 01:09:55] Mobile dashboard deployed. Waiting for Nathan feedback.
