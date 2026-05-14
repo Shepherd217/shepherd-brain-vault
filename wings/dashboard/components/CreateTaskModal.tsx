@@ -205,15 +205,16 @@ export function CreateTaskModal({ onTaskCreated }: CreateTaskModalProps) {
               ))}
             </div>
           </div>
+
+          <DialogFooter className={isMobile ? "pt-2 gap-2" : ""}>
+            <Button type="button" variant="outline" onClick={() => setOpen(false)} className="h-11 md:h-10">
+              Cancel
+            </Button>
+            <Button type="submit" disabled={loading || !title.trim()} className="h-11 md:h-10">
+              {loading ? "Creating..." : "Create Task"}
+            </Button>
+          </DialogFooter>
         </form>
-        <DialogFooter className={isMobile ? "pt-2 gap-2" : ""}>
-          <Button type="button" variant="outline" onClick={() => setOpen(false)} className="h-11 md:h-10">
-            Cancel
-          </Button>
-          <Button type="submit" disabled={loading || !title.trim()} onClick={handleSubmit} className="h-11 md:h-10">
-            {loading ? "Creating..." : "Create Task"}
-          </Button>
-        </DialogFooter>
       </DialogContent>
     </Dialog>
   );
