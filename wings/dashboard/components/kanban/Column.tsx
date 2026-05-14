@@ -35,6 +35,7 @@ export function Column({ title, color, tasks, droppableId, onTaskClick, onQuickA
             </span>
           </div>
           <div className="flex-1 overflow-y-auto min-h-0 space-y-2">
+            {tasks.length === 0 && <EmptyState columnTitle={title} />}
             {tasks.map((task, index) => (
               <TaskCard key={task.id} task={task} index={index} onClick={onTaskClick} />
             ))}
