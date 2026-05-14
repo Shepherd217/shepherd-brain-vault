@@ -45,10 +45,10 @@
 
 | Task ID | Code | Title | Owner | Priority | Status |
 |---------|------|-------|-------|----------|--------|
-| 2026-05-14-003 | A1 | Write unified dashboard architecture spec | Ava | high | todo |
+| 2026-05-14-003 | A1 | Write unified dashboard architecture spec | Ava | high | ✅ DONE |
 | 2026-05-14-004 | H1 | Set up Next.js dashboard repo | Hermes | high | todo |
 | 2026-05-14-005 | H2 | Build SQLite task queue REST API | Hermes | high | todo |
-| 2026-05-14-006 | A2 | Design OpenClaw adapter interface | Ava | high | todo |
+| 2026-05-14-006 | A2 | Design OpenClaw adapter interface | Ava | high | ✅ DONE |
 | 2026-05-14-007 | H3 | Implement OpenClaw WebSocket adapter | Hermes | high | todo |
 | 2026-05-14-008 | H4 | Build basic Kanban UI | Hermes | high | todo |
 | 2026-05-14-009 | E1 | Design ClawMem integration strategy | Eve | medium | todo |
@@ -60,13 +60,19 @@
 - **Dependencies:** H3 blocked on A2 (adapter spec → implementation)
 - **Nathan task:** N1 is a human decision needed before H1 can finalize deployment config
 
+### A1 + A2 COMPLETE — Architecture Spec Delivered
+- **File:** `wings/dashboard/docs/adr-001-unified-architecture.md`
+- **Size:** 23KB, 712 lines
+- **Commit:** `92268dd`
+- **Contents:** Module boundaries, data model, API contracts, DB schema, adapter interfaces, frontend architecture, implementation order, open questions
+- **A2 included:** OpenClaw adapter interface fully specified in Sections 5.2 and 7.2
+- **Status:** Ready for Hermes to begin H1/H2 implementation
+
 ### Next Steps
-- Ava: Claim A1 (architecture spec) — start immediately
-- Ava: Claim A2 (adapter interface) — follow after A1
-- Hermes: Claim H1, H2, H4 (infrastructure + UI)
-- Hermes: Wait for A2 completion before claiming H3
-- Eve: Claim E1 when ready
-- Nathan: Respond to N1 when convenient
+- **Hermes:** Can claim H1, H2, H4 immediately. H3 blocked until A2 verified (but A2 is DONE).
+- **Eve:** Can claim E1 anytime.
+- **Nathan:** N1 decision needed for H1 deployment config.
+- **Ava:** Standing by for A3 (Phase 2 architecture) or assisting with H3 integration.
 
 ---
 
