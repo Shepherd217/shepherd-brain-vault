@@ -5,8 +5,7 @@ Unified web dashboard for orchestrating OpenClaw and HermesAgent instances.
 ## Features (Phase 1)
 
 - **Kanban Board** — 6-column task management with drag-and-drop
-- **Task Queue API** — SQLite-backed REST API with status transitions
-- **OpenClaw Adapter** — WebSocket connection to OpenClaw gateway
+- **Task Queue API** — In-memory REST API with status transitions
 - **Agent Monitor** — View connected agent status
 
 ## Tech Stack
@@ -14,15 +13,12 @@ Unified web dashboard for orchestrating OpenClaw and HermesAgent instances.
 - Next.js 14 (App Router)
 - TypeScript (strict mode)
 - Tailwind CSS + shadcn/ui
-- Drizzle ORM + better-sqlite3
 - react-beautiful-dnd
 
 ## Setup
 
 ```bash
 npm install
-cp .env.example .env.local
-npm run db:migrate
 npm run dev
 ```
 
@@ -35,6 +31,13 @@ npm run dev
 | GET | `/api/tasks/:id` | Get task |
 | PATCH | `/api/tasks/:id` | Update task (status transitions validated) |
 | DELETE | `/api/tasks/:id` | Delete task |
+
+## Note on Database
+
+This demo uses an in-memory store for serverless compatibility. For production, switch to:
+- **Turso/libSQL** — Serverless SQLite (recommended)
+- **Neon PostgreSQL** — Serverless Postgres
+- **Vercel KV** — Redis-based storage
 
 ## Architecture
 

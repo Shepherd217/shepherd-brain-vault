@@ -1,23 +1,8 @@
 import { NextResponse } from "next/server";
-import { db } from "@/lib/db";
-import { tasks } from "@/lib/db/schema";
-import { eq, and, like, inArray } from "drizzle-orm";
-import { nanoid } from "nanoid";
-import { z } from "zod";
-import type { TaskStatus } from "@/types";
+import type { Task, TaskStatus } from "@/types";
 
-const createTaskSchema = z.object({
-  title: z.string().min(1).max(200),
-  description: z.string().optional(),
-  priority: z.enum(["low", "medium", "high", "critical"]).default("medium"),
-  owner: z.string().optional(),
-  agentType: z.enum(["openclaw", "hermes", "human"]).optional(),
-  tags: z.array(z.string()).default([]),
-  projectId: z.string().default("shepherd"),
-  dependencies: z.array(z.string()).default([]),
-  maxRetries: z.number().int().min(0).max(10).default(3),
-  requiresReview: z.boolean().default(false),
-});
+// In-memory task store for serverless demo (replaces SQLite)
+const tasks: Task[] = [];
 
 const validTransitions: Record<TaskStatus, TaskStatus[]> = {
   backlog: ["todo"],
@@ -40,12 +25,7 @@ export async function GET(request: Request) {
   const tag = searchParams.get("tag");
   const projectId = searchParams.get("projectId") ?? "shepherd";
   
-  let query = db.select().from(tasks).where(eq(tasks.projectId, projectId));
-  
-  // Note: In production, build where clauses properly with Drizzle
-  const allTasks = await db.select().from(tasks);
-  
-  let filtered = allTasks.filter(t => t.projectId === projectId);
+  let filtered = tasks.filter(t => t.projectId === projectId);
   
   if (status) {
     filtered = filtered.filter(t => t.status === status);
@@ -70,25 +50,34 @@ export async function GET(request: Request) {
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const parsed = createTaskSchema.parse(body);
     
-    const task = {
-      id: nanoid(),
-      ...parsed,
-      tags: JSON.stringify(parsed.tags),
-      dependencies: JSON.stringify(parsed.dependencies),
-      status: "backlog" as TaskStatus,
-      attempts: 0,
+    const task: Task = {
+      id: crypto.randomUUID(),
+      title: body.title,
+      description: body.description || null,
+      status: "backlog",
+      priority: body.priority || "medium",
+      owner: body.owner || null,
+      agentType: body.agentType || null,
+      tags: JSON.stringify(body.tags || []),
+      projectId: body.projectId || "shepherd",
+      dependencies: JSON.stringify(body.dependencies || []),
       createdAt: new Date(),
+      startedAt: null,
+      completedAt: null,
+      attempts: 0,
+      maxRetries: body.maxRetries || 3,
+      worktreeId: null,
+      result: null,
+      error: null,
+      requiresReview: body.requiresReview || false,
+      nextTask: null,
     };
     
-    await db.insert(tasks).values(task);
+    tasks.push(task);
     
     return NextResponse.json({ task }, { status: 201 });
   } catch (error) {
-    if (error instanceof z.ZodError) {
-      return NextResponse.json({ error: error.errors }, { status: 400 });
-    }
     return NextResponse.json({ error: "Failed to create task" }, { status: 500 });
   }
 }

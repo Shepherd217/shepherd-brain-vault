@@ -1,21 +1,15 @@
 import { NextResponse } from "next/server";
-import { db } from "@/lib/db";
-import { tasks } from "@/lib/db/schema";
-import { eq } from "drizzle-orm";
-import { z } from "zod";
-import type { TaskStatus } from "@/types";
+import type { Task, TaskStatus } from "@/types";
 
-const updateSchema = z.object({
-  title: z.string().min(1).max(200).optional(),
-  description: z.string().optional(),
-  status: z.enum(["backlog", "todo", "doing", "review", "done", "failed"]).optional(),
-  priority: z.enum(["low", "medium", "high", "critical"]).optional(),
-  owner: z.string().optional(),
-  agentType: z.enum(["openclaw", "hermes", "human"]).optional(),
-  tags: z.array(z.string()).optional(),
-  result: z.string().optional(),
-  error: z.string().optional(),
-});
+// Shared in-memory store (same as route.ts)
+declare global {
+  var __tasks: Task[] | undefined;
+}
+
+const tasks = globalThis.__tasks ?? [];
+if (!globalThis.__tasks) {
+  globalThis.__tasks = tasks;
+}
 
 const validTransitions: Record<TaskStatus, TaskStatus[]> = {
   backlog: ["todo"],
@@ -30,7 +24,7 @@ export async function GET(
   request: Request,
   { params }: { params: { id: string } }
 ) {
-  const task = await db.select().from(tasks).where(eq(tasks.id, params.id)).get();
+  const task = tasks.find(t => t.id === params.id);
   
   if (!task) {
     return NextResponse.json({ error: "Task not found" }, { status: 404 });
@@ -45,17 +39,18 @@ export async function PATCH(
 ) {
   try {
     const body = await request.json();
-    const parsed = updateSchema.parse(body);
     
-    const existing = await db.select().from(tasks).where(eq(tasks.id, params.id)).get();
-    if (!existing) {
+    const existingIndex = tasks.findIndex(t => t.id === params.id);
+    if (existingIndex === -1) {
       return NextResponse.json({ error: "Task not found" }, { status: 404 });
     }
     
+    const existing = tasks[existingIndex];
+    
     // Validate status transition
-    if (parsed.status && parsed.status !== existing.status) {
+    if (body.status && body.status !== existing.status) {
       const currentStatus = existing.status as TaskStatus;
-      const newStatus = parsed.status;
+      const newStatus = body.status as TaskStatus;
       
       if (!validTransitions[currentStatus]?.includes(newStatus)) {
         return NextResponse.json(
@@ -65,32 +60,33 @@ export async function PATCH(
       }
     }
     
-    const updates: Record<string, unknown> = { ...parsed };
-    
-    if (parsed.tags) {
-      updates.tags = JSON.stringify(parsed.tags);
-    }
+    const updates: Partial<Task> = {};
+    if (body.title !== undefined) updates.title = body.title;
+    if (body.description !== undefined) updates.description = body.description;
+    if (body.status !== undefined) updates.status = body.status;
+    if (body.priority !== undefined) updates.priority = body.priority;
+    if (body.owner !== undefined) updates.owner = body.owner;
+    if (body.agentType !== undefined) updates.agentType = body.agentType;
+    if (body.tags !== undefined) updates.tags = JSON.stringify(body.tags);
+    if (body.result !== undefined) updates.result = body.result;
+    if (body.error !== undefined) updates.error = body.error;
     
     // Auto-set timestamps
-    if (parsed.status === "doing" && existing.status !== "doing") {
+    if (body.status === "doing" && existing.status !== "doing") {
       updates.startedAt = new Date();
     }
-    if ((parsed.status === "done" || parsed.status === "failed") && 
+    if ((body.status === "done" || body.status === "failed") && 
         existing.status !== "done" && existing.status !== "failed") {
       updates.completedAt = new Date();
     }
-    if (parsed.status === "failed") {
-      updates.attempts = existing.attempts + 1;
+    if (body.status === "failed") {
+      updates.attempts = (existing.attempts || 0) + 1;
     }
     
-    await db.update(tasks).set(updates).where(eq(tasks.id, params.id));
+    tasks[existingIndex] = { ...existing, ...updates };
     
-    const updated = await db.select().from(tasks).where(eq(tasks.id, params.id)).get();
-    return NextResponse.json({ task: updated });
+    return NextResponse.json({ task: tasks[existingIndex] });
   } catch (error) {
-    if (error instanceof z.ZodError) {
-      return NextResponse.json({ error: error.errors }, { status: 400 });
-    }
     return NextResponse.json({ error: "Failed to update task" }, { status: 500 });
   }
 }
@@ -99,11 +95,11 @@ export async function DELETE(
   request: Request,
   { params }: { params: { id: string } }
 ) {
-  const existing = await db.select().from(tasks).where(eq(tasks.id, params.id)).get();
-  if (!existing) {
+  const existingIndex = tasks.findIndex(t => t.id === params.id);
+  if (existingIndex === -1) {
     return NextResponse.json({ error: "Task not found" }, { status: 404 });
   }
   
-  await db.delete(tasks).where(eq(tasks.id, params.id));
+  tasks.splice(existingIndex, 1);
   return NextResponse.json({ ok: true });
 }
