@@ -1,0 +1,999 @@
+{
+  "indexed_at": "2026-05-13T05:39:34.921545",
+  "skills": {
+    "multi_agent": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/rooms/skills/auto-evolved/multi_agent.json",
+      "category": "auto-forged",
+      "score": 0,
+      "auto_evolved": true,
+      "use_count": 53
+    },
+    "crisis_recovery": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/rooms/skills/auto-evolved/crisis_recovery.json",
+      "category": "auto-forged",
+      "score": 0,
+      "auto_evolved": true,
+      "use_count": 66
+    },
+    "vault_maintenance": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/rooms/skills/auto-evolved/vault_maintenance.json",
+      "category": "auto-forged",
+      "score": 0,
+      "auto_evolved": true,
+      "use_count": 66
+    },
+    "outreach_draft": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/rooms/skills/auto-evolved/outreach_draft.json",
+      "category": "auto-forged",
+      "score": 0,
+      "auto_evolved": true,
+      "use_count": 66
+    },
+    "repo_research": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/rooms/skills/auto-evolved/repo_research.json",
+      "category": "auto-forged",
+      "score": 0,
+      "auto_evolved": true,
+      "use_count": 66
+    },
+    "lead_audit": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/rooms/skills/auto-evolved/lead_audit.json",
+      "category": "auto-forged",
+      "score": 0,
+      "auto_evolved": true,
+      "use_count": 66
+    },
+    ".forge_log": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/rooms/skills/auto-forged/.forge_log.json",
+      "category": "auto-forged",
+      "score": 0,
+      "auto_evolved": true,
+      "use_count": 0
+    },
+    "ai-agents-for-beginners": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/rooms/skills/repo-research/ai-agents-for-beginners.md",
+      "category": "repo-research",
+      "score": 85,
+      "has_examples": true,
+      "has_params": false,
+      "has_errors": true,
+      "size": 7290
+    },
+    "agent-skills": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/rooms/skills/repo-research/agent-skills.md",
+      "category": "repo-research",
+      "score": 100,
+      "has_examples": true,
+      "has_params": true,
+      "has_errors": true,
+      "size": 6320
+    },
+    "autoresearch": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/rooms/skills/repo-research/autoresearch.md",
+      "category": "repo-research",
+      "score": 50,
+      "has_examples": false,
+      "has_params": false,
+      "has_errors": false,
+      "size": 5681
+    },
+    "x-bookmarks-dissection": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/rooms/skills/repo-research/x-bookmarks-dissection.md",
+      "category": "repo-research",
+      "score": 65,
+      "has_examples": false,
+      "has_params": true,
+      "has_errors": false,
+      "size": 6300
+    },
+    "AGENTMEMORY-TASK": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/rooms/skills/repo-research/AGENTMEMORY-TASK.md",
+      "category": "repo-research",
+      "score": 50,
+      "has_examples": false,
+      "has_params": false,
+      "has_errors": false,
+      "size": 778
+    },
+    "MASTER-SUMMARY": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/rooms/skills/repo-research/MASTER-SUMMARY.md",
+      "category": "repo-research",
+      "score": 85,
+      "has_examples": true,
+      "has_params": true,
+      "has_errors": false,
+      "size": 8265
+    },
+    "autonomous-discovery-2026-05-12": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/rooms/skills/repo-research/autonomous-discovery-2026-05-12.md",
+      "category": "repo-research",
+      "score": 65,
+      "has_examples": false,
+      "has_params": true,
+      "has_errors": false,
+      "size": 3252
+    },
+    "hermes-outscaling-comparison": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/rooms/skills/repo-research/hermes-outscaling-comparison.md",
+      "category": "repo-research",
+      "score": 65,
+      "has_examples": false,
+      "has_params": true,
+      "has_errors": false,
+      "size": 6623
+    },
+    "awesome-claude-code": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/rooms/skills/repo-research/awesome-claude-code.md",
+      "category": "repo-research",
+      "score": 50,
+      "has_examples": false,
+      "has_params": false,
+      "has_errors": false,
+      "size": 6044
+    },
+    "mempalace": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/rooms/skills/repo-research/mempalace.md",
+      "category": "repo-research",
+      "score": 65,
+      "has_examples": false,
+      "has_params": true,
+      "has_errors": false,
+      "size": 6279
+    },
+    "hermes-ecosystem-dissection": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/rooms/skills/repo-research/hermes-ecosystem-dissection.md",
+      "category": "repo-research",
+      "score": 65,
+      "has_examples": false,
+      "has_params": false,
+      "has_errors": true,
+      "size": 6383
+    },
+    "openclaw": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/rooms/skills/repo-research/openclaw.md",
+      "category": "repo-research",
+      "score": 50,
+      "has_examples": false,
+      "has_params": false,
+      "has_errors": false,
+      "size": 6600
+    },
+    "hermes-agent": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/rooms/skills/repo-research/hermes-agent.md",
+      "category": "repo-research",
+      "score": 65,
+      "has_examples": false,
+      "has_params": true,
+      "has_errors": false,
+      "size": 3604
+    },
+    "andrej-karpathy-skills": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/rooms/skills/repo-research/andrej-karpathy-skills.md",
+      "category": "repo-research",
+      "score": 50,
+      "has_examples": false,
+      "has_params": false,
+      "has_errors": false,
+      "size": 5480
+    },
+    "ifixai": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/rooms/skills/repo-research/ifixai.md",
+      "category": "repo-research",
+      "score": 50,
+      "has_examples": false,
+      "has_params": false,
+      "has_errors": false,
+      "size": 3575
+    },
+    "agentmemory": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/rooms/skills/repo-research/agentmemory.md",
+      "category": "repo-research",
+      "score": 65,
+      "has_examples": false,
+      "has_params": true,
+      "has_errors": false,
+      "size": 6756
+    },
+    "awesome-llm-apps": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/rooms/skills/repo-research/awesome-llm-apps.md",
+      "category": "repo-research",
+      "score": 70,
+      "has_examples": true,
+      "has_params": false,
+      "has_errors": false,
+      "size": 14684
+    },
+    "HEARTBEAT": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/Promachos/HEARTBEAT.md",
+      "category": "wings",
+      "score": 50,
+      "has_examples": false,
+      "has_params": false,
+      "has_errors": false,
+      "size": 2634
+    },
+    "PROMACHOS": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/Promachos/PROMACHOS.md",
+      "category": "wings",
+      "score": 50,
+      "has_examples": false,
+      "has_params": false,
+      "has_errors": false,
+      "size": 4708
+    },
+    "live-testing-2026-05-10-round38": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/MoltOS/live-testing-2026-05-10-round38.md",
+      "category": "wings",
+      "score": 50,
+      "has_examples": false,
+      "has_params": false,
+      "has_errors": false,
+      "size": 342
+    },
+    "live-testing-2026-05-10-round19": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/MoltOS/live-testing-2026-05-10-round19.md",
+      "category": "wings",
+      "score": 65,
+      "has_examples": false,
+      "has_params": true,
+      "has_errors": false,
+      "size": 3266
+    },
+    "live-testing-2026-05-10-round17": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/MoltOS/live-testing-2026-05-10-round17.md",
+      "category": "wings",
+      "score": 50,
+      "has_examples": false,
+      "has_params": false,
+      "has_errors": false,
+      "size": 2821
+    },
+    "live-testing-2026-05-10-round35": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/MoltOS/live-testing-2026-05-10-round35.md",
+      "category": "wings",
+      "score": 65,
+      "has_examples": false,
+      "has_params": true,
+      "has_errors": false,
+      "size": 1155
+    },
+    "live-testing-2026-05-10-round26": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/MoltOS/live-testing-2026-05-10-round26.md",
+      "category": "wings",
+      "score": 50,
+      "has_examples": false,
+      "has_params": false,
+      "has_errors": false,
+      "size": 939
+    },
+    "live-testing-2026-05-10-round18": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/MoltOS/live-testing-2026-05-10-round18.md",
+      "category": "wings",
+      "score": 65,
+      "has_examples": false,
+      "has_params": true,
+      "has_errors": false,
+      "size": 3028
+    },
+    "live-testing-2026-05-10-round5": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/MoltOS/live-testing-2026-05-10-round5.md",
+      "category": "wings",
+      "score": 65,
+      "has_examples": false,
+      "has_params": true,
+      "has_errors": false,
+      "size": 6715
+    },
+    "live-testing-2026-05-10-round37": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/MoltOS/live-testing-2026-05-10-round37.md",
+      "category": "wings",
+      "score": 65,
+      "has_examples": false,
+      "has_params": true,
+      "has_errors": false,
+      "size": 579
+    },
+    "commits-2026-05-09": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/MoltOS/commits-2026-05-09.md",
+      "category": "wings",
+      "score": 80,
+      "has_examples": false,
+      "has_params": true,
+      "has_errors": true,
+      "size": 6869
+    },
+    "live-testing-2026-05-10-round27": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/MoltOS/live-testing-2026-05-10-round27.md",
+      "category": "wings",
+      "score": 65,
+      "has_examples": false,
+      "has_params": true,
+      "has_errors": false,
+      "size": 2543
+    },
+    "live-testing-2026-05-10-round23": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/MoltOS/live-testing-2026-05-10-round23.md",
+      "category": "wings",
+      "score": 50,
+      "has_examples": false,
+      "has_params": false,
+      "has_errors": false,
+      "size": 870
+    },
+    "live-testing-2026-05-10-round33": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/MoltOS/live-testing-2026-05-10-round33.md",
+      "category": "wings",
+      "score": 50,
+      "has_examples": false,
+      "has_params": false,
+      "has_errors": false,
+      "size": 697
+    },
+    "live-testing-2026-05-10-round8": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/MoltOS/live-testing-2026-05-10-round8.md",
+      "category": "wings",
+      "score": 65,
+      "has_examples": false,
+      "has_params": true,
+      "has_errors": false,
+      "size": 8877
+    },
+    "live-testing-2026-05-10-round29": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/MoltOS/live-testing-2026-05-10-round29.md",
+      "category": "wings",
+      "score": 65,
+      "has_examples": false,
+      "has_params": true,
+      "has_errors": false,
+      "size": 1129
+    },
+    "live-testing-2026-05-10-round28": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/MoltOS/live-testing-2026-05-10-round28.md",
+      "category": "wings",
+      "score": 65,
+      "has_examples": false,
+      "has_params": true,
+      "has_errors": false,
+      "size": 2007
+    },
+    "live-testing-2026-05-10-round30": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/MoltOS/live-testing-2026-05-10-round30.md",
+      "category": "wings",
+      "score": 65,
+      "has_examples": false,
+      "has_params": true,
+      "has_errors": false,
+      "size": 1968
+    },
+    "live-testing-2026-05-10-round10": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/MoltOS/live-testing-2026-05-10-round10.md",
+      "category": "wings",
+      "score": 80,
+      "has_examples": false,
+      "has_params": true,
+      "has_errors": true,
+      "size": 9216
+    },
+    "README": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/Nathan/marrow/README.md",
+      "category": "wings",
+      "score": 50,
+      "has_examples": false,
+      "has_params": false,
+      "has_errors": false,
+      "size": 1078
+    },
+    "api-endpoint-map-2026-05-10": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/MoltOS/api-endpoint-map-2026-05-10.md",
+      "category": "wings",
+      "score": 80,
+      "has_examples": false,
+      "has_params": true,
+      "has_errors": true,
+      "size": 7257
+    },
+    "live-testing-2026-05-10-round22": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/MoltOS/live-testing-2026-05-10-round22.md",
+      "category": "wings",
+      "score": 65,
+      "has_examples": false,
+      "has_params": false,
+      "has_errors": true,
+      "size": 2901
+    },
+    "live-testing-2026-05-10-round16": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/MoltOS/live-testing-2026-05-10-round16.md",
+      "category": "wings",
+      "score": 50,
+      "has_examples": false,
+      "has_params": false,
+      "has_errors": false,
+      "size": 2837
+    },
+    "live-testing-2026-05-10-round12": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/MoltOS/live-testing-2026-05-10-round12.md",
+      "category": "wings",
+      "score": 80,
+      "has_examples": false,
+      "has_params": true,
+      "has_errors": true,
+      "size": 4214
+    },
+    "live-testing-2026-05-10-round32": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/MoltOS/live-testing-2026-05-10-round32.md",
+      "category": "wings",
+      "score": 65,
+      "has_examples": false,
+      "has_params": true,
+      "has_errors": false,
+      "size": 1166
+    },
+    "connection-established": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/MoltOS/connection-established.md",
+      "category": "wings",
+      "score": 50,
+      "has_examples": false,
+      "has_params": false,
+      "has_errors": false,
+      "size": 1641
+    },
+    "live-testing-2026-05-10-round34": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/MoltOS/live-testing-2026-05-10-round34.md",
+      "category": "wings",
+      "score": 50,
+      "has_examples": false,
+      "has_params": false,
+      "has_errors": false,
+      "size": 1034
+    },
+    "live-testing-2026-05-10-round3": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/MoltOS/live-testing-2026-05-10-round3.md",
+      "category": "wings",
+      "score": 80,
+      "has_examples": false,
+      "has_params": true,
+      "has_errors": true,
+      "size": 8007
+    },
+    "FINAL-REPORT-2026-05-10": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/MoltOS/FINAL-REPORT-2026-05-10.md",
+      "category": "wings",
+      "score": 85,
+      "has_examples": true,
+      "has_params": true,
+      "has_errors": false,
+      "size": 15325
+    },
+    "agent-orchestration": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/MoltOS/agent-orchestration.md",
+      "category": "wings",
+      "score": 100,
+      "has_examples": true,
+      "has_params": true,
+      "has_errors": true,
+      "size": 9350
+    },
+    "RETEST-REPORT-2026-05-10": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/MoltOS/RETEST-REPORT-2026-05-10.md",
+      "category": "wings",
+      "score": 80,
+      "has_examples": false,
+      "has_params": true,
+      "has_errors": true,
+      "size": 7936
+    },
+    "live-testing-2026-05-10-round21": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/MoltOS/live-testing-2026-05-10-round21.md",
+      "category": "wings",
+      "score": 50,
+      "has_examples": false,
+      "has_params": false,
+      "has_errors": false,
+      "size": 2104
+    },
+    "live-testing-2026-05-10-round2": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/MoltOS/live-testing-2026-05-10-round2.md",
+      "category": "wings",
+      "score": 80,
+      "has_examples": false,
+      "has_params": true,
+      "has_errors": true,
+      "size": 4481
+    },
+    "EXECUTIVE-SUMMARY-2026-05-10": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/MoltOS/EXECUTIVE-SUMMARY-2026-05-10.md",
+      "category": "wings",
+      "score": 65,
+      "has_examples": false,
+      "has_params": true,
+      "has_errors": false,
+      "size": 10392
+    },
+    "live-testing-2026-05-10-round11": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/MoltOS/live-testing-2026-05-10-round11.md",
+      "category": "wings",
+      "score": 80,
+      "has_examples": false,
+      "has_params": true,
+      "has_errors": true,
+      "size": 4769
+    },
+    "live-testing-2026-05-10-round6": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/MoltOS/live-testing-2026-05-10-round6.md",
+      "category": "wings",
+      "score": 80,
+      "has_examples": false,
+      "has_params": true,
+      "has_errors": true,
+      "size": 8727
+    },
+    "live-testing-2026-05-10": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/MoltOS/live-testing-2026-05-10.md",
+      "category": "wings",
+      "score": 85,
+      "has_examples": true,
+      "has_params": true,
+      "has_errors": false,
+      "size": 3774
+    },
+    "live-testing-2026-05-10-round24": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/MoltOS/live-testing-2026-05-10-round24.md",
+      "category": "wings",
+      "score": 80,
+      "has_examples": false,
+      "has_params": true,
+      "has_errors": true,
+      "size": 6592
+    },
+    "live-testing-2026-05-10-round4": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/MoltOS/live-testing-2026-05-10-round4.md",
+      "category": "wings",
+      "score": 100,
+      "has_examples": true,
+      "has_params": true,
+      "has_errors": true,
+      "size": 8771
+    },
+    "live-testing-2026-05-10-round9": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/MoltOS/live-testing-2026-05-10-round9.md",
+      "category": "wings",
+      "score": 100,
+      "has_examples": true,
+      "has_params": true,
+      "has_errors": true,
+      "size": 10658
+    },
+    "live-testing-2026-05-10-round31": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/MoltOS/live-testing-2026-05-10-round31.md",
+      "category": "wings",
+      "score": 50,
+      "has_examples": false,
+      "has_params": false,
+      "has_errors": false,
+      "size": 1179
+    },
+    "live-testing-2026-05-10-round7": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/MoltOS/live-testing-2026-05-10-round7.md",
+      "category": "wings",
+      "score": 65,
+      "has_examples": false,
+      "has_params": true,
+      "has_errors": false,
+      "size": 6725
+    },
+    "live-testing-2026-05-10-round36": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/MoltOS/live-testing-2026-05-10-round36.md",
+      "category": "wings",
+      "score": 50,
+      "has_examples": false,
+      "has_params": false,
+      "has_errors": false,
+      "size": 751
+    },
+    "live-testing-2026-05-10-round20": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/MoltOS/live-testing-2026-05-10-round20.md",
+      "category": "wings",
+      "score": 50,
+      "has_examples": false,
+      "has_params": false,
+      "has_errors": false,
+      "size": 2326
+    },
+    "live-testing-2026-05-10-round40": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/MoltOS/live-testing-2026-05-10-round40.md",
+      "category": "wings",
+      "score": 80,
+      "has_examples": false,
+      "has_params": true,
+      "has_errors": true,
+      "size": 3805
+    },
+    "live-testing-2026-05-10-round13-15": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/MoltOS/live-testing-2026-05-10-round13-15.md",
+      "category": "wings",
+      "score": 65,
+      "has_examples": false,
+      "has_params": false,
+      "has_errors": true,
+      "size": 1752
+    },
+    "PRD_v1": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/OpenClaw/PRD_v1.md",
+      "category": "wings",
+      "score": 65,
+      "has_examples": false,
+      "has_params": true,
+      "has_errors": false,
+      "size": 6174
+    },
+    "CLI_Toolkit": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/Nathan/CLI_Toolkit.md",
+      "category": "wings",
+      "score": 70,
+      "has_examples": true,
+      "has_params": false,
+      "has_errors": false,
+      "size": 2354
+    },
+    "SYSTEM_STATUS": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/Nathan/SYSTEM_STATUS.md",
+      "category": "wings",
+      "score": 65,
+      "has_examples": false,
+      "has_params": true,
+      "has_errors": false,
+      "size": 4990
+    },
+    "PROJECT_HEAT_MAP": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/Nathan/PROJECT_HEAT_MAP.md",
+      "category": "wings",
+      "score": 65,
+      "has_examples": false,
+      "has_params": true,
+      "has_errors": false,
+      "size": 4529
+    },
+    "consistency-report": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/StandoutLocal/consistency-report.md",
+      "category": "wings",
+      "score": 65,
+      "has_examples": false,
+      "has_params": true,
+      "has_errors": false,
+      "size": 337
+    },
+    "m0h-method-adaptation": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/StandoutLocal/m0h-method-adaptation.md",
+      "category": "wings",
+      "score": 85,
+      "has_examples": true,
+      "has_params": true,
+      "has_errors": false,
+      "size": 6980
+    },
+    "LEAD_SYSTEM": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/StandoutLocal/LEAD_SYSTEM.md",
+      "category": "wings",
+      "score": 65,
+      "has_examples": false,
+      "has_params": true,
+      "has_errors": false,
+      "size": 2559
+    },
+    "dashboard": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/StandoutLocal/dashboard.md",
+      "category": "wings",
+      "score": 65,
+      "has_examples": false,
+      "has_params": true,
+      "has_errors": false,
+      "size": 1245
+    },
+    "memory": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/Nathan/marrow/memory.md",
+      "category": "wings",
+      "score": 50,
+      "has_examples": false,
+      "has_params": false,
+      "has_errors": false,
+      "size": 2917
+    },
+    "soul": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/Nathan/marrow/soul.md",
+      "category": "wings",
+      "score": 50,
+      "has_examples": false,
+      "has_params": false,
+      "has_errors": false,
+      "size": 9627
+    },
+    "evolution-2026-05-08": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/Nathan/marrow/evolution-2026-05-08.md",
+      "category": "wings",
+      "score": 50,
+      "has_examples": false,
+      "has_params": false,
+      "has_errors": false,
+      "size": 3413
+    },
+    "hatchly-brutal-gap-inventory-2026-05-12": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/Nathan/marrow/hatchly-brutal-gap-inventory-2026-05-12.md",
+      "category": "wings",
+      "score": 80,
+      "has_examples": false,
+      "has_params": true,
+      "has_errors": true,
+      "size": 10659
+    },
+    "hatchly-real-gap-analysis-2026-05-12": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/Nathan/marrow/hatchly-real-gap-analysis-2026-05-12.md",
+      "category": "wings",
+      "score": 80,
+      "has_examples": false,
+      "has_params": true,
+      "has_errors": true,
+      "size": 7904
+    },
+    "heartbeat-reference": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/Nathan/marrow/heartbeat-reference.md",
+      "category": "wings",
+      "score": 50,
+      "has_examples": false,
+      "has_params": false,
+      "has_errors": false,
+      "size": 5650
+    },
+    "lessons": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/Nathan/marrow/lessons.md",
+      "category": "wings",
+      "score": 65,
+      "has_examples": false,
+      "has_params": false,
+      "has_errors": true,
+      "size": 3547
+    },
+    "hatchly-on-moltos-paradigm-shift-2026-05-12": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/Nathan/marrow/hatchly-on-moltos-paradigm-shift-2026-05-12.md",
+      "category": "wings",
+      "score": 85,
+      "has_examples": true,
+      "has_params": true,
+      "has_errors": false,
+      "size": 12109
+    },
+    "agents-reference": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/Nathan/marrow/agents-reference.md",
+      "category": "wings",
+      "score": 85,
+      "has_examples": true,
+      "has_params": false,
+      "has_errors": true,
+      "size": 16211
+    },
+    "opportunity-scoring-2026-05-11": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/Nathan/marrow/opportunity-scoring-2026-05-11.md",
+      "category": "wings",
+      "score": 65,
+      "has_examples": false,
+      "has_params": true,
+      "has_errors": false,
+      "size": 9002
+    },
+    "clawfs-entry-2026-05-11": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/Nathan/marrow/clawfs-entry-2026-05-11.md",
+      "category": "wings",
+      "score": 50,
+      "has_examples": false,
+      "has_params": false,
+      "has_errors": false,
+      "size": 3571
+    },
+    "hatchly-unfair-advantage-analysis-2026-05-12": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/Nathan/marrow/hatchly-unfair-advantage-analysis-2026-05-12.md",
+      "category": "wings",
+      "score": 65,
+      "has_examples": false,
+      "has_params": true,
+      "has_errors": false,
+      "size": 5291
+    },
+    "what-moltos-is-first-person-reckoning-2026-05-12": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/Nathan/marrow/what-moltos-is-first-person-reckoning-2026-05-12.md",
+      "category": "wings",
+      "score": 50,
+      "has_examples": false,
+      "has_params": false,
+      "has_errors": false,
+      "size": 8540
+    },
+    "hatchly-saas-vs-aaas-analysis-2026-05-12": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/Nathan/marrow/hatchly-saas-vs-aaas-analysis-2026-05-12.md",
+      "category": "wings",
+      "score": 85,
+      "has_examples": true,
+      "has_params": true,
+      "has_errors": false,
+      "size": 15198
+    },
+    "mission-2026-05-11": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/Nathan/marrow/mission-2026-05-11.md",
+      "category": "wings",
+      "score": 65,
+      "has_examples": false,
+      "has_params": true,
+      "has_errors": false,
+      "size": 4452
+    },
+    "hermes-competitive-analysis-2026-05-12": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/Nathan/marrow/hermes-competitive-analysis-2026-05-12.md",
+      "category": "wings",
+      "score": 80,
+      "has_examples": false,
+      "has_params": true,
+      "has_errors": true,
+      "size": 13429
+    },
+    "cleaning-services-champaign-il-competitors": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/StandoutLocal/competitors/cleaning-services-champaign-il-competitors.md",
+      "category": "wings",
+      "score": 85,
+      "has_examples": true,
+      "has_params": true,
+      "has_errors": false,
+      "size": 2599
+    },
+    "lisa-cleaning-il": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/StandoutLocal/leads/lisa-cleaning-il.md",
+      "category": "wings",
+      "score": 65,
+      "has_examples": false,
+      "has_params": true,
+      "has_errors": false,
+      "size": 5010
+    },
+    "we-keep-it-kleen": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/StandoutLocal/leads/we-keep-it-kleen.md",
+      "category": "wings",
+      "score": 80,
+      "has_examples": false,
+      "has_params": true,
+      "has_errors": true,
+      "size": 5223
+    },
+    "executive-cleaning-services": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/StandoutLocal/leads/executive-cleaning-services.md",
+      "category": "wings",
+      "score": 50,
+      "has_examples": false,
+      "has_params": false,
+      "has_errors": false,
+      "size": 1277
+    },
+    "illini-cleaning-services": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/StandoutLocal/leads/illini-cleaning-services.md",
+      "category": "wings",
+      "score": 80,
+      "has_examples": false,
+      "has_params": true,
+      "has_errors": true,
+      "size": 5585
+    },
+    "chavezs-cleaning": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/StandoutLocal/leads/chavezs-cleaning.md",
+      "category": "wings",
+      "score": 65,
+      "has_examples": false,
+      "has_params": true,
+      "has_errors": false,
+      "size": 2657
+    },
+    "mc-cleaning-services": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/StandoutLocal/leads/mc-cleaning-services.md",
+      "category": "wings",
+      "score": 65,
+      "has_examples": false,
+      "has_params": true,
+      "has_errors": false,
+      "size": 5417
+    },
+    "lisa-cleaning-il-outreach-v1": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/StandoutLocal/outreach/lisa-cleaning-il-outreach-v1.md",
+      "category": "wings",
+      "score": 65,
+      "has_examples": false,
+      "has_params": true,
+      "has_errors": false,
+      "size": 1164
+    },
+    "mc-cleaning-services-outreach-v1": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/StandoutLocal/outreach/mc-cleaning-services-outreach-v1.md",
+      "category": "wings",
+      "score": 65,
+      "has_examples": false,
+      "has_params": true,
+      "has_errors": false,
+      "size": 1120
+    },
+    "lisa-cleaning-il-debate": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/StandoutLocal/debates/lisa-cleaning-il-debate.md",
+      "category": "wings",
+      "score": 65,
+      "has_examples": false,
+      "has_params": true,
+      "has_errors": false,
+      "size": 1347
+    },
+    "lisa-cleaning-il-comparison": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/StandoutLocal/comparisons/lisa-cleaning-il-comparison.md",
+      "category": "wings",
+      "score": 65,
+      "has_examples": false,
+      "has_params": true,
+      "has_errors": false,
+      "size": 2787
+    },
+    "example-org-audit": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/StandoutLocal/audits/example-org-audit.md",
+      "category": "wings",
+      "score": 85,
+      "has_examples": true,
+      "has_params": true,
+      "has_errors": false,
+      "size": 622
+    },
+    "example-com-audit": {
+      "path": "/root/.openclaw/workspace/shepherd-brain-vault/wings/StandoutLocal/audits/example-com-audit.md",
+      "category": "wings",
+      "score": 85,
+      "has_examples": true,
+      "has_params": true,
+      "has_errors": false,
+      "size": 622
+    }
+  },
+  "bundles": {
+    "standout-local": [
+      "lead_audit",
+      "lisa-cleaning-il",
+      "we-keep-it-kleen",
+      "executive-cleaning-services",
+      "illini-cleaning-services",
+      "chavezs-cleaning",
+      "mc-cleaning-services",
+      "example-org-audit",
+      "example-com-audit"
+    ],
+    "moltos-core": [
+      "multi_agent",
+      "ai-agents-for-beginners",
+      "agent-skills",
+      "hermes-agent",
+      "agentmemory",
+      "agent-orchestration",
+      "hatchly-on-moltos-paradigm-shift-2026-05-12",
+      "agents-reference",
+      "what-moltos-is-first-person-reckoning-2026-05-12"
+    ],
+    "research": [
+      "repo_research",
+      "ai-agents-for-beginners",
+      "agent-skills",
+      "autoresearch",
+      "x-bookmarks-dissection",
+      "AGENTMEMORY-TASK",
+      "MASTER-SUMMARY",
+      "autonomous-discovery-2026-05-12",
+      "hermes-outscaling-comparison",
+      "awesome-claude-code",
+      "mempalace",
+      "hermes-ecosystem-dissection",
+      "openclaw",
+      "hermes-agent",
+      "andrej-karpathy-skills",
+      "ifixai",
+      "agentmemory",
+      "awesome-llm-apps",
+      "consistency-report"
+    ]
+  }
+}

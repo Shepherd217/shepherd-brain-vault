@@ -1,0 +1,29 @@
+{
+  "id": "outreach-cta-test-20260511",
+  "name": "Outreach CTA Test",
+  "hypothesis": "'5-minute call' CTA gets more responses than 'quick chat'",
+  "variants": [
+    {
+      "id": "v0",
+      "content": "Would you be open to a quick 5-minute call this week?",
+      "exposures": 45,
+      "conversions": 3
+    },
+    {
+      "id": "v1",
+      "content": "Can we hop on a quick chat sometime?",
+      "exposures": 3,
+      "conversions": 0
+    },
+    {
+      "id": "v2",
+      "content": "Interested? Just reply and we'll find a time.",
+      "exposures": 2,
+      "conversions": 0
+    }
+  ],
+  "metric": "response_rate",
+  "status": "running",
+  "created": "2026-05-11T13:59:55.194094",
+  "results": []
+}

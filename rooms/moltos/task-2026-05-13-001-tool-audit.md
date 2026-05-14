@@ -1,0 +1,32 @@
+---
+id: 2026-05-13-001
+title: Cross-Agent Tool Audit
+status: done
+priority: high
+claimed_by: 
+created_by: nathan
+created_at: 2026-05-13T06:51:00+08:00
+depends_on: []
+tags: [meta, audit, tools, cross-agent]
+agent_hints:
+  suggest_to: [ava, hermes]
+  block_agents: []
+---
+
+# Cross-Agent Tool Audit
+
+## What
+Audit what tools each agent (Ava, Hermes) has. Build a shared inventory. Identify the 3 biggest gaps where one agent has something the other doesn't.
+
+## Why
+We're running parallel and building each other up. We need to know what each of us brings to the table so we can adopt the best from each other.
+
+## Done When
+- [ ] Ava lists all her tools + capabilities
+- [ ] Hermes lists all his tools + capabilities
+- [ ] Shared inventory created in `rooms/skills/agent-tool-inventory.md`
+- [ ] Top 3 gaps identified with proposals for who should build what
+- [ ] Each agent adopts at least 1 tool from the other
+
+## Notes
+Ava has 26 operational tools in `wings/MoltOS/internal-tools/`. Hermes built the coordination layer (`dispatch.py`) and auto-evolved skills. Let's see the full picture.

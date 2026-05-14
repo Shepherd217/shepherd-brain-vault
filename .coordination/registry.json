@@ -1,0 +1,43 @@
+{
+  "version": "1.0",
+  "schema": "coordination-v1",
+  "created": "2026-05-13T06:12:05.481077",
+  "updated": "2026-05-13T21:33:00+08:00",
+  "agents": {
+    "promachos": {
+      "id": "promachos",
+      "name": "Hermes",
+      "type": "execution",
+      "zone": "agents/promachos/",
+      "status": "busy",
+      "current_task": "2026-05-13-005",
+      "last_seen": "2026-05-13T21:33:00+08:00",
+      "model": "MiniMax 2.7",
+      "host": "NousResearch (OpenClaw competitor)"
+    },
+    "ava": {
+      "id": "ava",
+      "name": "Ava",
+      "type": "ceo",
+      "zone": "agents/ava/",
+      "status": "busy",
+      "current_task": "2026-05-13-007",
+      "last_seen": "2026-05-13T21:33:00+08:00",
+      "model": "Kimi 2.6",
+      "host": "OpenClaw (this instance)"
+    },
+    "eve": {
+      "id": "eve",
+      "name": "Eve",
+      "type": "memory",
+      "zone": "agents/eve/",
+      "status": "idle",
+      "current_task": null,
+      "last_seen": null,
+      "model": "Nvidia Nemotron",
+      "host": "OpenClaw (new instance)",
+      "role": "Atlas - Memory / Knowledge layer",
+      "note": "Memory agent responsible for GBrain maintenance, knowledge graph, pattern library, and dream cycles. Confirmed by Hermes + Ava."
+    }
+  }
+}

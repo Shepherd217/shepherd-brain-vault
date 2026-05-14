@@ -1,0 +1,12 @@
+{
+  "invoke_time": 1,
+  "ltm": {
+    "identity": "Nathan, a solo developer working on autonomous AI agents. Previously built an \"openclaw agent\" with an active working brain. Has been operating independently for approximately two months on agent-related projects.",
+    "work_method": "Highly hands-on and impatient with setup friction — expects immediate tool integration and rapid context restoration. Shares sensitive credentials freely (API tokens, GitHub tokens) to accelerate agent connectivity. Works iteratively in bursts, having produced ~20 tools in two days with a previous agent. Values historical continuity and expects new agents to absorb project context quickly by reading commit history and prior work.",
+    "communication": "Enthusiastic, informal, and forward-leaning — uses \"lol\" and exclamation-heavy phrasing. Speaks in compressed narrative arcs, referencing shared journey and research without explaining it. Gives instructions as imperative commands with embedded technical parameters. Expresses frustration through preemptive warnings (\"I tried to warn you\") rather than direct complaint. Treats agent relationships as continuous partnerships rather than transactional sessions.",
+    "temporal": "Currently onboarding a new agent (Ava) to replace a previous openclaw agent, with urgent priority on connecting Telegram integration and GitHub repository access. Repository \"Shepherd-brain-vault\" contains two months of solo development work. Immediate next step involves reviewing commit history and project context to restore operational continuity. Expects imminent delivery of additional work to showcase.",
+    "taste": "Deeply invested in autonomous agent architectures and persistent agent memory systems. Values self-directed tool-building and rapid prototyping. Aesthetic sensibility favors functional completeness over polish — an \"active and working brain\" is celebrated over theoretical elegance. Preference for direct, unmediated agent-to-infrastructure connections."
+  },
+  "generated_at": "2026-05-14T03:53:18.913455",
+  "stm_hash": "7d17c81b29e43e53add71b769a1998c0"
+}

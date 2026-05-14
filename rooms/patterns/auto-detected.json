@@ -1,0 +1,78 @@
+{
+  "common_pairs": [
+    {
+      "tools": [
+        "exec",
+        "exec"
+      ],
+      "count": 112
+    },
+    {
+      "tools": [
+        "exec",
+        "read"
+      ],
+      "count": 31
+    },
+    {
+      "tools": [
+        "read",
+        "read"
+      ],
+      "count": 29
+    },
+    {
+      "tools": [
+        "exec",
+        "process"
+      ],
+      "count": 25
+    },
+    {
+      "tools": [
+        "edit",
+        "exec"
+      ],
+      "count": 8
+    },
+    {
+      "tools": [
+        "edit",
+        "read"
+      ],
+      "count": 5
+    },
+    {
+      "tools": [
+        "exec",
+        "write"
+      ],
+      "count": 4
+    },
+    {
+      "tools": [
+        "edit",
+        "edit"
+      ],
+      "count": 4
+    },
+    {
+      "tools": [
+        "process",
+        "read"
+      ],
+      "count": 2
+    }
+  ],
+  "common_errors": [],
+  "tool_popularity": {
+    "exec": 147,
+    "read": 49,
+    "process": 15,
+    "edit": 11,
+    "write": 4,
+    "kimi_search": 1
+  },
+  "total_sessions": 1,
+  "mined_at": "2026-05-13T05:39:34.768828"
+}

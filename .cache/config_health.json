@@ -1,0 +1,54 @@
+{
+  "timestamp": "2026-05-13T05:39:35.106147",
+  "all_ok": false,
+  "results": {
+    "SOUL": {
+      "status": "\ud83d\udfe1 WARN",
+      "issues": [
+        "Missing section: 'principles'"
+      ],
+      "size": 3462
+    },
+    "USER": {
+      "status": "\ud83d\udfe2 OK",
+      "issues": [],
+      "size": 802
+    },
+    "AGENTS": {
+      "status": "\ud83d\udfe1 WARN",
+      "issues": [
+        "Contains TODO/FIXME markers"
+      ],
+      "size": 12030
+    },
+    "TOOLS": {
+      "status": "\ud83d\udfe1 WARN",
+      "issues": [
+        "Missing section: 'examples'"
+      ],
+      "size": 603
+    },
+    "IDENTITY": {
+      "status": "\ud83d\udfe2 OK",
+      "issues": [],
+      "size": 2554
+    }
+  },
+  "rules": {
+    "status": "\ud83d\udfe1 WARN",
+    "issues": [
+      "Rule picasso-phase2-manifest.md missing usage triggers",
+      "Rule picasso-steal-phase2-kanban.md missing usage triggers",
+      "Rule self-diagnostic.md missing usage triggers",
+      "Rule pattern-library.md missing usage triggers",
+      "Rule SYSTEM-REVIEW-2026-05-11.md missing usage triggers",
+      "Rule BEFORE-AFTER-UPGRADE.md missing usage triggers"
+    ],
+    "rules_count": 12
+  },
+  "skills": {
+    "status": "\ud83d\udfe2 OK",
+    "issues": [],
+    "skills_count": 6
+  }
+}

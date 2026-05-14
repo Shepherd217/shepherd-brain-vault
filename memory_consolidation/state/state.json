@@ -1,0 +1,27 @@
+{
+  "stm": {
+    "count": 1,
+    "last_ts": "2026-05-14T00:33:16.724150",
+    "last_sessions": 10,
+    "last_messages": 371,
+    "last_chars": 6809
+  },
+  "diary": {
+    "count": 1,
+    "last_ts": "2026-05-14T03:53:13.031619",
+    "last_day": 3,
+    "last_sessions": 1,
+    "last_messages": 3,
+    "last_filename": "day3-2026-05-14-coordination_board_villain_origin.md",
+    "last_latency_s": 8.1
+  },
+  "compact": {
+    "count": 1,
+    "last_ts": "2026-05-14T03:53:18.912609",
+    "last_invoke": 1,
+    "last_sessions": 11,
+    "last_messages": 468,
+    "last_latency_s": 5.1,
+    "last_model": "k2p6"
+  }
+}

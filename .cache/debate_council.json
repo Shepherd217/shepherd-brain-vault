@@ -1,0 +1,66 @@
+{
+  "reviews": [
+    {
+      "timestamp": "2026-05-13T05:17:32.728397",
+      "context": "",
+      "emotional_weight": 0.5,
+      "members": {
+        "Pragmatist": {
+          "vote": "reject",
+          "score": 25,
+          "reasoning": "No obvious secrets",
+          "confidence": 0.25
+        },
+        "Critic": {
+          "vote": "approve",
+          "score": 100,
+          "reasoning": "No major issues found",
+          "confidence": 0.95
+        },
+        "UserAdvocate": {
+          "vote": "reject",
+          "score": 0,
+          "reasoning": "Check usability manually",
+          "confidence": 0.0
+        }
+      },
+      "votes": {
+        "approve": 0.33249999999999996,
+        "revise": 0,
+        "reject": 0.0875
+      },
+      "verdict": "approve"
+    },
+    {
+      "timestamp": "2026-05-13T05:21:50.742122",
+      "context": "/root/.openclaw/workspace/shepherd-brain-vault/wings/MoltOS/internal-tools/fleet_commander.py",
+      "emotional_weight": 0.5,
+      "members": {
+        "Pragmatist": {
+          "vote": "revise",
+          "score": 50,
+          "reasoning": "Has function definitions; No obvious secrets",
+          "confidence": 0.5
+        },
+        "Critic": {
+          "vote": "approve",
+          "score": 95,
+          "reasoning": "Check if all imports are documented",
+          "confidence": 0.9
+        },
+        "UserAdvocate": {
+          "vote": "approve",
+          "score": 90,
+          "reasoning": "Has CLI interface; Has documentation; Has usage examples; Integrates with our ecosystem",
+          "confidence": 0.9
+        }
+      },
+      "votes": {
+        "approve": 0.585,
+        "revise": 0.175,
+        "reject": 0
+      },
+      "verdict": "approve"
+    }
+  ]
+}

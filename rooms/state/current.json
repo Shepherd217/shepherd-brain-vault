@@ -1,0 +1,47 @@
+{
+  "state": "draft",
+  "context": {},
+  "history": [
+    {
+      "from": "idle",
+      "to": "research",
+      "timestamp": "2026-05-11T13:56:28.085303"
+    },
+    {
+      "from": "research",
+      "to": "audit",
+      "timestamp": "2026-05-11T13:56:28.085558"
+    }
+  ],
+  "stack": [
+    {
+      "state": "idle",
+      "context": {},
+      "timestamp": "2026-05-11T13:56:28.085298"
+    },
+    {
+      "state": "research",
+      "context": {},
+      "timestamp": "2026-05-11T13:56:28.085546",
+      "note": "interrupted"
+    },
+    {
+      "state": "research",
+      "context": {},
+      "timestamp": "2026-05-11T13:56:28.085554"
+    },
+    {
+      "state": "audit",
+      "context": {},
+      "timestamp": "2026-05-11T13:58:46.464204",
+      "note": "interrupted"
+    },
+    {
+      "state": "research",
+      "context": {},
+      "timestamp": "2026-05-11T13:58:46.466082",
+      "note": "interrupted"
+    }
+  ],
+  "last_updated": "2026-05-11T13:58:46.466097"
+}

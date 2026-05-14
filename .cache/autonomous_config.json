@@ -1,0 +1,9 @@
+{
+  "enabled": true,
+  "cycles_per_day": 4,
+  "max_cost_per_day": 5.0,
+  "min_alignment_score": 70,
+  "last_cycle": null,
+  "total_cycles": 0,
+  "enabled_at": "2026-05-13T05:39:34.376930"
+}

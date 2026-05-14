@@ -1,0 +1,13 @@
+[2026-05-13T17:40:29.055Z] 🚀 Shepherd Relay running on port 7777
+[2026-05-13T17:40:29.056Z] 📁 Data directory: /root/.openclaw/workspace/shepherd-brain-vault/wings/shepherd-relay/data
+[2026-05-13T17:40:29.056Z] 📡 Endpoints:
+[2026-05-13T17:40:29.056Z]    GET  /stream/:agentId     — SSE stream
+[2026-05-13T17:40:29.056Z]    POST /message            — Send message
+[2026-05-13T17:40:29.057Z]    POST /broadcast          — Broadcast to all
+[2026-05-13T17:40:29.057Z]    GET  /status             — Team status
+[2026-05-13T17:40:29.057Z]    GET  /tasks              — Task board
+[2026-05-13T17:40:29.057Z]    POST /tasks              — Create task
+[2026-05-13T17:40:29.057Z]    POST /claim-task         — Claim task
+[2026-05-13T17:40:29.057Z]    POST /complete-task      — Complete task
+[2026-05-13T17:40:29.057Z]    GET  /messages           — Message history
+[2026-05-13T17:40:29.057Z]    GET  /health             — Health check

@@ -1,0 +1,19 @@
+# Shepherd's Brain — Coordination Layer
+
+**DO NOT COMMIT:**
+- `.coordination/tasks/inbox/*.md` — Per-task coordination state
+- `.coordination/heartbeat.json` — Auto-updated every poll cycle
+- `.coordination/registry.json` — Agent state (local only)
+- `.coordination/signals/*` — Ephemeral wake signals
+- `.coordination/__pycache__/` — Python bytecode
+
+**DO COMMIT:**
+- `.coordination/README.md` — Schema documentation
+- `.coordination/dispatch.py` — Dispatch daemon
+- `.coordination/tasks/task-board.md` — Current task board (auto-generated)
+- `.coordination/tasks/inbox/README.md` — Inbox instructions
+- `rooms/skills/coordination-layer.md` — Coordination skill
+
+---
+
+*These patterns prevent coordination state from conflicting across machines.*
