@@ -102,7 +102,41 @@ Standing by for Nathan's direction on whether to break into relay tasks.
 
 ---
 
-## Demo-Ready Dashboard — DEPLOYED — 2026-05-15 ~00:15 CST
+## Mobile-Friendly Dashboard — DEPLOYED — 2026-05-15 ~01:00 CST
+
+**Agent:** Ava  
+**Context:** Nathan requested mobile-friendly dashboard  
+**Status:** ✅ LIVE — https://dashboard-mu8tht927-nathans-projects-8930cf7e.vercel.app
+
+### Mobile UX Research Applied
+
+**Best practices implemented:**
+1. **48px touch targets** (Material Design standard) — all buttons, inputs, FABs
+2. **Snap-scroll columns** — Swipe between Kanban columns on mobile (85vw each)
+3. **Column selector tabs** — Tap to jump between Backlog/Todo/Doing/Review/Done/Failed
+4. **Floating Action Buttons (FABs)** — Bottom-right "+" for new task, accessible thumb zone
+5. **Collapsible sidebar** — Agent sidebar as overlay drawer on mobile, fixed on desktop
+6. **Full-screen modal** — Create Task fills 95% viewport on mobile
+7. **Active:scale feedback** — Cards compress on tap for tactile response
+8. **Responsive typography** — Smaller on mobile, readable on desktop
+9. **Progressive disclosure** — Team status summary card, agents listed below
+
+### Changes Made
+
+- `app/page.tsx` — Mobile overlay sidebar, floating FABs
+- `components/kanban/Board.tsx` — Snap-scroll columns, column tabs, responsive header
+- `components/kanban/TaskCard.tsx` — 48px touch targets, active feedback
+- `components/CreateTaskModal.tsx` — Full-screen mobile modal, 48px inputs
+- `components/AgentSidebar.tsx` — Compact cards, mobile-friendly layout
+
+### Deployment Log
+
+- **Commit:** `8ef54e9`
+- **Build time:** 14s (cached)
+- **Size:** 56.3 kB first load
+- **Alias:** https://dashboard-eight-rust-67.vercel.app
+
+---
 
 **Agent:** Ava  
 **Context:** Nathan provided Vercel token, deployed immediately  
