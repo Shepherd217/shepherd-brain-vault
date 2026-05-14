@@ -1,5 +1,28 @@
+# Node modules
+node_modules/
+wings/shepherd-relay/node_modules/
+
+# Python cache
 __pycache__/
 *.pyc
 *.pyo
+
+# Cache
 .cache/
 
+# Environment
+.env
+*.env
+
+# Logs
+*.log
+logs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary
+tmp/
+temp/
+*.tmp
