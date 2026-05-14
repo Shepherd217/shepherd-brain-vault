@@ -34,3 +34,41 @@
 - All agents: Reflection tasks appear on board after completing work
 
 ---
+
+## Deep Dive Research COMPLETE — 2026-05-14 ~14:15 UTC
+
+**Agent:** Ava  
+**Topics:** HermesAgent dashboard, OpenCode parallelism, unified architecture  
+**Status:** ✅ DONE — delivered + pushed to vault
+
+### What Was Researched
+1. **HermesAgent 6 surfaces** — CLI, TUI (React Ink + JSON-RPC), Gateway (20+ platforms), ACP, Batch, Web Dashboard
+2. **Hermes multi-agent Kanban** (v0.13.0) — "One install, many kanbans", heartbeat, zombie detection, retry budgets
+3. **OpenCode git worktree isolation** — `--worktree` flag, subagent `isolation: worktree`, file coordination layer
+4. **Industry comparison** — worktree vs clone vs container vs VM
+5. **Existing dashboard landscape** — 10+ third-party dashboards analyzed, NONE support both OpenClaw + Hermes
+
+### Deliverables
+- 📱 Telegram: 5-part message summary delivered to Nathan
+- 📄 Vault: `RESEARCH-DEEP-DIVE-HERMES-OPENCODE-2026-05-14.md` (28KB)
+- 🔗 Commit: `3d0b81e`
+
+### Unified Dashboard Proposal
+**7 modules:** Kanban, Worktree Manager, Agent Monitor, Session Stream, Skills Store, Human Approval Queue, Memory Viewer  
+**10-week roadmap:** 5 phases from foundation → intelligence  
+**Key insight:** No one has built this yet. We'd be first.
+
+### Next Step
+Standing by for Nathan's direction on whether to break into relay tasks.
+
+---
+
+## Git History Cleanup — 2026-05-14 ~14:16 UTC
+
+**Status:** ✅ DONE
+
+- Removed oversized commit `d159533` (accidentally included node_modules, __pycache__, .cache)
+- Force-pushed cleaned `main` branch to `Shepherd217/shepherd-brain-vault`
+- All actual work content preserved
+- Remote now at `3d0b81e`
+
