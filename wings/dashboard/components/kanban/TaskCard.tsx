@@ -16,13 +16,7 @@ export function TaskCard({ task, index }: TaskCardProps) {
     critical: "bg-red-100 text-red-800",
   };
 
-  const tags = (() => {
-    try {
-      return JSON.parse(task.tags || "[]");
-    } catch {
-      return [];
-    }
-  })();
+  const tags = task.tags || [];
 
   return (
     <Draggable draggableId={task.id} index={index}>

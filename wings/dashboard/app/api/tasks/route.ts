@@ -34,14 +34,7 @@ export async function GET(request: Request) {
     filtered = filtered.filter(t => t.owner === owner);
   }
   if (tag) {
-    filtered = filtered.filter(t => {
-      try {
-        const tags = JSON.parse(t.tags);
-        return tags.includes(tag);
-      } catch {
-        return false;
-      }
-    });
+    filtered = filtered.filter(t => t.tags.includes(tag));
   }
   
   return NextResponse.json({ tasks: filtered });
@@ -59,9 +52,9 @@ export async function POST(request: Request) {
       priority: body.priority || "medium",
       owner: body.owner || null,
       agentType: body.agentType || null,
-      tags: JSON.stringify(body.tags || []),
+      tags: body.tags || [],
       projectId: body.projectId || "shepherd",
-      dependencies: JSON.stringify(body.dependencies || []),
+      dependencies: body.dependencies || [],
       createdAt: new Date(),
       startedAt: null,
       completedAt: null,

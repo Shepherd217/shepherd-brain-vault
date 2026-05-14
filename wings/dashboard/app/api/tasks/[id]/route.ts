@@ -67,7 +67,7 @@ export async function PATCH(
     if (body.priority !== undefined) updates.priority = body.priority;
     if (body.owner !== undefined) updates.owner = body.owner;
     if (body.agentType !== undefined) updates.agentType = body.agentType;
-    if (body.tags !== undefined) updates.tags = JSON.stringify(body.tags);
+    if (body.tags !== undefined) updates.tags = body.tags;
     if (body.result !== undefined) updates.result = body.result;
     if (body.error !== undefined) updates.error = body.error;
     
