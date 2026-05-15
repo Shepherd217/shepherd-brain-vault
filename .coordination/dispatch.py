@@ -81,6 +81,11 @@ def load_json(path: Path) -> dict:
         with open(path) as f:
             return json.load(f)
     except (json.JSONDecodeError, IOError):
+        # BUG FIX #2: Detect corrupted registry and warn
+        print(f"  ⚠️  {path.name} is corrupted — recreating from defaults")
+        if "registry" in path.name.lower():
+            ensure_state_files()
+            return load_json(path)  # Retry after recreate
         return {}
 
 
@@ -90,6 +95,7 @@ def save_json(path: Path, data: dict):
 
 
 def touch(path: Path):
+    path.parent.mkdir(parents=True, exist_ok=True)  # BUG FIX #3: Create parent dirs if missing
     path.touch()
 
 
@@ -360,6 +366,12 @@ def main():
             print(f"  ❌ Task not found: {task_id}")
             sys.exit(1)
         text = task_file.read_text()
+        fm = get_frontmatter(text)
+        # BUG FIX #1: Prevent race condition — reject if already claimed
+        existing_claim = fm.get("claimed_by", "").strip()
+        if existing_claim and existing_claim != agent_id:
+            print(f"  ❌ Task already claimed by {existing_claim}")
+            sys.exit(1)
         text = update_frontmatter(text, {
             "claimed_by": agent_id,
             "status": "in-progress",
