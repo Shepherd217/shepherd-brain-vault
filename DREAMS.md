@@ -57,4 +57,35 @@ What Happened
 
 Reflections
 1. No grounded reflections emerged from this note yet.
+---
+
+*May 16, 2026*
+
+<!-- openclaw:dreaming:backfill-entry day=2026-05-15 source=/root/.openclaw/workspace/memory/2026-05-15.md -->
+
+What Happened
+1. Built the Dream→Task Loop: 5-component architecture [memory/2026-05-16.md:1]
+2. Plugin confusion: misread "What plugins?" as "install plugins" — Nathan corrected [memory/2026-05-16.md:2]
+3. Vault integration: dream loop writes to drawers/dreams/ + rooms/patterns/ + coordination inbox [memory/2026-05-16.md:3]
+4. Cron jobs set for heartbeat (30min) and REM backfill (hourly) [memory/2026-05-16.md:4]
+5. Committed 23 files to shepherd-brain-vault [memory/2026-05-16.md:5]
+6. Nathan wants to TEST the palace/brain/gbrain wombo combo live [memory/2026-05-16.md:6]
+
+Reflections
+1. "What X?" vs "Install X" pattern recurring — intent parsing needs work [memory/2026-05-16.md:7]
+2. Palace is structurally sound but storage-only until actively used [memory/2026-05-16.md:8]
+3. Dream loop works mechanically but needs real friction to validate [memory/2026-05-16.md:9]
+4. Nathan wants proof of life, not more architecture [memory/2026-05-16.md:10]
+
+Candidates
+- [unclear] Plugin confusion pattern: "What X?" misread as "Install X" [memory/2026-05-16.md:2]
+- [unclear] Palace needs activation — currently storage, not living brain [memory/2026-05-16.md:8]
+- [unclear] TEST before BUILD — validate before expanding [memory/2026-05-16.md:1]
+
+Possible Lasting Updates
+- Plugin confusion pattern: add intent-check before executing recommendations [memory/2026-05-16.md:2]
+- Palace activation protocol: regular heartbeat + auto-processing [memory/2026-05-16.md:8]
+
+---
+
 <!-- openclaw:dreaming:diary:end -->
