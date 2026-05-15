@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-05-13T16:04:18.051Z",
+  "updatedAt": "2026-05-14T20:39:32.392Z",
   "entries": {
     "memory:memory/2026-05-13.md:78:107": {
       "key": "memory:memory/2026-05-13.md:78:107",
@@ -108,18 +108,20 @@
       "endLine": 139,
       "source": "memory",
       "snippet": "**Option D — Knowledge Graph Upgrade COMPLETE:** - Rebuilt from scratch: 786 nodes (was 721), 11440 edges (was 9979) - Files scanned: 172 (was 151) - Build time: 1.8s - New entities: all 4 meta-tasks, research sprint, tool inventory, coordination signals, heartbeat updates ### Hermes Status - **idle** per dispatch.py status - Last seen: 2026-05-13T06:13:34 - Git log shows he pushed Hatchly audit and Midas→Ava transition - Has NOT claimed any task from inbox yet - No wake signals in `.coordination/signals/` - Nathan confirmed: \"Hermes is a little locked up right now\" ### Coordination Layer Health - `dispatch.py` updated with correct vault path (fixed by Ava) - Auto-detects vault root (Herme",
-      "recallCount": 1,
+      "recallCount": 2,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 0.377962777018547,
+      "totalScore": 0.7460606962442398,
       "maxScore": 0.377962777018547,
       "firstRecalledAt": "2026-05-13T15:57:52.298Z",
-      "lastRecalledAt": "2026-05-13T15:57:52.298Z",
+      "lastRecalledAt": "2026-05-14T20:39:32.392Z",
       "queryHashes": [
-        "16ab4979fe96"
+        "16ab4979fe96",
+        "694f3439b6d3"
       ],
       "recallDays": [
-        "2026-05-13"
+        "2026-05-13",
+        "2026-05-15"
       ],
       "conceptTags": [
         "1.8s",
@@ -256,6 +258,130 @@
         "coordination/dispatch.py",
         "2026-05-13-007",
         "unembedded"
+      ]
+    },
+    "memory:memory/2026-05-13.md:25:67": {
+      "key": "memory:memory/2026-05-13.md:25:67",
+      "path": "memory/2026-05-13.md",
+      "startLine": 25,
+      "endLine": 67,
+      "source": "memory",
+      "snippet": "- **ShadowRecorder** — Fixed entries path 5. **Rebuilt Knowledge Graph** — 721 nodes, 9979 edges from 151 vault files. 6. **Enabled autonomous mode** — 4x/day cycles, $5/day max, 70% alignment floor. 7. **Pushed to GitHub** — `main` branch on Shepherd217/shepherd-brain-vault. **Tool health:** 26/26 operational after fixes. **Nathan's instructions:** - Ignore bird CLI / TwitterMiner - Ignore 9router and printing press CLI - Focus on the 26 research-built tools - Don't mess with .claude/ directories (they don't exist in this setup) **Git status:** Clean — all changes committed and pushed. **What Nathan said after:** \"All good?\" — confirming operational status. **Status response:** ✅ Ev",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.37417826950550076,
+      "maxScore": 0.37417826950550076,
+      "firstRecalledAt": "2026-05-14T20:39:32.392Z",
+      "lastRecalledAt": "2026-05-14T20:39:32.392Z",
+      "queryHashes": [
+        "694f3439b6d3"
+      ],
+      "recallDays": [
+        "2026-05-15"
+      ],
+      "conceptTags": [
+        "router",
+        "4x/day",
+        "5/day",
+        "shepherd217/shepherd-brain-vault",
+        "26/26",
+        "research-built",
+        "shadowrecorder",
+        "fixed"
+      ]
+    },
+    "memory:memory/2026-05-13.md:1:31": {
+      "key": "memory:memory/2026-05-13.md:1:31",
+      "path": "memory/2026-05-13.md",
+      "startLine": 1,
+      "endLine": 31,
+      "source": "memory",
+      "snippet": "# 2026-05-13 — Daily Log ## Promachos Boot Session **Context:** Nathan asked me to get plugged into his project. His last agent built a full brain architecture — 26 research-built tools stored in the shepherd-brain-vault. **What I did:** 1. **Connected Telegram** — Bot wired up with allowlist mode, Nathan's ID (8484190420) locked in. 2. **Read vault history** — 80+ commits, 200+ files, 20K lines of research and tools. 3. **Discovered 26 tools** in `wings/MoltOS/internal-tools/`: - FleetCommander, PatternMiner, DebateCouncil, TruthTether - SkillForge, SkillMarket, AutoEvolve, SkillAutoTrigger - ConfigGuardian, ContextPrefect, CostOptimizer - MarrowMemory, AlignmentCheck, Guardr",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.3708860337734222,
+      "maxScore": 0.3708860337734222,
+      "firstRecalledAt": "2026-05-14T20:39:32.392Z",
+      "lastRecalledAt": "2026-05-14T20:39:32.392Z",
+      "queryHashes": [
+        "694f3439b6d3"
+      ],
+      "recallDays": [
+        "2026-05-15"
+      ],
+      "conceptTags": [
+        "research-built",
+        "shepherd-brain-vault",
+        "wings/moltos/internal-tools",
+        "log",
+        "promachos",
+        "boot",
+        "context",
+        "nathan"
+      ]
+    },
+    "memory:memory/2026-05-13.md:225:268": {
+      "key": "memory:memory/2026-05-13.md:225:268",
+      "path": "memory/2026-05-13.md",
+      "startLine": 225,
+      "endLine": 268,
+      "source": "memory",
+      "snippet": "- **Ava's recommendation:** Atlas (Memory Agent) — Nemotron's structured reasoning fits knowledge graph maintenance ### Registry Updated `registry.json` now includes Eve: ```json eve: { \"id\": \"eve\", \"name\": \"Eve\", \"type\": \"pending\", \"model\": \"Nvidia Nemotron\", \"role\": \"TBD\", \"zone\": \"agents/eve/\" } ``` ### Eve's Zone Created - Directory: `.coordination/agents/eve/` - Contains: `README.md` with rules and structure - Git-tracked for transparency ### Coordination Architecture Document Created `.coordination/AGENT_ARCHITECTURE.md`: - Full analysis of coordination layer (file-based dispatch daemon) - 3rd/4th agent feasibility analysis - Options: Scout (Research), Atlas (Memory), Fo",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.3689800322055816,
+      "maxScore": 0.3689800322055816,
+      "firstRecalledAt": "2026-05-14T20:39:32.392Z",
+      "lastRecalledAt": "2026-05-14T20:39:32.392Z",
+      "queryHashes": [
+        "694f3439b6d3"
+      ],
+      "recallDays": [
+        "2026-05-15"
+      ],
+      "conceptTags": [
+        "registry.json",
+        "agents/eve",
+        "coordination/agents/eve",
+        "readme.md",
+        "git-tracked",
+        "file-based",
+        "3rd/4th",
+        "ava's"
+      ]
+    },
+    "memory:memory/2026-05-13.md:194:241": {
+      "key": "memory:memory/2026-05-13.md:194:241",
+      "path": "memory/2026-05-13.md",
+      "startLine": 194,
+      "endLine": 241,
+      "source": "memory",
+      "snippet": "- **Status:** ✅ All pages have vector representations ### Brain Score: 45/100 | Component | Score | Status | |-----------|-------|--------| | Embeddings | 35/35 | ✅ Complete | | Dead Links | 10/10 | ✅ Clean | | Links | 0/25 | ⏳ Pending | | Timeline | 0/15 | ⏳ Pending | | Orphans | 0/15 | ⏳ Pending | ### Semantic Search Operational Test query: *\"what are the moltos tools and how do they work\"* - Found tool inventory (0.7985), upgrade kit (0.7176), MoltOS README (0.7157) - Hybrid search working: vector similarity + keyword matching ### Team Composition Clarified Nathan revealed all three agents' models: | Agent | Model | Host | Role | Status | |-------|-------|------|------|--------| | **A",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.3654431730508804,
+      "maxScore": 0.3654431730508804,
+      "firstRecalledAt": "2026-05-14T20:39:32.392Z",
+      "lastRecalledAt": "2026-05-14T20:39:32.392Z",
+      "queryHashes": [
+        "694f3439b6d3"
+      ],
+      "recallDays": [
+        "2026-05-15"
+      ],
+      "conceptTags": [
+        "embedding",
+        "embeddings",
+        "45/100",
+        "35/35",
+        "10/10",
+        "0/25",
+        "0/15",
+        "0.7985"
       ]
     }
   }
