@@ -99,6 +99,23 @@ def touch(path: Path):
     path.touch()
 
 
+def _relay_notify(action: str, task_id: str, agent_id: str, title: str = ""):
+    """Notify relay of task changes."""
+    try:
+        import urllib.request
+        import json
+        url = "http://127.0.0.1:7777/broadcast"
+        data = json.dumps({
+            "from": agent_id,
+            "type": "task",
+            "content": f"{action}: {task_id} '{title}'"
+        }).encode()
+        req = urllib.request.Request(url, data=data, headers={"Content-Type": "application/json"}, method="POST")
+        urllib.request.urlopen(req, timeout=5)
+    except Exception:
+        pass  # Relay is optional, don't block on it
+
+
 def get_frontmatter(text: str) -> dict:
     """Extract YAML frontmatter from markdown."""
     if not text.strip().startswith("---"):
@@ -378,6 +395,9 @@ def main():
             "claimed_at": datetime.now().strftime("%Y-%m-%dT%H:%M:%S+08:00")
         })
         task_file.write_text(text)
+        fm = get_frontmatter(text)
+        title = fm.get("title", "")
+        _relay_notify("claimed", task_id, agent_id, title=title)
         registry = load_json(REGISTRY)
         if agent_id in registry.get("agents", {}):
             registry["agents"][agent_id]["status"] = "busy"
