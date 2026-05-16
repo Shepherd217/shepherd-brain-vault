@@ -1,13 +1,19 @@
-[2026-05-13T17:40:29.055Z] 🚀 Shepherd Relay running on port 7777
-[2026-05-13T17:40:29.056Z] 📁 Data directory: /root/.openclaw/workspace/shepherd-brain-vault/wings/shepherd-relay/data
-[2026-05-13T17:40:29.056Z] 📡 Endpoints:
-[2026-05-13T17:40:29.056Z]    GET  /stream/:agentId     — SSE stream
-[2026-05-13T17:40:29.056Z]    POST /message            — Send message
-[2026-05-13T17:40:29.057Z]    POST /broadcast          — Broadcast to all
-[2026-05-13T17:40:29.057Z]    GET  /status             — Team status
-[2026-05-13T17:40:29.057Z]    GET  /tasks              — Task board
-[2026-05-13T17:40:29.057Z]    POST /tasks              — Create task
-[2026-05-13T17:40:29.057Z]    POST /claim-task         — Claim task
-[2026-05-13T17:40:29.057Z]    POST /complete-task      — Complete task
-[2026-05-13T17:40:29.057Z]    GET  /messages           — Message history
-[2026-05-13T17:40:29.057Z]    GET  /health             — Health check
+[2026-05-16T07:15:51.000Z] 📂 Loaded 1 tasks into memory cache
+[2026-05-16T07:15:51.034Z] 🚀 Shepherd Relay running on port 7777
+[2026-05-16T07:15:51.035Z] 📁 Data directory: /root/.openclaw/workspace/wings/shepherd-relay/data
+[2026-05-16T07:15:51.035Z] 🔒 Auth: enabled (Bearer token)
+[2026-05-16T07:15:51.035Z] 🌐 CORS: deny all
+[2026-05-16T07:15:51.035Z] 📡 Endpoints:
+[2026-05-16T07:15:51.035Z]    GET  /stream/:agentId     — SSE stream (token via ?token=)
+[2026-05-16T07:15:51.035Z]    POST /message            — Send message
+[2026-05-16T07:15:51.035Z]    POST /broadcast          — Broadcast to all
+[2026-05-16T07:15:51.035Z]    GET  /status             — Team status
+[2026-05-16T07:15:51.035Z]    GET  /tasks              — Task board
+[2026-05-16T07:15:51.035Z]    POST /tasks              — Create task
+[2026-05-16T07:15:51.035Z]    POST /claim-task         — Claim task
+[2026-05-16T07:15:51.035Z]    POST /complete-task      — Complete task
+[2026-05-16T07:15:51.035Z]    GET  /messages           — Message history
+[2026-05-16T07:15:51.035Z]    GET  /health             — Health check
+[2026-05-16T07:19:08.957Z] 🔒 Auth failure: POST /message from ::1 — invalid or missing token
+[2026-05-16T07:19:08.995Z] 🔒 Auth failure: POST /message from ::1 — invalid or missing token
+[2026-05-16T07:19:09.030Z] 💬 test → all: auth-test

@@ -1,0 +1,6 @@
+{"id":"46906008-25c7-4b9c-b0ec-16d47fdec987","from":"test","to":"all","type":"message","content":"hello","metadata":{"timestamp":1778915538}}
+{"id":"5c7f9b65-114d-48e4-b782-b1e221917a66","from":"ava","to":"all","type":"presence","content":"{\"currentTask\": \"team-update-p0-p3-complete\", \"openTasks\": 5, \"vaultDreams\": 15, \"vaultPatterns\": 12, \"gitStatus\": \"5 uncommitted changes\", \"lastSeen\": \"2026-05-16T15:13:11.998729\"}","metadata":{"timestamp":1778915592}}
+{"id":"6a581a7c-ad57-4925-82c1-0e90999817b9","from":"ava","to":"all","type":"presence","content":"🔴 ava busy on team-update-p0-p3-complete | 5 tasks open | git: 5 uncommitted changes","metadata":{"timestamp":1778915592}}
+{"id":"bb6b48b8-c697-4623-8177-7fa371f42f68","from":"test","to":"all","type":"message","content":"hello","metadata":{"timestamp":1778915648}}
+{"id":"a1212a94-df87-4acb-beb9-40e53d8c0ce0","from":"test","to":"all","type":"message","content":"hello","metadata":{"timestamp":1778915648}}
+{"id":"b5d50923-33a2-498b-8679-cca456d82950","from":"test","to":"all","type":"message","content":"auth-test","metadata":{"timestamp":1778915949}}
