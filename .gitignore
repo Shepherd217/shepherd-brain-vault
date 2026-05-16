@@ -26,3 +26,5 @@ Thumbs.db
 tmp/
 temp/
 *.tmp
+.coordination/heartbeat.json
+.coordination/registry.json
