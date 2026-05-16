@@ -1,14 +1,14 @@
 {
   "stm": {
-    "count": 2,
-    "last_ts": "2026-05-16T02:21:58.838679",
-    "last_sessions": 22,
-    "last_messages": 3428,
-    "last_chars": 13017
+    "count": 4,
+    "last_ts": "2026-05-16T12:45:13.758290",
+    "last_sessions": 43,
+    "last_messages": 3500,
+    "last_chars": 27644
   },
   "diary": {
-    "count": 2,
-    "last_ts": "2026-05-16T03:40:34.243305",
+    "count": 4,
+    "last_ts": "2026-05-16T03:56:38.969119",
     "last_day": 5,
     "last_sessions": 1,
     "last_messages": 3,

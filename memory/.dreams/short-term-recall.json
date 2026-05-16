@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-05-14T20:39:32.392Z",
+  "updatedAt": "2026-05-15T20:32:07.682Z",
   "entries": {
     "memory:memory/2026-05-13.md:78:107": {
       "key": "memory:memory/2026-05-13.md:78:107",
@@ -9,20 +9,23 @@
       "endLine": 107,
       "source": "memory",
       "snippet": "- **004 Shared Pattern Library** — extract patterns from sessions, build canonical patterns, retro-fit existing skills ### Task Assignments - **Ava:** 001 (Tool Audit) + 002 (Research Sprint) + 004 (Pattern Library) - **Hermes:** 003 (Stress-Test) — but he is \"locked up\" / busy right now ### What Ava Completed Solo (while Hermes busy) **Option A — Task 001 COMPLETE:** - Built full tool inventory: `rooms/skills/agent-tool-inventory.md` - Documented all 26 tools with status, test results, purposes - Identified Ava's unique strengths (integration testing, JSONL expertise, path correction, git ops) - Captured Hermes's patterns from git log analysis - Left gaps section for Hermes to fill his in",
-      "recallCount": 2,
+      "recallCount": 4,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 0.7621238350868225,
-      "maxScore": 0.3930602729320526,
+      "totalScore": 1.5480273157358169,
+      "maxScore": 0.3991837441921234,
       "firstRecalledAt": "2026-05-13T15:57:52.298Z",
-      "lastRecalledAt": "2026-05-13T16:04:18.051Z",
+      "lastRecalledAt": "2026-05-15T20:32:07.682Z",
       "queryHashes": [
         "16ab4979fe96",
-        "0771ea521a06"
+        "0771ea521a06",
+        "835161821939",
+        "f8f590427b3c"
       ],
       "recallDays": [
         "2026-05-13",
-        "2026-05-14"
+        "2026-05-14",
+        "2026-05-16"
       ],
       "conceptTags": [
         "retro-fit",
@@ -42,20 +45,22 @@
       "endLine": 85,
       "source": "memory",
       "snippet": "- Config: `.openclaw/workspace/.cache/autonomous_cycles.json` --- ## Session 2 — Cross-Agent Collaboration Strategy (Ava + Hermes) **Time:** ~11:00–12:00 CST ### Nathan's Pivot Nathan told both Ava and Hermes to **stop building standalone projects** (StandoutLocal, Hatchly — both PINNED/halting). New directive: **\"We split the load, we build each other.\"** He wants: 1. Cross-agent skill exchange — \"I build something cool, I drop it in shared skill space, it auto-triggers in your sessions\" 2. Asymmetric research — one agent researches while the other builds, swap 3. Shared pattern library — \"here's how I solved X, here's why I made Y decision\" 4. Dual-action refactoring — both grab diff",
-      "recallCount": 2,
+      "recallCount": 3,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 0.8176590263843535,
+      "totalScore": 1.1860766917467116,
       "maxScore": 0.42465578913688656,
       "firstRecalledAt": "2026-05-13T15:57:52.298Z",
-      "lastRecalledAt": "2026-05-13T16:04:18.051Z",
+      "lastRecalledAt": "2026-05-15T20:32:07.682Z",
       "queryHashes": [
         "16ab4979fe96",
-        "0771ea521a06"
+        "0771ea521a06",
+        "f8f590427b3c"
       ],
       "recallDays": [
         "2026-05-13",
-        "2026-05-14"
+        "2026-05-14",
+        "2026-05-16"
       ],
       "conceptTags": [
         "openclaw/workspace",
@@ -172,20 +177,23 @@
       "endLine": 391,
       "source": "memory",
       "snippet": "- Broke into 3 phases: - **Phase 1:** Installation + Basic Verification (Ava — Task 007) - **Phase 2:** Cross-Agent Testing (Hermes — Task 008, to be created) - **Phase 3:** Team Adoption + Optimization (Eve takes ownership) - Hermes recommended: Eve = Atlas (Memory Agent), curator of `_clawmem/` **Installation Steps Executed:** 1. ✅ `git clone https://github.com/yoloshii/ClawMem.git ~/clawmem` 2. ✅ `cd ~/clawmem && bun install` — 275 packages, 30s 3. ✅ `clawmem init` — Database at `~/.cache/clawmem/index.sqlite` 4. ✅ `clawmem add openclaw-workspace /root/.openclaw/workspace` — 175 docs indexed 5. ✅ `clawmem setup mcp` — MCP server registered in `~/.claude.json` 6. ✅ `clawmem search \"",
-      "recallCount": 2,
+      "recallCount": 4,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 0.7506758928298949,
-      "maxScore": 0.37928567528724666,
+      "totalScore": 1.560318213701248,
+      "maxScore": 0.4048920691013336,
       "firstRecalledAt": "2026-05-13T15:57:52.298Z",
-      "lastRecalledAt": "2026-05-13T16:04:18.051Z",
+      "lastRecalledAt": "2026-05-15T20:32:07.682Z",
       "queryHashes": [
         "16ab4979fe96",
-        "0771ea521a06"
+        "0771ea521a06",
+        "835161821939",
+        "f8f590427b3c"
       ],
       "recallDays": [
         "2026-05-13",
-        "2026-05-14"
+        "2026-05-14",
+        "2026-05-16"
       ],
       "conceptTags": [
         "cross-agent",
@@ -205,18 +213,21 @@
       "endLine": 363,
       "source": "memory",
       "snippet": "| Ava | 🔴 busy | 002 (Research Sprint) | 21:33 | | Eve | 🟢 idle | 006 (GBrain Check) waiting | never | ### Gateway Restart - System restart occurred around 22:01 - Dispatch daemon background process killed (expected) - Ava paused, waiting for Nathan's next instruction - No data loss — all state in Git ### ClawMem Research + Installation (Phase 1) Nathan shared `github.com/yoloshii/ClawMem` as key shared-memory infrastructure. **What ClawMem Is:** - On-device SQLite memory layer — shared between OpenClaw + Hermes + Claude Code - All 3 agents read/write same vault instantly - No API keys, no cloud — fully local - Hybrid RAG: BM25 + vector + reranking + query expansion - Auto-extraction: c",
-      "recallCount": 1,
+      "recallCount": 3,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 0.37252609133720394,
-      "maxScore": 0.37252609133720394,
+      "totalScore": 1.1254643648862839,
+      "maxScore": 0.3829499155282974,
       "firstRecalledAt": "2026-05-13T16:04:18.051Z",
-      "lastRecalledAt": "2026-05-13T16:04:18.051Z",
+      "lastRecalledAt": "2026-05-15T20:32:07.682Z",
       "queryHashes": [
-        "0771ea521a06"
+        "0771ea521a06",
+        "835161821939",
+        "f8f590427b3c"
       ],
       "recallDays": [
-        "2026-05-14"
+        "2026-05-14",
+        "2026-05-16"
       ],
       "conceptTags": [
         "gateway",
@@ -329,18 +340,20 @@
       "endLine": 268,
       "source": "memory",
       "snippet": "- **Ava's recommendation:** Atlas (Memory Agent) — Nemotron's structured reasoning fits knowledge graph maintenance ### Registry Updated `registry.json` now includes Eve: ```json eve: { \"id\": \"eve\", \"name\": \"Eve\", \"type\": \"pending\", \"model\": \"Nvidia Nemotron\", \"role\": \"TBD\", \"zone\": \"agents/eve/\" } ``` ### Eve's Zone Created - Directory: `.coordination/agents/eve/` - Contains: `README.md` with rules and structure - Git-tracked for transparency ### Coordination Architecture Document Created `.coordination/AGENT_ARCHITECTURE.md`: - Full analysis of coordination layer (file-based dispatch daemon) - 3rd/4th agent feasibility analysis - Options: Scout (Research), Atlas (Memory), Fo",
-      "recallCount": 1,
+      "recallCount": 2,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 0.3689800322055816,
+      "totalScore": 0.7353893488645553,
       "maxScore": 0.3689800322055816,
       "firstRecalledAt": "2026-05-14T20:39:32.392Z",
-      "lastRecalledAt": "2026-05-14T20:39:32.392Z",
+      "lastRecalledAt": "2026-05-15T20:31:56.715Z",
       "queryHashes": [
-        "694f3439b6d3"
+        "694f3439b6d3",
+        "835161821939"
       ],
       "recallDays": [
-        "2026-05-15"
+        "2026-05-15",
+        "2026-05-16"
       ],
       "conceptTags": [
         "registry.json",
@@ -360,18 +373,21 @@
       "endLine": 241,
       "source": "memory",
       "snippet": "- **Status:** ✅ All pages have vector representations ### Brain Score: 45/100 | Component | Score | Status | |-----------|-------|--------| | Embeddings | 35/35 | ✅ Complete | | Dead Links | 10/10 | ✅ Clean | | Links | 0/25 | ⏳ Pending | | Timeline | 0/15 | ⏳ Pending | | Orphans | 0/15 | ⏳ Pending | ### Semantic Search Operational Test query: *\"what are the moltos tools and how do they work\"* - Found tool inventory (0.7985), upgrade kit (0.7176), MoltOS README (0.7157) - Hybrid search working: vector similarity + keyword matching ### Team Composition Clarified Nathan revealed all three agents' models: | Agent | Model | Host | Role | Status | |-------|-------|------|------|--------| | **A",
-      "recallCount": 1,
+      "recallCount": 3,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 0.3654431730508804,
-      "maxScore": 0.3654431730508804,
+      "totalScore": 1.165093484520912,
+      "maxScore": 0.4026079714298248,
       "firstRecalledAt": "2026-05-14T20:39:32.392Z",
-      "lastRecalledAt": "2026-05-14T20:39:32.392Z",
+      "lastRecalledAt": "2026-05-15T20:32:07.682Z",
       "queryHashes": [
-        "694f3439b6d3"
+        "694f3439b6d3",
+        "835161821939",
+        "f8f590427b3c"
       ],
       "recallDays": [
-        "2026-05-15"
+        "2026-05-15",
+        "2026-05-16"
       ],
       "conceptTags": [
         "embedding",
@@ -382,6 +398,38 @@
         "0/25",
         "0/15",
         "0.7985"
+      ]
+    },
+    "memory:memory/2026-05-14.md:54:90": {
+      "key": "memory:memory/2026-05-14.md:54:90",
+      "path": "memory/2026-05-14.md",
+      "startLine": 54,
+      "endLine": 90,
+      "source": "memory",
+      "snippet": "- ClawMem indexes workspace files (including `_clawmem/`) - For relay auto-write to work optimally, gbrain should sync from vault directory ### Next Steps (Blocked) 1. ✅ Nathan adds SSH public key to VPS 2. ✅ Establish SSH tunnel: `ssh -N -L 7777:localhost:7777 nathan@155.94.241.59` 3. ✅ Verify: `curl http://localhost:7777/health` 4. ✅ Copy skill file to OpenClaw skills directory 5. ✅ Set env vars and test MCP connection 6. ✅ Send test message to Hermes via relay 7. ✅ Check dashboard for Ava presence --- *Session 4 — compacted flush | Agent: Ava | Time: ~03:13 AM CST* ## Session 5: Deep Dive — Hermes Dashboard × OpenCode Parallelism × Unified Architecture ### Research Mission - **Prompte",
+      "recallCount": 2,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.786877343058586,
+      "maxScore": 0.39532822370529175,
+      "firstRecalledAt": "2026-05-15T20:31:56.715Z",
+      "lastRecalledAt": "2026-05-15T20:32:07.682Z",
+      "queryHashes": [
+        "835161821939",
+        "f8f590427b3c"
+      ],
+      "recallDays": [
+        "2026-05-16"
+      ],
+      "conceptTags": [
+        "auto-write",
+        "155.94.241.59",
+        "7777/health",
+        "clawmem",
+        "indexes",
+        "including",
+        "relay",
+        "auto"
       ]
     }
   }

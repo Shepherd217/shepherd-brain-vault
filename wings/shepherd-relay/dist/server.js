@@ -22839,6 +22839,278 @@ var require_dist = __commonJS((exports) => {
   }
 });
 
+// node_modules/object-assign/index.js
+var require_object_assign = __commonJS((exports, module) => {
+  var getOwnPropertySymbols = Object.getOwnPropertySymbols;
+  var hasOwnProperty = Object.prototype.hasOwnProperty;
+  var propIsEnumerable = Object.prototype.propertyIsEnumerable;
+  function toObject(val) {
+    if (val === null || val === undefined) {
+      throw new TypeError("Object.assign cannot be called with null or undefined");
+    }
+    return Object(val);
+  }
+  function shouldUseNative() {
+    try {
+      if (!Object.assign) {
+        return false;
+      }
+      var test1 = new String("abc");
+      test1[5] = "de";
+      if (Object.getOwnPropertyNames(test1)[0] === "5") {
+        return false;
+      }
+      var test2 = {};
+      for (var i = 0;i < 10; i++) {
+        test2["_" + String.fromCharCode(i)] = i;
+      }
+      var order2 = Object.getOwnPropertyNames(test2).map(function(n) {
+        return test2[n];
+      });
+      if (order2.join("") !== "0123456789") {
+        return false;
+      }
+      var test3 = {};
+      "abcdefghijklmnopqrst".split("").forEach(function(letter) {
+        test3[letter] = letter;
+      });
+      if (Object.keys(Object.assign({}, test3)).join("") !== "abcdefghijklmnopqrst") {
+        return false;
+      }
+      return true;
+    } catch (err) {
+      return false;
+    }
+  }
+  module.exports = shouldUseNative() ? Object.assign : function(target, source) {
+    var from;
+    var to = toObject(target);
+    var symbols;
+    for (var s = 1;s < arguments.length; s++) {
+      from = Object(arguments[s]);
+      for (var key in from) {
+        if (hasOwnProperty.call(from, key)) {
+          to[key] = from[key];
+        }
+      }
+      if (getOwnPropertySymbols) {
+        symbols = getOwnPropertySymbols(from);
+        for (var i = 0;i < symbols.length; i++) {
+          if (propIsEnumerable.call(from, symbols[i])) {
+            to[symbols[i]] = from[symbols[i]];
+          }
+        }
+      }
+    }
+    return to;
+  };
+});
+
+// node_modules/cors/lib/index.js
+var require_lib3 = __commonJS((exports, module) => {
+  (function() {
+    var assign = require_object_assign();
+    var vary = require_vary();
+    var defaults = {
+      origin: "*",
+      methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+      preflightContinue: false,
+      optionsSuccessStatus: 204
+    };
+    function isString(s) {
+      return typeof s === "string" || s instanceof String;
+    }
+    function isOriginAllowed(origin, allowedOrigin) {
+      if (Array.isArray(allowedOrigin)) {
+        for (var i = 0;i < allowedOrigin.length; ++i) {
+          if (isOriginAllowed(origin, allowedOrigin[i])) {
+            return true;
+          }
+        }
+        return false;
+      } else if (isString(allowedOrigin)) {
+        return origin === allowedOrigin;
+      } else if (allowedOrigin instanceof RegExp) {
+        return allowedOrigin.test(origin);
+      } else {
+        return !!allowedOrigin;
+      }
+    }
+    function configureOrigin(options, req) {
+      var requestOrigin = req.headers.origin, headers = [], isAllowed;
+      if (!options.origin || options.origin === "*") {
+        headers.push([{
+          key: "Access-Control-Allow-Origin",
+          value: "*"
+        }]);
+      } else if (isString(options.origin)) {
+        headers.push([{
+          key: "Access-Control-Allow-Origin",
+          value: options.origin
+        }]);
+        headers.push([{
+          key: "Vary",
+          value: "Origin"
+        }]);
+      } else {
+        isAllowed = isOriginAllowed(requestOrigin, options.origin);
+        headers.push([{
+          key: "Access-Control-Allow-Origin",
+          value: isAllowed ? requestOrigin : false
+        }]);
+        headers.push([{
+          key: "Vary",
+          value: "Origin"
+        }]);
+      }
+      return headers;
+    }
+    function configureMethods(options) {
+      var methods = options.methods;
+      if (methods.join) {
+        methods = options.methods.join(",");
+      }
+      return {
+        key: "Access-Control-Allow-Methods",
+        value: methods
+      };
+    }
+    function configureCredentials(options) {
+      if (options.credentials === true) {
+        return {
+          key: "Access-Control-Allow-Credentials",
+          value: "true"
+        };
+      }
+      return null;
+    }
+    function configureAllowedHeaders(options, req) {
+      var allowedHeaders = options.allowedHeaders || options.headers;
+      var headers = [];
+      if (!allowedHeaders) {
+        allowedHeaders = req.headers["access-control-request-headers"];
+        headers.push([{
+          key: "Vary",
+          value: "Access-Control-Request-Headers"
+        }]);
+      } else if (allowedHeaders.join) {
+        allowedHeaders = allowedHeaders.join(",");
+      }
+      if (allowedHeaders && allowedHeaders.length) {
+        headers.push([{
+          key: "Access-Control-Allow-Headers",
+          value: allowedHeaders
+        }]);
+      }
+      return headers;
+    }
+    function configureExposedHeaders(options) {
+      var headers = options.exposedHeaders;
+      if (!headers) {
+        return null;
+      } else if (headers.join) {
+        headers = headers.join(",");
+      }
+      if (headers && headers.length) {
+        return {
+          key: "Access-Control-Expose-Headers",
+          value: headers
+        };
+      }
+      return null;
+    }
+    function configureMaxAge(options) {
+      var maxAge = (typeof options.maxAge === "number" || options.maxAge) && options.maxAge.toString();
+      if (maxAge && maxAge.length) {
+        return {
+          key: "Access-Control-Max-Age",
+          value: maxAge
+        };
+      }
+      return null;
+    }
+    function applyHeaders(headers, res) {
+      for (var i = 0, n = headers.length;i < n; i++) {
+        var header = headers[i];
+        if (header) {
+          if (Array.isArray(header)) {
+            applyHeaders(header, res);
+          } else if (header.key === "Vary" && header.value) {
+            vary(res, header.value);
+          } else if (header.value) {
+            res.setHeader(header.key, header.value);
+          }
+        }
+      }
+    }
+    function cors(options, req, res, next) {
+      var headers = [], method = req.method && req.method.toUpperCase && req.method.toUpperCase();
+      if (method === "OPTIONS") {
+        headers.push(configureOrigin(options, req));
+        headers.push(configureCredentials(options));
+        headers.push(configureMethods(options));
+        headers.push(configureAllowedHeaders(options, req));
+        headers.push(configureMaxAge(options));
+        headers.push(configureExposedHeaders(options));
+        applyHeaders(headers, res);
+        if (options.preflightContinue) {
+          next();
+        } else {
+          res.statusCode = options.optionsSuccessStatus;
+          res.setHeader("Content-Length", "0");
+          res.end();
+        }
+      } else {
+        headers.push(configureOrigin(options, req));
+        headers.push(configureCredentials(options));
+        headers.push(configureExposedHeaders(options));
+        applyHeaders(headers, res);
+        next();
+      }
+    }
+    function middlewareWrapper(o) {
+      var optionsCallback = null;
+      if (typeof o === "function") {
+        optionsCallback = o;
+      } else {
+        optionsCallback = function(req, cb) {
+          cb(null, o);
+        };
+      }
+      return function corsMiddleware(req, res, next) {
+        optionsCallback(req, function(err, options) {
+          if (err) {
+            next(err);
+          } else {
+            var corsOptions = assign({}, defaults, options);
+            var originCallback = null;
+            if (corsOptions.origin && typeof corsOptions.origin === "function") {
+              originCallback = corsOptions.origin;
+            } else if (corsOptions.origin) {
+              originCallback = function(origin, cb) {
+                cb(null, corsOptions.origin);
+              };
+            }
+            if (originCallback) {
+              originCallback(req.headers.origin, function(err2, origin) {
+                if (err2 || !origin) {
+                  next(err2);
+                } else {
+                  corsOptions.origin = origin;
+                  cors(corsOptions, req, res, next);
+                }
+              });
+            } else {
+              next();
+            }
+          }
+        });
+      };
+    }
+    module.exports = middlewareWrapper;
+  })();
+});
+
 // src/server.ts
 var import_express = __toESM(require_express(), 1);
 
@@ -22855,17 +23127,1106 @@ var stringify = import_dist.default.stringify;
 var parse = import_dist.default.parse;
 
 // src/server.ts
+var import_cors = __toESM(require_lib3(), 1);
 import fs from "fs";
 import path from "path";
-var __dirname = "/root/.openclaw/workspace/shepherd-brain-vault/wings/shepherd-relay/src";
+
+// node_modules/helmet/index.mjs
+var dangerouslyDisableDefaultSrc = Symbol("dangerouslyDisableDefaultSrc");
+var DEFAULT_DIRECTIVES = {
+  "default-src": ["'self'"],
+  "base-uri": ["'self'"],
+  "font-src": ["'self'", "https:", "data:"],
+  "form-action": ["'self'"],
+  "frame-ancestors": ["'self'"],
+  "img-src": ["'self'", "data:"],
+  "object-src": ["'none'"],
+  "script-src": ["'self'"],
+  "script-src-attr": ["'none'"],
+  "style-src": ["'self'", "https:", "'unsafe-inline'"],
+  "upgrade-insecure-requests": []
+};
+var SHOULD_BE_QUOTED = new Set(["none", "self", "strict-dynamic", "report-sample", "inline-speculation-rules", "unsafe-inline", "unsafe-eval", "unsafe-hashes", "wasm-unsafe-eval"]);
+var getDefaultDirectives = () => Object.assign({}, DEFAULT_DIRECTIVES);
+var dashify = (str) => str.replace(/[A-Z]/g, (capitalLetter) => "-" + capitalLetter.toLowerCase());
+var isDirectiveValueInvalid = (directiveValue) => /;|,/.test(directiveValue);
+var shouldDirectiveValueEntryBeQuoted = (directiveValueEntry) => SHOULD_BE_QUOTED.has(directiveValueEntry) || directiveValueEntry.startsWith("nonce-") || directiveValueEntry.startsWith("sha256-") || directiveValueEntry.startsWith("sha384-") || directiveValueEntry.startsWith("sha512-");
+var warnIfDirectiveValueEntryShouldBeQuoted = (value) => {
+  if (shouldDirectiveValueEntryBeQuoted(value)) {
+    console.warn(`Content-Security-Policy got directive value \`${value}\` which should be single-quoted and changed to \`'${value}'\`. This will be an error in future versions of Helmet.`);
+  }
+};
+var has = (obj, key) => Object.prototype.hasOwnProperty.call(obj, key);
+function normalizeDirectives(options) {
+  const defaultDirectives = getDefaultDirectives();
+  const { useDefaults = true, directives: rawDirectives = defaultDirectives } = options;
+  const result = new Map;
+  const directiveNamesSeen = new Set;
+  const directivesExplicitlyDisabled = new Set;
+  for (const rawDirectiveName in rawDirectives) {
+    if (!has(rawDirectives, rawDirectiveName)) {
+      continue;
+    }
+    if (rawDirectiveName.length === 0 || /[^a-zA-Z0-9-]/.test(rawDirectiveName)) {
+      throw new Error(`Content-Security-Policy received an invalid directive name ${JSON.stringify(rawDirectiveName)}`);
+    }
+    const directiveName = dashify(rawDirectiveName);
+    if (directiveNamesSeen.has(directiveName)) {
+      throw new Error(`Content-Security-Policy received a duplicate directive ${JSON.stringify(directiveName)}`);
+    }
+    directiveNamesSeen.add(directiveName);
+    const rawDirectiveValue = rawDirectives[rawDirectiveName];
+    let directiveValue;
+    if (rawDirectiveValue === null) {
+      if (directiveName === "default-src") {
+        throw new Error("Content-Security-Policy needs a default-src but it was set to `null`. If you really want to disable it, set it to `contentSecurityPolicy.dangerouslyDisableDefaultSrc`.");
+      }
+      directivesExplicitlyDisabled.add(directiveName);
+      continue;
+    } else if (typeof rawDirectiveValue === "string") {
+      directiveValue = [rawDirectiveValue];
+    } else if (!rawDirectiveValue) {
+      throw new Error(`Content-Security-Policy received an invalid directive value for ${JSON.stringify(directiveName)}`);
+    } else if (rawDirectiveValue === dangerouslyDisableDefaultSrc) {
+      if (directiveName === "default-src") {
+        directivesExplicitlyDisabled.add("default-src");
+        continue;
+      } else {
+        throw new Error(`Content-Security-Policy: tried to disable ${JSON.stringify(directiveName)} as if it were default-src; simply omit the key`);
+      }
+    } else {
+      directiveValue = rawDirectiveValue;
+    }
+    for (const element of directiveValue) {
+      if (typeof element === "string") {
+        if (isDirectiveValueInvalid(element)) {
+          throw new Error(`Content-Security-Policy received an invalid directive value for ${JSON.stringify(directiveName)}`);
+        }
+        warnIfDirectiveValueEntryShouldBeQuoted(element);
+      }
+    }
+    result.set(directiveName, directiveValue);
+  }
+  if (useDefaults) {
+    Object.entries(defaultDirectives).forEach(([defaultDirectiveName, defaultDirectiveValue]) => {
+      if (!result.has(defaultDirectiveName) && !directivesExplicitlyDisabled.has(defaultDirectiveName)) {
+        result.set(defaultDirectiveName, defaultDirectiveValue);
+      }
+    });
+  }
+  if (!result.size) {
+    throw new Error("Content-Security-Policy has no directives. Either set some or disable the header");
+  }
+  if (!result.has("default-src") && !directivesExplicitlyDisabled.has("default-src")) {
+    throw new Error("Content-Security-Policy needs a default-src but none was provided. If you really want to disable it, set it to `contentSecurityPolicy.dangerouslyDisableDefaultSrc`.");
+  }
+  return result;
+}
+function getHeaderValue(req, res, normalizedDirectives) {
+  let err;
+  const result = [];
+  normalizedDirectives.forEach((rawDirectiveValue, directiveName) => {
+    let directiveValue = "";
+    for (const element of rawDirectiveValue) {
+      if (typeof element === "function") {
+        const newElement = element(req, res);
+        warnIfDirectiveValueEntryShouldBeQuoted(newElement);
+        directiveValue += " " + newElement;
+      } else {
+        directiveValue += " " + element;
+      }
+    }
+    if (!directiveValue) {
+      result.push(directiveName);
+    } else if (isDirectiveValueInvalid(directiveValue)) {
+      err = new Error(`Content-Security-Policy received an invalid directive value for ${JSON.stringify(directiveName)}`);
+    } else {
+      result.push(`${directiveName}${directiveValue}`);
+    }
+  });
+  return err ? err : result.join(";");
+}
+var contentSecurityPolicy = function contentSecurityPolicy2(options = {}) {
+  const headerName = options.reportOnly ? "Content-Security-Policy-Report-Only" : "Content-Security-Policy";
+  const normalizedDirectives = normalizeDirectives(options);
+  return function contentSecurityPolicyMiddleware(req, res, next) {
+    const result = getHeaderValue(req, res, normalizedDirectives);
+    if (result instanceof Error) {
+      next(result);
+    } else {
+      res.setHeader(headerName, result);
+      next();
+    }
+  };
+};
+contentSecurityPolicy.getDefaultDirectives = getDefaultDirectives;
+contentSecurityPolicy.dangerouslyDisableDefaultSrc = dangerouslyDisableDefaultSrc;
+var ALLOWED_POLICIES$2 = new Set(["require-corp", "credentialless", "unsafe-none"]);
+function getHeaderValueFromOptions$6({ policy = "require-corp" }) {
+  if (ALLOWED_POLICIES$2.has(policy)) {
+    return policy;
+  } else {
+    throw new Error(`Cross-Origin-Embedder-Policy does not support the ${JSON.stringify(policy)} policy`);
+  }
+}
+function crossOriginEmbedderPolicy(options = {}) {
+  const headerValue = getHeaderValueFromOptions$6(options);
+  return function crossOriginEmbedderPolicyMiddleware(_req, res, next) {
+    res.setHeader("Cross-Origin-Embedder-Policy", headerValue);
+    next();
+  };
+}
+var ALLOWED_POLICIES$1 = new Set(["same-origin", "same-origin-allow-popups", "unsafe-none"]);
+function getHeaderValueFromOptions$5({ policy = "same-origin" }) {
+  if (ALLOWED_POLICIES$1.has(policy)) {
+    return policy;
+  } else {
+    throw new Error(`Cross-Origin-Opener-Policy does not support the ${JSON.stringify(policy)} policy`);
+  }
+}
+function crossOriginOpenerPolicy(options = {}) {
+  const headerValue = getHeaderValueFromOptions$5(options);
+  return function crossOriginOpenerPolicyMiddleware(_req, res, next) {
+    res.setHeader("Cross-Origin-Opener-Policy", headerValue);
+    next();
+  };
+}
+var ALLOWED_POLICIES = new Set(["same-origin", "same-site", "cross-origin"]);
+function getHeaderValueFromOptions$4({ policy = "same-origin" }) {
+  if (ALLOWED_POLICIES.has(policy)) {
+    return policy;
+  } else {
+    throw new Error(`Cross-Origin-Resource-Policy does not support the ${JSON.stringify(policy)} policy`);
+  }
+}
+function crossOriginResourcePolicy(options = {}) {
+  const headerValue = getHeaderValueFromOptions$4(options);
+  return function crossOriginResourcePolicyMiddleware(_req, res, next) {
+    res.setHeader("Cross-Origin-Resource-Policy", headerValue);
+    next();
+  };
+}
+function originAgentCluster() {
+  return function originAgentClusterMiddleware(_req, res, next) {
+    res.setHeader("Origin-Agent-Cluster", "?1");
+    next();
+  };
+}
+var ALLOWED_TOKENS = new Set(["no-referrer", "no-referrer-when-downgrade", "same-origin", "origin", "strict-origin", "origin-when-cross-origin", "strict-origin-when-cross-origin", "unsafe-url", ""]);
+function getHeaderValueFromOptions$3({ policy = ["no-referrer"] }) {
+  const tokens = typeof policy === "string" ? [policy] : policy;
+  if (tokens.length === 0) {
+    throw new Error("Referrer-Policy received no policy tokens");
+  }
+  const tokensSeen = new Set;
+  tokens.forEach((token) => {
+    if (!ALLOWED_TOKENS.has(token)) {
+      throw new Error(`Referrer-Policy received an unexpected policy token ${JSON.stringify(token)}`);
+    } else if (tokensSeen.has(token)) {
+      throw new Error(`Referrer-Policy received a duplicate policy token ${JSON.stringify(token)}`);
+    }
+    tokensSeen.add(token);
+  });
+  return tokens.join(",");
+}
+function referrerPolicy(options = {}) {
+  const headerValue = getHeaderValueFromOptions$3(options);
+  return function referrerPolicyMiddleware(_req, res, next) {
+    res.setHeader("Referrer-Policy", headerValue);
+    next();
+  };
+}
+var DEFAULT_MAX_AGE = 180 * 24 * 60 * 60;
+function parseMaxAge(value = DEFAULT_MAX_AGE) {
+  if (value >= 0 && Number.isFinite(value)) {
+    return Math.floor(value);
+  } else {
+    throw new Error(`Strict-Transport-Security: ${JSON.stringify(value)} is not a valid value for maxAge. Please choose a positive integer.`);
+  }
+}
+function getHeaderValueFromOptions$2(options) {
+  if ("maxage" in options) {
+    throw new Error("Strict-Transport-Security received an unsupported property, `maxage`. Did you mean to pass `maxAge`?");
+  }
+  if ("includeSubdomains" in options) {
+    console.warn('Strict-Transport-Security middleware should use `includeSubDomains` instead of `includeSubdomains`. (The correct one has an uppercase "D".)');
+  }
+  const directives = [`max-age=${parseMaxAge(options.maxAge)}`];
+  if (options.includeSubDomains === undefined || options.includeSubDomains) {
+    directives.push("includeSubDomains");
+  }
+  if (options.preload) {
+    directives.push("preload");
+  }
+  return directives.join("; ");
+}
+function strictTransportSecurity(options = {}) {
+  const headerValue = getHeaderValueFromOptions$2(options);
+  return function strictTransportSecurityMiddleware(_req, res, next) {
+    res.setHeader("Strict-Transport-Security", headerValue);
+    next();
+  };
+}
+function xContentTypeOptions() {
+  return function xContentTypeOptionsMiddleware(_req, res, next) {
+    res.setHeader("X-Content-Type-Options", "nosniff");
+    next();
+  };
+}
+function xDnsPrefetchControl(options = {}) {
+  const headerValue = options.allow ? "on" : "off";
+  return function xDnsPrefetchControlMiddleware(_req, res, next) {
+    res.setHeader("X-DNS-Prefetch-Control", headerValue);
+    next();
+  };
+}
+function xDownloadOptions() {
+  return function xDownloadOptionsMiddleware(_req, res, next) {
+    res.setHeader("X-Download-Options", "noopen");
+    next();
+  };
+}
+function getHeaderValueFromOptions$1({ action = "sameorigin" }) {
+  const normalizedAction = typeof action === "string" ? action.toUpperCase() : action;
+  switch (normalizedAction) {
+    case "SAME-ORIGIN":
+      return "SAMEORIGIN";
+    case "DENY":
+    case "SAMEORIGIN":
+      return normalizedAction;
+    default:
+      throw new Error(`X-Frame-Options received an invalid action ${JSON.stringify(action)}`);
+  }
+}
+function xFrameOptions(options = {}) {
+  const headerValue = getHeaderValueFromOptions$1(options);
+  return function xFrameOptionsMiddleware(_req, res, next) {
+    res.setHeader("X-Frame-Options", headerValue);
+    next();
+  };
+}
+var ALLOWED_PERMITTED_POLICIES = new Set(["none", "master-only", "by-content-type", "all"]);
+function getHeaderValueFromOptions({ permittedPolicies = "none" }) {
+  if (ALLOWED_PERMITTED_POLICIES.has(permittedPolicies)) {
+    return permittedPolicies;
+  } else {
+    throw new Error(`X-Permitted-Cross-Domain-Policies does not support ${JSON.stringify(permittedPolicies)}`);
+  }
+}
+function xPermittedCrossDomainPolicies(options = {}) {
+  const headerValue = getHeaderValueFromOptions(options);
+  return function xPermittedCrossDomainPoliciesMiddleware(_req, res, next) {
+    res.setHeader("X-Permitted-Cross-Domain-Policies", headerValue);
+    next();
+  };
+}
+function xPoweredBy() {
+  return function xPoweredByMiddleware(_req, res, next) {
+    res.removeHeader("X-Powered-By");
+    next();
+  };
+}
+function xXssProtection() {
+  return function xXssProtectionMiddleware(_req, res, next) {
+    res.setHeader("X-XSS-Protection", "0");
+    next();
+  };
+}
+function getMiddlewareFunctionsFromOptions(options) {
+  var _a, _b, _c, _d, _e, _f, _g, _h;
+  const result = [];
+  switch (options.contentSecurityPolicy) {
+    case undefined:
+    case true:
+      result.push(contentSecurityPolicy());
+      break;
+    case false:
+      break;
+    default:
+      result.push(contentSecurityPolicy(options.contentSecurityPolicy));
+      break;
+  }
+  switch (options.crossOriginEmbedderPolicy) {
+    case undefined:
+    case false:
+      break;
+    case true:
+      result.push(crossOriginEmbedderPolicy());
+      break;
+    default:
+      result.push(crossOriginEmbedderPolicy(options.crossOriginEmbedderPolicy));
+      break;
+  }
+  switch (options.crossOriginOpenerPolicy) {
+    case undefined:
+    case true:
+      result.push(crossOriginOpenerPolicy());
+      break;
+    case false:
+      break;
+    default:
+      result.push(crossOriginOpenerPolicy(options.crossOriginOpenerPolicy));
+      break;
+  }
+  switch (options.crossOriginResourcePolicy) {
+    case undefined:
+    case true:
+      result.push(crossOriginResourcePolicy());
+      break;
+    case false:
+      break;
+    default:
+      result.push(crossOriginResourcePolicy(options.crossOriginResourcePolicy));
+      break;
+  }
+  switch (options.originAgentCluster) {
+    case undefined:
+    case true:
+      result.push(originAgentCluster());
+      break;
+    case false:
+      break;
+    default:
+      console.warn("Origin-Agent-Cluster does not take options. Remove the property to silence this warning.");
+      result.push(originAgentCluster());
+      break;
+  }
+  switch (options.referrerPolicy) {
+    case undefined:
+    case true:
+      result.push(referrerPolicy());
+      break;
+    case false:
+      break;
+    default:
+      result.push(referrerPolicy(options.referrerPolicy));
+      break;
+  }
+  if ("strictTransportSecurity" in options && "hsts" in options) {
+    throw new Error("Strict-Transport-Security option was specified twice. Remove `hsts` to silence this warning.");
+  }
+  const strictTransportSecurityOption = (_a = options.strictTransportSecurity) !== null && _a !== undefined ? _a : options.hsts;
+  switch (strictTransportSecurityOption) {
+    case undefined:
+    case true:
+      result.push(strictTransportSecurity());
+      break;
+    case false:
+      break;
+    default:
+      result.push(strictTransportSecurity(strictTransportSecurityOption));
+      break;
+  }
+  if ("xContentTypeOptions" in options && "noSniff" in options) {
+    throw new Error("X-Content-Type-Options option was specified twice. Remove `noSniff` to silence this warning.");
+  }
+  const xContentTypeOptionsOption = (_b = options.xContentTypeOptions) !== null && _b !== undefined ? _b : options.noSniff;
+  switch (xContentTypeOptionsOption) {
+    case undefined:
+    case true:
+      result.push(xContentTypeOptions());
+      break;
+    case false:
+      break;
+    default:
+      console.warn("X-Content-Type-Options does not take options. Remove the property to silence this warning.");
+      result.push(xContentTypeOptions());
+      break;
+  }
+  if ("xDnsPrefetchControl" in options && "dnsPrefetchControl" in options) {
+    throw new Error("X-DNS-Prefetch-Control option was specified twice. Remove `dnsPrefetchControl` to silence this warning.");
+  }
+  const xDnsPrefetchControlOption = (_c = options.xDnsPrefetchControl) !== null && _c !== undefined ? _c : options.dnsPrefetchControl;
+  switch (xDnsPrefetchControlOption) {
+    case undefined:
+    case true:
+      result.push(xDnsPrefetchControl());
+      break;
+    case false:
+      break;
+    default:
+      result.push(xDnsPrefetchControl(xDnsPrefetchControlOption));
+      break;
+  }
+  if ("xDownloadOptions" in options && "ieNoOpen" in options) {
+    throw new Error("X-Download-Options option was specified twice. Remove `ieNoOpen` to silence this warning.");
+  }
+  const xDownloadOptionsOption = (_d = options.xDownloadOptions) !== null && _d !== undefined ? _d : options.ieNoOpen;
+  switch (xDownloadOptionsOption) {
+    case undefined:
+    case true:
+      result.push(xDownloadOptions());
+      break;
+    case false:
+      break;
+    default:
+      console.warn("X-Download-Options does not take options. Remove the property to silence this warning.");
+      result.push(xDownloadOptions());
+      break;
+  }
+  if ("xFrameOptions" in options && "frameguard" in options) {
+    throw new Error("X-Frame-Options option was specified twice. Remove `frameguard` to silence this warning.");
+  }
+  const xFrameOptionsOption = (_e = options.xFrameOptions) !== null && _e !== undefined ? _e : options.frameguard;
+  switch (xFrameOptionsOption) {
+    case undefined:
+    case true:
+      result.push(xFrameOptions());
+      break;
+    case false:
+      break;
+    default:
+      result.push(xFrameOptions(xFrameOptionsOption));
+      break;
+  }
+  if ("xPermittedCrossDomainPolicies" in options && "permittedCrossDomainPolicies" in options) {
+    throw new Error("X-Permitted-Cross-Domain-Policies option was specified twice. Remove `permittedCrossDomainPolicies` to silence this warning.");
+  }
+  const xPermittedCrossDomainPoliciesOption = (_f = options.xPermittedCrossDomainPolicies) !== null && _f !== undefined ? _f : options.permittedCrossDomainPolicies;
+  switch (xPermittedCrossDomainPoliciesOption) {
+    case undefined:
+    case true:
+      result.push(xPermittedCrossDomainPolicies());
+      break;
+    case false:
+      break;
+    default:
+      result.push(xPermittedCrossDomainPolicies(xPermittedCrossDomainPoliciesOption));
+      break;
+  }
+  if ("xPoweredBy" in options && "hidePoweredBy" in options) {
+    throw new Error("X-Powered-By option was specified twice. Remove `hidePoweredBy` to silence this warning.");
+  }
+  const xPoweredByOption = (_g = options.xPoweredBy) !== null && _g !== undefined ? _g : options.hidePoweredBy;
+  switch (xPoweredByOption) {
+    case undefined:
+    case true:
+      result.push(xPoweredBy());
+      break;
+    case false:
+      break;
+    default:
+      console.warn("X-Powered-By does not take options. Remove the property to silence this warning.");
+      result.push(xPoweredBy());
+      break;
+  }
+  if ("xXssProtection" in options && "xssFilter" in options) {
+    throw new Error("X-XSS-Protection option was specified twice. Remove `xssFilter` to silence this warning.");
+  }
+  const xXssProtectionOption = (_h = options.xXssProtection) !== null && _h !== undefined ? _h : options.xssFilter;
+  switch (xXssProtectionOption) {
+    case undefined:
+    case true:
+      result.push(xXssProtection());
+      break;
+    case false:
+      break;
+    default:
+      console.warn("X-XSS-Protection does not take options. Remove the property to silence this warning.");
+      result.push(xXssProtection());
+      break;
+  }
+  return result;
+}
+var helmet = Object.assign(function helmet2(options = {}) {
+  var _a;
+  if (((_a = options.constructor) === null || _a === undefined ? undefined : _a.name) === "IncomingMessage") {
+    throw new Error("It appears you have done something like `app.use(helmet)`, but it should be `app.use(helmet())`.");
+  }
+  const middlewareFunctions = getMiddlewareFunctionsFromOptions(options);
+  return function helmetMiddleware(req, res, next) {
+    let middlewareIndex = 0;
+    (function internalNext(err) {
+      if (err) {
+        next(err);
+        return;
+      }
+      const middlewareFunction = middlewareFunctions[middlewareIndex];
+      if (middlewareFunction) {
+        middlewareIndex++;
+        middlewareFunction(req, res, internalNext);
+      } else {
+        next();
+      }
+    })();
+  };
+}, {
+  contentSecurityPolicy,
+  crossOriginEmbedderPolicy,
+  crossOriginOpenerPolicy,
+  crossOriginResourcePolicy,
+  originAgentCluster,
+  referrerPolicy,
+  strictTransportSecurity,
+  xContentTypeOptions,
+  xDnsPrefetchControl,
+  xDownloadOptions,
+  xFrameOptions,
+  xPermittedCrossDomainPolicies,
+  xPoweredBy,
+  xXssProtection,
+  dnsPrefetchControl: xDnsPrefetchControl,
+  xssFilter: xXssProtection,
+  permittedCrossDomainPolicies: xPermittedCrossDomainPolicies,
+  ieNoOpen: xDownloadOptions,
+  noSniff: xContentTypeOptions,
+  frameguard: xFrameOptions,
+  hidePoweredBy: xPoweredBy,
+  hsts: strictTransportSecurity
+});
+
+// node_modules/express-rate-limit/dist/index.mjs
+import { Buffer as Buffer2 } from "node:buffer";
+import { createHash } from "node:crypto";
+import { isIP } from "node:net";
+var SUPPORTED_DRAFT_VERSIONS = [
+  "draft-6",
+  "draft-7",
+  "draft-8"
+];
+var getResetSeconds = (resetTime, windowMs) => {
+  let resetSeconds = undefined;
+  if (resetTime) {
+    const deltaSeconds = Math.ceil((resetTime.getTime() - Date.now()) / 1000);
+    resetSeconds = Math.max(0, deltaSeconds);
+  } else if (windowMs) {
+    resetSeconds = Math.ceil(windowMs / 1000);
+  }
+  return resetSeconds;
+};
+var getPartitionKey = (key) => {
+  const hash = createHash("sha256");
+  hash.update(key);
+  const partitionKey = hash.digest("hex").slice(0, 12);
+  return Buffer2.from(partitionKey).toString("base64");
+};
+var setLegacyHeaders = (response, info) => {
+  if (response.headersSent)
+    return;
+  response.setHeader("X-RateLimit-Limit", info.limit.toString());
+  response.setHeader("X-RateLimit-Remaining", info.remaining.toString());
+  if (info.resetTime instanceof Date) {
+    response.setHeader("Date", (/* @__PURE__ */ new Date()).toUTCString());
+    response.setHeader("X-RateLimit-Reset", Math.ceil(info.resetTime.getTime() / 1000).toString());
+  }
+};
+var setDraft6Headers = (response, info, windowMs) => {
+  if (response.headersSent)
+    return;
+  const windowSeconds = Math.ceil(windowMs / 1000);
+  const resetSeconds = getResetSeconds(info.resetTime);
+  response.setHeader("RateLimit-Policy", `${info.limit};w=${windowSeconds}`);
+  response.setHeader("RateLimit-Limit", info.limit.toString());
+  response.setHeader("RateLimit-Remaining", info.remaining.toString());
+  if (resetSeconds)
+    response.setHeader("RateLimit-Reset", resetSeconds.toString());
+};
+var setDraft7Headers = (response, info, windowMs) => {
+  if (response.headersSent)
+    return;
+  const windowSeconds = Math.ceil(windowMs / 1000);
+  const resetSeconds = getResetSeconds(info.resetTime, windowMs);
+  response.setHeader("RateLimit-Policy", `${info.limit};w=${windowSeconds}`);
+  response.setHeader("RateLimit", `limit=${info.limit}, remaining=${info.remaining}, reset=${resetSeconds}`);
+};
+var setDraft8Headers = (response, info, windowMs, name, key) => {
+  if (response.headersSent)
+    return;
+  const windowSeconds = Math.ceil(windowMs / 1000);
+  const resetSeconds = getResetSeconds(info.resetTime, windowMs);
+  const partitionKey = getPartitionKey(key);
+  const policy = `q=${info.limit}; w=${windowSeconds}; pk=:${partitionKey}:`;
+  const header = `r=${info.remaining}; t=${resetSeconds}`;
+  response.append("RateLimit-Policy", `"${name}"; ${policy}`);
+  response.append("RateLimit", `"${name}"; ${header}`);
+};
+var setRetryAfterHeader = (response, info, windowMs) => {
+  if (response.headersSent)
+    return;
+  const resetSeconds = getResetSeconds(info.resetTime, windowMs);
+  response.setHeader("Retry-After", resetSeconds.toString());
+};
+var ValidationError = class extends Error {
+  constructor(code, message) {
+    const url = `https://express-rate-limit.github.io/${code}/`;
+    super(`${message} See ${url} for more information.`);
+    this.name = this.constructor.name;
+    this.code = code;
+    this.help = url;
+  }
+};
+var ChangeWarning = class extends ValidationError {
+};
+var usedStores = /* @__PURE__ */ new Set;
+var singleCountKeys = /* @__PURE__ */ new WeakMap;
+var validations = {
+  enabled: {
+    default: true
+  },
+  disable() {
+    for (const k of Object.keys(this.enabled))
+      this.enabled[k] = false;
+  },
+  ip(ip) {
+    if (ip === undefined) {
+      throw new ValidationError("ERR_ERL_UNDEFINED_IP_ADDRESS", `An undefined 'request.ip' was detected. This might indicate a misconfiguration or the connection being destroyed prematurely.`);
+    }
+    if (!isIP(ip)) {
+      throw new ValidationError("ERR_ERL_INVALID_IP_ADDRESS", `An invalid 'request.ip' (${ip}) was detected. Consider passing a custom 'keyGenerator' function to the rate limiter.`);
+    }
+  },
+  trustProxy(request) {
+    if (request.app.get("trust proxy") === true) {
+      throw new ValidationError("ERR_ERL_PERMISSIVE_TRUST_PROXY", `The Express 'trust proxy' setting is true, which allows anyone to trivially bypass IP-based rate limiting.`);
+    }
+  },
+  xForwardedForHeader(request) {
+    if (request.headers["x-forwarded-for"] && request.app.get("trust proxy") === false) {
+      throw new ValidationError("ERR_ERL_UNEXPECTED_X_FORWARDED_FOR", `The 'X-Forwarded-For' header is set but the Express 'trust proxy' setting is false (default). This could indicate a misconfiguration which would prevent express-rate-limit from accurately identifying users.`);
+    }
+  },
+  positiveHits(hits) {
+    if (typeof hits !== "number" || hits < 1 || hits !== Math.round(hits)) {
+      throw new ValidationError("ERR_ERL_INVALID_HITS", `The totalHits value returned from the store must be a positive integer, got ${hits}`);
+    }
+  },
+  unsharedStore(store) {
+    if (usedStores.has(store)) {
+      const maybeUniquePrefix = store?.localKeys ? "" : " (with a unique prefix)";
+      throw new ValidationError("ERR_ERL_STORE_REUSE", `A Store instance must not be shared across multiple rate limiters. Create a new instance of ${store.constructor.name}${maybeUniquePrefix} for each limiter instead.`);
+    }
+    usedStores.add(store);
+  },
+  singleCount(request, store, key) {
+    let storeKeys = singleCountKeys.get(request);
+    if (!storeKeys) {
+      storeKeys = /* @__PURE__ */ new Map;
+      singleCountKeys.set(request, storeKeys);
+    }
+    const storeKey = store.localKeys ? store : store.constructor.name;
+    let keys = storeKeys.get(storeKey);
+    if (!keys) {
+      keys = [];
+      storeKeys.set(storeKey, keys);
+    }
+    const prefixedKey = `${store.prefix ?? ""}${key}`;
+    if (keys.includes(prefixedKey)) {
+      throw new ValidationError("ERR_ERL_DOUBLE_COUNT", `The hit count for ${key} was incremented more than once for a single request.`);
+    }
+    keys.push(prefixedKey);
+  },
+  limit(limit) {
+    if (limit === 0) {
+      throw new ChangeWarning("WRN_ERL_MAX_ZERO", `Setting limit or max to 0 disables rate limiting in express-rate-limit v6 and older, but will cause all requests to be blocked in v7`);
+    }
+  },
+  draftPolliHeaders(draft_polli_ratelimit_headers) {
+    if (draft_polli_ratelimit_headers) {
+      throw new ChangeWarning("WRN_ERL_DEPRECATED_DRAFT_POLLI_HEADERS", `The draft_polli_ratelimit_headers configuration option is deprecated and has been removed in express-rate-limit v7, please set standardHeaders: 'draft-6' instead.`);
+    }
+  },
+  onLimitReached(onLimitReached) {
+    if (onLimitReached) {
+      throw new ChangeWarning("WRN_ERL_DEPRECATED_ON_LIMIT_REACHED", `The onLimitReached configuration option is deprecated and has been removed in express-rate-limit v7.`);
+    }
+  },
+  headersDraftVersion(version2) {
+    if (typeof version2 !== "string" || !SUPPORTED_DRAFT_VERSIONS.includes(version2)) {
+      const versionString = SUPPORTED_DRAFT_VERSIONS.join(", ");
+      throw new ValidationError("ERR_ERL_HEADERS_UNSUPPORTED_DRAFT_VERSION", `standardHeaders: only the following versions of the IETF draft specification are supported: ${versionString}.`);
+    }
+  },
+  headersResetTime(resetTime) {
+    if (!resetTime) {
+      throw new ValidationError("ERR_ERL_HEADERS_NO_RESET", `standardHeaders:  'draft-7' requires a 'resetTime', but the store did not provide one. The 'windowMs' value will be used instead, which may cause clients to wait longer than necessary.`);
+    }
+  },
+  validationsConfig() {
+    const supportedValidations = Object.keys(this).filter((k) => !["enabled", "disable"].includes(k));
+    supportedValidations.push("default");
+    for (const key of Object.keys(this.enabled)) {
+      if (!supportedValidations.includes(key)) {
+        throw new ValidationError("ERR_ERL_UNKNOWN_VALIDATION", `options.validate.${key} is not recognized. Supported validate options are: ${supportedValidations.join(", ")}.`);
+      }
+    }
+  },
+  creationStack(store) {
+    const { stack } = new Error("express-rate-limit validation check (set options.validate.creationStack=false to disable)");
+    if (stack?.includes("Layer.handle [as handle_request]")) {
+      if (!store.localKeys) {
+        throw new ValidationError("ERR_ERL_CREATED_IN_REQUEST_HANDLER", "express-rate-limit instance should *usually* be created at app initialization, not when responding to a request.");
+      }
+      throw new ValidationError("ERR_ERL_CREATED_IN_REQUEST_HANDLER", `express-rate-limit instance should be created at app initialization, not when responding to a request.`);
+    }
+  }
+};
+var getValidations = (_enabled) => {
+  let enabled;
+  if (typeof _enabled === "boolean") {
+    enabled = {
+      default: _enabled
+    };
+  } else {
+    enabled = {
+      default: true,
+      ..._enabled
+    };
+  }
+  const wrappedValidations = {
+    enabled
+  };
+  for (const [name, validation] of Object.entries(validations)) {
+    if (typeof validation === "function")
+      wrappedValidations[name] = (...args) => {
+        if (!(enabled[name] ?? enabled.default)) {
+          return;
+        }
+        try {
+          validation.apply(wrappedValidations, args);
+        } catch (error) {
+          if (error instanceof ChangeWarning)
+            console.warn(error);
+          else
+            console.error(error);
+        }
+      };
+  }
+  return wrappedValidations;
+};
+var MemoryStore = class {
+  constructor() {
+    this.previous = /* @__PURE__ */ new Map;
+    this.current = /* @__PURE__ */ new Map;
+    this.localKeys = true;
+  }
+  init(options) {
+    this.windowMs = options.windowMs;
+    if (this.interval)
+      clearInterval(this.interval);
+    this.interval = setInterval(() => {
+      this.clearExpired();
+    }, this.windowMs);
+    if (this.interval.unref)
+      this.interval.unref();
+  }
+  async get(key) {
+    return this.current.get(key) ?? this.previous.get(key);
+  }
+  async increment(key) {
+    const client = this.getClient(key);
+    const now = Date.now();
+    if (client.resetTime.getTime() <= now) {
+      this.resetClient(client, now);
+    }
+    client.totalHits++;
+    return client;
+  }
+  async decrement(key) {
+    const client = this.getClient(key);
+    if (client.totalHits > 0)
+      client.totalHits--;
+  }
+  async resetKey(key) {
+    this.current.delete(key);
+    this.previous.delete(key);
+  }
+  async resetAll() {
+    this.current.clear();
+    this.previous.clear();
+  }
+  shutdown() {
+    clearInterval(this.interval);
+    this.resetAll();
+  }
+  resetClient(client, now = Date.now()) {
+    client.totalHits = 0;
+    client.resetTime.setTime(now + this.windowMs);
+    return client;
+  }
+  getClient(key) {
+    if (this.current.has(key))
+      return this.current.get(key);
+    let client;
+    if (this.previous.has(key)) {
+      client = this.previous.get(key);
+      this.previous.delete(key);
+    } else {
+      client = { totalHits: 0, resetTime: /* @__PURE__ */ new Date };
+      this.resetClient(client);
+    }
+    this.current.set(key, client);
+    return client;
+  }
+  clearExpired() {
+    this.previous = this.current;
+    this.current = /* @__PURE__ */ new Map;
+  }
+};
+var isLegacyStore = (store) => typeof store.incr === "function" && typeof store.increment !== "function";
+var promisifyStore = (passedStore) => {
+  if (!isLegacyStore(passedStore)) {
+    return passedStore;
+  }
+  const legacyStore = passedStore;
+
+  class PromisifiedStore {
+    async increment(key) {
+      return new Promise((resolve, reject) => {
+        legacyStore.incr(key, (error, totalHits, resetTime) => {
+          if (error)
+            reject(error);
+          resolve({ totalHits, resetTime });
+        });
+      });
+    }
+    async decrement(key) {
+      return legacyStore.decrement(key);
+    }
+    async resetKey(key) {
+      return legacyStore.resetKey(key);
+    }
+    async resetAll() {
+      if (typeof legacyStore.resetAll === "function")
+        return legacyStore.resetAll();
+    }
+  }
+  return new PromisifiedStore;
+};
+var getOptionsFromConfig = (config) => {
+  const { validations: validations2, ...directlyPassableEntries } = config;
+  return {
+    ...directlyPassableEntries,
+    validate: validations2.enabled
+  };
+};
+var omitUndefinedOptions = (passedOptions) => {
+  const omittedOptions = {};
+  for (const k of Object.keys(passedOptions)) {
+    const key = k;
+    if (passedOptions[key] !== undefined) {
+      omittedOptions[key] = passedOptions[key];
+    }
+  }
+  return omittedOptions;
+};
+var parseOptions = (passedOptions) => {
+  const notUndefinedOptions = omitUndefinedOptions(passedOptions);
+  const validations2 = getValidations(notUndefinedOptions?.validate ?? true);
+  validations2.validationsConfig();
+  validations2.draftPolliHeaders(notUndefinedOptions.draft_polli_ratelimit_headers);
+  validations2.onLimitReached(notUndefinedOptions.onLimitReached);
+  let standardHeaders = notUndefinedOptions.standardHeaders ?? false;
+  if (standardHeaders === true)
+    standardHeaders = "draft-6";
+  const config = {
+    windowMs: 60 * 1000,
+    limit: passedOptions.max ?? 5,
+    message: "Too many requests, please try again later.",
+    statusCode: 429,
+    legacyHeaders: passedOptions.headers ?? true,
+    identifier(request, _response) {
+      let duration = "";
+      const property = config.requestPropertyName;
+      const { limit } = request[property];
+      const seconds = config.windowMs / 1000;
+      const minutes = config.windowMs / (1000 * 60);
+      const hours = config.windowMs / (1000 * 60 * 60);
+      const days = config.windowMs / (1000 * 60 * 60 * 24);
+      if (seconds < 60)
+        duration = `${seconds}sec`;
+      else if (minutes < 60)
+        duration = `${minutes}min`;
+      else if (hours < 24)
+        duration = `${hours}hr${hours > 1 ? "s" : ""}`;
+      else
+        duration = `${days}day${days > 1 ? "s" : ""}`;
+      return `${limit}-in-${duration}`;
+    },
+    requestPropertyName: "rateLimit",
+    skipFailedRequests: false,
+    skipSuccessfulRequests: false,
+    requestWasSuccessful: (_request, response) => response.statusCode < 400,
+    skip: (_request, _response) => false,
+    keyGenerator(request, _response) {
+      validations2.ip(request.ip);
+      validations2.trustProxy(request);
+      validations2.xForwardedForHeader(request);
+      return request.ip;
+    },
+    async handler(request, response, _next, _optionsUsed) {
+      response.status(config.statusCode);
+      const message = typeof config.message === "function" ? await config.message(request, response) : config.message;
+      if (!response.writableEnded) {
+        response.send(message);
+      }
+    },
+    passOnStoreError: false,
+    ...notUndefinedOptions,
+    standardHeaders,
+    store: promisifyStore(notUndefinedOptions.store ?? new MemoryStore),
+    validations: validations2
+  };
+  if (typeof config.store.increment !== "function" || typeof config.store.decrement !== "function" || typeof config.store.resetKey !== "function" || config.store.resetAll !== undefined && typeof config.store.resetAll !== "function" || config.store.init !== undefined && typeof config.store.init !== "function") {
+    throw new TypeError("An invalid store was passed. Please ensure that the store is a class that implements the `Store` interface.");
+  }
+  return config;
+};
+var handleAsyncErrors = (fn) => async (request, response, next) => {
+  try {
+    await Promise.resolve(fn(request, response, next)).catch(next);
+  } catch (error) {
+    next(error);
+  }
+};
+var rateLimit = (passedOptions) => {
+  const config = parseOptions(passedOptions ?? {});
+  const options = getOptionsFromConfig(config);
+  config.validations.creationStack(config.store);
+  config.validations.unsharedStore(config.store);
+  if (typeof config.store.init === "function")
+    config.store.init(options);
+  const middleware = handleAsyncErrors(async (request, response, next) => {
+    const skip = await config.skip(request, response);
+    if (skip) {
+      next();
+      return;
+    }
+    const augmentedRequest = request;
+    const key = await config.keyGenerator(request, response);
+    let totalHits = 0;
+    let resetTime;
+    try {
+      const incrementResult = await config.store.increment(key);
+      totalHits = incrementResult.totalHits;
+      resetTime = incrementResult.resetTime;
+    } catch (error) {
+      if (config.passOnStoreError) {
+        console.error("express-rate-limit: error from store, allowing request without rate-limiting.", error);
+        next();
+        return;
+      }
+      throw error;
+    }
+    config.validations.positiveHits(totalHits);
+    config.validations.singleCount(request, config.store, key);
+    const retrieveLimit = typeof config.limit === "function" ? config.limit(request, response) : config.limit;
+    const limit = await retrieveLimit;
+    config.validations.limit(limit);
+    const info = {
+      limit,
+      used: totalHits,
+      remaining: Math.max(limit - totalHits, 0),
+      resetTime
+    };
+    Object.defineProperty(info, "current", {
+      configurable: false,
+      enumerable: false,
+      value: totalHits
+    });
+    augmentedRequest[config.requestPropertyName] = info;
+    if (config.legacyHeaders && !response.headersSent) {
+      setLegacyHeaders(response, info);
+    }
+    if (config.standardHeaders && !response.headersSent) {
+      switch (config.standardHeaders) {
+        case "draft-6": {
+          setDraft6Headers(response, info, config.windowMs);
+          break;
+        }
+        case "draft-7": {
+          config.validations.headersResetTime(info.resetTime);
+          setDraft7Headers(response, info, config.windowMs);
+          break;
+        }
+        case "draft-8": {
+          const retrieveName = typeof config.identifier === "function" ? config.identifier(request, response) : config.identifier;
+          const name = await retrieveName;
+          config.validations.headersResetTime(info.resetTime);
+          setDraft8Headers(response, info, config.windowMs, name, key);
+          break;
+        }
+        default: {
+          config.validations.headersDraftVersion(config.standardHeaders);
+          break;
+        }
+      }
+    }
+    if (config.skipFailedRequests || config.skipSuccessfulRequests) {
+      let decremented = false;
+      const decrementKey = async () => {
+        if (!decremented) {
+          await config.store.decrement(key);
+          decremented = true;
+        }
+      };
+      if (config.skipFailedRequests) {
+        response.on("finish", async () => {
+          if (!await config.requestWasSuccessful(request, response))
+            await decrementKey();
+        });
+        response.on("close", async () => {
+          if (!response.writableEnded)
+            await decrementKey();
+        });
+        response.on("error", async () => {
+          await decrementKey();
+        });
+      }
+      if (config.skipSuccessfulRequests) {
+        response.on("finish", async () => {
+          if (await config.requestWasSuccessful(request, response))
+            await decrementKey();
+        });
+      }
+    }
+    config.validations.disable();
+    if (totalHits > limit) {
+      if (config.legacyHeaders || config.standardHeaders) {
+        setRetryAfterHeader(response, info, config.windowMs);
+      }
+      config.handler(request, response, next, options);
+      return;
+    }
+    next();
+  });
+  const getThrowFn = () => {
+    throw new Error("The current store does not support the get/getKey method");
+  };
+  middleware.resetKey = config.store.resetKey.bind(config.store);
+  middleware.getKey = typeof config.store.get === "function" ? config.store.get.bind(config.store) : getThrowFn;
+  return middleware;
+};
+var lib_default = rateLimit;
+
+// src/server.ts
+var __dirname = "/root/.openclaw/workspace/wings/shepherd-relay/src";
 var app = import_express.default();
-app.use(import_express.default.json());
+app.use(helmet());
+var corsOrigin = process.env.RELAY_CORS_ORIGIN;
+app.use(import_cors.default({
+  origin: corsOrigin === "*" ? true : corsOrigin || false,
+  credentials: true
+}));
+app.use(lib_default({
+  windowMs: 15 * 60 * 1000,
+  max: 100,
+  standardHeaders: true,
+  legacyHeaders: false,
+  handler: (req, res) => {
+    log(`⛔ Rate limit exceeded: ${req.ip}`);
+    res.status(429).json({ error: "Too many requests, please slow down." });
+  }
+}));
+app.use(import_express.default.json({ limit: "128kb" }));
 var PORT = process.env.RELAY_PORT ? parseInt(process.env.RELAY_PORT) : 7777;
 var DATA_DIR = process.env.RELAY_DATA_DIR || path.join(__dirname, "../data");
 var TASKS_FILE = path.join(DATA_DIR, "tasks.jsonl");
 var MESSAGES_FILE = path.join(DATA_DIR, "messages.jsonl");
+var REQ_LOG = process.env.RELAY_REQ_LOG === "1" || process.env.RELAY_REQ_LOG === "true";
 var clients = new Map;
 var presence = new Map;
+var taskCache = new Map;
+var taskFlushTimer = null;
 if (!fs.existsSync(DATA_DIR)) {
   fs.mkdirSync(DATA_DIR, { recursive: true });
 }
@@ -22887,6 +24248,26 @@ function readJsonl(filePath) {
 `).filter(Boolean);
   return lines.map((line) => JSON.parse(line));
 }
+function loadTasksIntoCache() {
+  const tasks = readJsonl(TASKS_FILE);
+  for (const task of tasks) {
+    taskCache.set(task.id, task);
+  }
+  log(`\uD83D\uDCC2 Loaded ${tasks.length} tasks into memory cache`);
+}
+loadTasksIntoCache();
+function flushTasks() {
+  if (taskFlushTimer)
+    clearTimeout(taskFlushTimer);
+  taskFlushTimer = setTimeout(() => {
+    const tasks = Array.from(taskCache.values());
+    const data = tasks.map((t) => JSON.stringify(t)).join(`
+`) + `
+`;
+    fs.writeFileSync(TASKS_FILE, data, "utf-8");
+    log(`\uD83D\uDCBE Task cache flushed to disk (${tasks.length} tasks)`);
+  }, 100);
+}
 function broadcast(msg) {
   const data = `data: ${JSON.stringify(msg)}
 
@@ -22897,8 +24278,56 @@ function broadcast(msg) {
     }
   }
 }
-app.get("/stream/:agentId", (req, res) => {
+var ALLOWED_TYPES = ["message", "task", "status", "decision", "presence"];
+var ALLOWED_PRIORITIES = ["low", "medium", "high", "critical"];
+var ALLOWED_STATUSES = ["todo", "in-progress", "done"];
+var ID_REGEX = /^[a-zA-Z0-9-]{1,64}$/;
+function isValidId(id) {
+  return typeof id === "string" && ID_REGEX.test(id);
+}
+function hasLineBreaks(str) {
+  return typeof str === "string" && /[\n\r]/.test(str);
+}
+function sanitizeError(field) {
+  return { error: `Invalid or unsafe value for "${field}"` };
+}
+var AUTH_TOKEN = process.env.RELAY_API_TOKEN;
+function requireAuth(req, res, next) {
+  if (!AUTH_TOKEN) {
+    return next();
+  }
+  const header = req.headers.authorization || "";
+  const match = header.match(/^Bearer\s+(.+)$/i);
+  const token = match ? match[1] : null;
+  if (!token || token !== AUTH_TOKEN) {
+    log(`\uD83D\uDD12 Auth failure: ${req.method} ${req.path} from ${req.ip} — invalid or missing token`);
+    return res.status(401).json({ error: "Unauthorized — invalid or missing Bearer token" });
+  }
+  next();
+}
+function requireStreamAuth(req, res, next) {
+  if (!AUTH_TOKEN) {
+    return next();
+  }
+  const token = req.query.token;
+  if (!token || token !== AUTH_TOKEN) {
+    log(`\uD83D\uDD12 SSE auth failure: ${req.path} from ${req.ip} — invalid or missing token`);
+    return res.status(401).json({ error: "Unauthorized — invalid or missing token query parameter" });
+  }
+  next();
+}
+if (REQ_LOG) {
+  app.use((req, res, next) => {
+    const agentId = req.headers["x-agent-id"] || req.params.agentId || "unknown";
+    log(`\uD83D\uDCE1 ${req.method} ${req.path} — agent=${agentId} ip=${req.ip}`);
+    next();
+  });
+}
+app.get("/stream/:agentId", requireStreamAuth, (req, res) => {
   const agentId = req.params.agentId;
+  if (!isValidId(agentId)) {
+    return res.status(400).json({ error: "Invalid agentId — alphanumeric and hyphens only, max 64 chars" });
+  }
   res.setHeader("Content-Type", "text/event-stream");
   res.setHeader("Cache-Control", "no-cache");
   res.setHeader("Connection", "keep-alive");
@@ -22916,6 +24345,20 @@ app.get("/stream/:agentId", (req, res) => {
   res.write(`data: ${JSON.stringify(welcome)}
 
 `);
+  try {
+    const history = readJsonl(MESSAGES_FILE);
+    const recent = history.filter((m) => m.to === "all" || m.to === agentId).slice(-50);
+    for (const msg of recent) {
+      res.write(`data: ${JSON.stringify(msg)}
+
+`);
+    }
+    if (recent.length > 0) {
+      log(`\uD83D\uDCDC Replayed ${recent.length} relevant messages to ${agentId}`);
+    }
+  } catch (e) {
+    log(`⚠️ Failed to replay history to ${agentId}: ${e}`);
+  }
   const joinMsg = {
     id: v4(),
     from: "relay",
@@ -22940,10 +24383,25 @@ app.get("/stream/:agentId", (req, res) => {
     broadcast(leaveMsg);
   });
 });
-app.post("/message", (req, res) => {
+app.post("/message", requireAuth, (req, res) => {
   const { from, to, content, type = "message", metadata = {} } = req.body;
   if (!from || !content) {
     return res.status(400).json({ error: 'Missing "from" or "content"' });
+  }
+  if (!isValidId(from)) {
+    return res.status(400).json(sanitizeError("from"));
+  }
+  if (to && to !== "all" && !isValidId(to)) {
+    return res.status(400).json(sanitizeError("to"));
+  }
+  if (!ALLOWED_TYPES.includes(type)) {
+    return res.status(400).json({ error: `Invalid "type" — must be one of: ${ALLOWED_TYPES.join(", ")}` });
+  }
+  if (hasLineBreaks(content)) {
+    return res.status(400).json({ error: '"content" cannot contain newlines or carriage returns' });
+  }
+  if (content.length > 10 * 1024) {
+    return res.status(400).json({ error: '"content" exceeds maximum length of 10KB' });
   }
   const msg = {
     id: v4(),
@@ -22958,8 +24416,23 @@ app.post("/message", (req, res) => {
   log(`\uD83D\uDCAC ${from} → ${msg.to}: ${content.slice(0, 60)}`);
   res.json({ success: true, messageId: msg.id });
 });
-app.post("/broadcast", (req, res) => {
+app.post("/broadcast", requireAuth, (req, res) => {
   const { from, content, type = "message", metadata = {} } = req.body;
+  if (!from || !content) {
+    return res.status(400).json({ error: 'Missing "from" or "content"' });
+  }
+  if (!isValidId(from)) {
+    return res.status(400).json(sanitizeError("from"));
+  }
+  if (!ALLOWED_TYPES.includes(type)) {
+    return res.status(400).json({ error: `Invalid "type" — must be one of: ${ALLOWED_TYPES.join(", ")}` });
+  }
+  if (hasLineBreaks(content)) {
+    return res.status(400).json({ error: '"content" cannot contain newlines or carriage returns' });
+  }
+  if (content.length > 10 * 1024) {
+    return res.status(400).json({ error: '"content" exceeds maximum length of 10KB' });
+  }
   const msg = {
     id: v4(),
     from,
@@ -22985,16 +24458,36 @@ app.get("/status", (req, res) => {
 });
 app.get("/tasks", (req, res) => {
   const statusFilter = req.query.status;
-  let tasks = readJsonl(TASKS_FILE);
-  if (statusFilter) {
+  let tasks = Array.from(taskCache.values());
+  if (statusFilter && ALLOWED_STATUSES.includes(statusFilter)) {
     tasks = tasks.filter((t) => t.status === statusFilter);
   }
+  tasks.sort((a, b) => b.createdAt - a.createdAt);
   res.json({ tasks, count: tasks.length });
 });
-app.post("/tasks", (req, res) => {
+app.post("/tasks", requireAuth, (req, res) => {
   const { title, description, priority = "medium", createdBy } = req.body;
   if (!title) {
     return res.status(400).json({ error: 'Missing "title"' });
+  }
+  if (!ALLOWED_PRIORITIES.includes(priority)) {
+    return res.status(400).json({ error: `Invalid "priority" — must be one of: ${ALLOWED_PRIORITIES.join(", ")}` });
+  }
+  if (hasLineBreaks(title)) {
+    return res.status(400).json({ error: '"title" cannot contain newlines or carriage returns' });
+  }
+  if (title.length > 200) {
+    return res.status(400).json({ error: '"title" exceeds maximum length of 200 characters' });
+  }
+  let desc = description || "";
+  if (hasLineBreaks(desc)) {
+    return res.status(400).json({ error: '"description" cannot contain newlines or carriage returns' });
+  }
+  if (desc.length > 2 * 1024) {
+    return res.status(400).json({ error: '"description" exceeds maximum length of 2KB' });
+  }
+  if (createdBy && !isValidId(createdBy)) {
+    return res.status(400).json(sanitizeError("createdBy"));
   }
   const task = {
     id: v4(),
@@ -23005,9 +24498,10 @@ app.post("/tasks", (req, res) => {
     createdAt: now(),
     claimedAt: null,
     completedAt: null,
-    description: description || ""
+    description: desc
   };
-  appendJsonl(TASKS_FILE, task);
+  taskCache.set(task.id, task);
+  flushTasks();
   const msg = {
     id: v4(),
     from: createdBy || "relay",
@@ -23020,13 +24514,15 @@ app.post("/tasks", (req, res) => {
   log(`\uD83D\uDCDD Task created: ${title} (${task.id})`);
   res.json({ success: true, task });
 });
-app.post("/claim-task", (req, res) => {
+app.post("/claim-task", requireAuth, (req, res) => {
   const { taskId, agentId } = req.body;
   if (!taskId || !agentId) {
     return res.status(400).json({ error: "Missing taskId or agentId" });
   }
-  const tasks = readJsonl(TASKS_FILE);
-  const task = tasks.find((t) => t.id === taskId);
+  if (!isValidId(agentId)) {
+    return res.status(400).json(sanitizeError("agentId"));
+  }
+  const task = taskCache.get(taskId);
   if (!task) {
     return res.status(404).json({ error: "Task not found" });
   }
@@ -23036,9 +24532,7 @@ app.post("/claim-task", (req, res) => {
   task.status = "in-progress";
   task.claimedBy = agentId;
   task.claimedAt = now();
-  fs.writeFileSync(TASKS_FILE, tasks.map((t) => JSON.stringify(t)).join(`
-`) + `
-`);
+  flushTasks();
   const pres = presence.get(agentId);
   if (pres) {
     pres.task = task.title;
@@ -23056,21 +24550,21 @@ app.post("/claim-task", (req, res) => {
   log(`✋ ${agentId} claimed: ${task.title}`);
   res.json({ success: true, task });
 });
-app.post("/complete-task", (req, res) => {
+app.post("/complete-task", requireAuth, (req, res) => {
   const { taskId, agentId, summary } = req.body;
   if (!taskId || !agentId) {
     return res.status(400).json({ error: "Missing taskId or agentId" });
   }
-  const tasks = readJsonl(TASKS_FILE);
-  const task = tasks.find((t) => t.id === taskId);
+  if (!isValidId(agentId)) {
+    return res.status(400).json(sanitizeError("agentId"));
+  }
+  const task = taskCache.get(taskId);
   if (!task) {
     return res.status(404).json({ error: "Task not found" });
   }
   task.status = "done";
   task.completedAt = now();
-  fs.writeFileSync(TASKS_FILE, tasks.map((t) => JSON.stringify(t)).join(`
-`) + `
-`);
+  flushTasks();
   const pres = presence.get(agentId);
   if (pres) {
     pres.task = null;
@@ -23090,9 +24584,13 @@ app.post("/complete-task", (req, res) => {
 });
 app.get("/messages", (req, res) => {
   const since = req.query.since ? parseInt(req.query.since) : 0;
+  const toFilter = req.query.to;
   let messages = readJsonl(MESSAGES_FILE);
   if (since > 0) {
     messages = messages.filter((m) => (m.metadata.timestamp || 0) > since);
+  }
+  if (toFilter) {
+    messages = messages.filter((m) => m.to === "all" || m.to === toFilter);
   }
   res.json({ messages, count: messages.length });
 });
@@ -23102,8 +24600,10 @@ app.get("/health", (req, res) => {
 app.listen(PORT, () => {
   log(`\uD83D\uDE80 Shepherd Relay running on port ${PORT}`);
   log(`\uD83D\uDCC1 Data directory: ${DATA_DIR}`);
+  log(`\uD83D\uDD12 Auth: ${AUTH_TOKEN ? "enabled (Bearer token)" : "disabled (dev mode)"}`);
+  log(`\uD83C\uDF10 CORS: ${corsOrigin || "deny all"}`);
   log(`\uD83D\uDCE1 Endpoints:`);
-  log(`   GET  /stream/:agentId     — SSE stream`);
+  log(`   GET  /stream/:agentId     — SSE stream (token via ?token=)`);
   log(`   POST /message            — Send message`);
   log(`   POST /broadcast          — Broadcast to all`);
   log(`   GET  /status             — Team status`);
