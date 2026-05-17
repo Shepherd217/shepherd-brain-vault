@@ -29,6 +29,11 @@
 
 | ID | Title | Status | Claimed By | Priority | Created |
 |----|-------|--------|------------|----------|---------|
+| 2026-05-18-001 | File-Mutation Verifier Plugin | ✅ Done | Ava | P0 | 2026-05-18 |
+| 2026-05-18-002 | Post-Write Delta Lint | ✅ Done | Ava | P0 | 2026-05-18 |
+| 2026-05-18-003 | LSP Semantic Diagnostics | 🔄 In Progress | — | P0 | 2026-05-18 |
+| 2026-05-18-004 | Lazy-Deps / Debloating | ⏳ Pending | — | P1 | 2026-05-18 |
+| 2026-05-18-005 | Self-Healing Recovery Loop | ⏳ Pending | — | P2 | 2026-05-18 |
 
 ---
 

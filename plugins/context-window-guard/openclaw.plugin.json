@@ -1,0 +1,43 @@
+{
+  "id": "context-window-guard",
+  "name": "Context Window Cost Guard",
+  "description": "Monitors conversation context window size and warns when approaching token limits. Prevents silent truncation and unexpected cost spikes.",
+  "contracts": {
+    "hooks": ["before_prompt_build"]
+  },
+  "activation": {
+    "onStartup": true
+  },
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "enabled": {
+        "type": "boolean",
+        "default": true
+      },
+      "warnThreshold": {
+        "type": "number",
+        "default": 0.8,
+        "description": "Fraction of context limit to warn at (0.0-1.0)"
+      },
+      "panicThreshold": {
+        "type": "number",
+        "default": 0.95,
+        "description": "Fraction of context limit to panic at (0.0-1.0)"
+      },
+      "modelLimits": {
+        "type": "object",
+        "additionalProperties": { "type": "number" },
+        "default": {
+          "kimi/k2p6": 256000,
+          "kimi/k2p5": 256000,
+          "gpt-4": 128000,
+          "gpt-4o": 128000,
+          "claude-3-opus": 200000,
+          "claude-3-5-sonnet": 200000
+        }
+      }
+    }
+  }
+}
