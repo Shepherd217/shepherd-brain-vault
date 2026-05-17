@@ -1,12 +1,7 @@
 import { definePluginEntry } from "openclaw/plugin-sdk/plugin-entry";
-import { readFileSync, existsSync, appendFileSync } from "node:fs";
+import { readFileSync, existsSync } from "node:fs";
 import { createHash } from "node:crypto";
-
-function log(msg) {
-  try {
-    appendFileSync("/tmp/mutation-verifier-debug.log", `${new Date().toISOString()} ${msg}\n`);
-  } catch (_) {}
-}
+import { spawnSync } from "node:child_process";
 
 const pendingWrites = new Map();
 
@@ -26,6 +21,63 @@ function countOccurrences(haystack, needle) {
     idx = haystack.indexOf(needle, idx + 1);
   }
   return count;
+}
+
+function lintFile(path, content) {
+  const lines = [];
+  const parts = path.split(".");
+  const ext = parts[parts.length - 1].toLowerCase();
+
+  lines.push(`○ lint: checking .${ext} file`);
+
+  if (ext === "json") {
+    try {
+      JSON.parse(content);
+      lines.push("✓ lint: JSON valid");
+    } catch (e) {
+      lines.push(`✗ lint: JSON syntax error — ${e.message}`);
+    }
+  }
+
+  if (ext === "py") {
+    const result = spawnSync("python3", ["-m", "py_compile", path], { encoding: "utf-8", timeout: 5000 });
+    if (result.status === 0) {
+      lines.push("✓ lint: Python valid");
+    } else {
+      const err = (result.stderr || "").trim().split("\n")[0] || "syntax error";
+      lines.push(`✗ lint: Python ${err}`);
+    }
+  }
+
+  if (ext === "yaml" || ext === "yml") {
+    try {
+      const yaml = require("js-yaml");
+      yaml.load(content);
+      lines.push("✓ lint: YAML valid");
+    } catch (e) {
+      if (e.code === "MODULE_NOT_FOUND") {
+        lines.push("○ lint: YAML (js-yaml not installed)");
+      } else {
+        lines.push(`✗ lint: YAML syntax error — ${e.message}`);
+      }
+    }
+  }
+
+  if (ext === "toml") {
+    try {
+      const toml = require("@iarna/toml");
+      toml.parse(content);
+      lines.push("✓ lint: TOML valid");
+    } catch (e) {
+      if (e.code === "MODULE_NOT_FOUND") {
+        lines.push("○ lint: TOML (@iarna/toml not installed)");
+      } else {
+        lines.push(`✗ lint: TOML syntax error — ${e.message}`);
+      }
+    }
+  }
+
+  return lines;
 }
 
 function buildVerifyFooter(tool, path, intended, actualContent) {
@@ -50,6 +102,7 @@ function buildVerifyFooter(tool, path, intended, actualContent) {
         lines.push(`  expected: ${intendedLines} lines, hash ${intendedHash}`);
         lines.push(`  actual:   ${actualLines} lines, hash ${actualHash}`);
       }
+      lines.push(...lintFile(path, actualContent));
     }
   } else if (tool === "edit") {
     if (actualContent === null) {
@@ -74,6 +127,7 @@ function buildVerifyFooter(tool, path, intended, actualContent) {
       if (allOk) {
         lines.unshift(`✓ ${path} — ${edits.length} edit(s) verified`);
       }
+      lines.push(...lintFile(path, actualContent));
     }
   }
 
