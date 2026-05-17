@@ -1,9 +1,3 @@
----
-date: 2026-05-18
-type: stripe-integration-verification
-status: code-deployed-env-pending
----
-
 # StandoutLocal Stripe Integration — Verification Report
 
 ## Stripe Products Created (LIVE MODE)
@@ -62,17 +56,13 @@ Template with 3 variable names (no real URLs committed to repo).
 | Code committed | ✅ | `62a5cb4` on `main` |
 | Code pushed to GitHub | ✅ | `Shepherd217/StandoutLocal` |
 | Vercel auto-deploy | ⏳ | Triggered by push (check Vercel dashboard) |
-| Vercel env vars set | ❌ | **BLOCKED — needs manual setup** |
+| Vercel env vars set | ✅ | **ALREADY SET** — values match Stripe Payment Links |
 
 ---
 
-## Required Action — Vercel Environment Variables
+## Required Action — Vercel Redeploy
 
-Nathan must set these 3 environment variables in Vercel Dashboard:
-
-1. Go to https://vercel.com/dashboard → Select `standoutlocal.dev` project
-2. Settings → Environment Variables → Production
-3. Add:
+The environment variables are already configured correctly on Vercel:
 
 | Variable Name | Value |
 |---------------|-------|
@@ -80,13 +70,15 @@ Nathan must set these 3 environment variables in Vercel Dashboard:
 | `VITE_STRIPE_REFRESH_URL` | `https://buy.stripe.com/5kQ5kEbYC9711lLaW21RC09` |
 | `VITE_STRIPE_CARE_PLAN_URL` | `https://buy.stripe.com/3cIfZi3s6erl7K97JQ1RC0a` |
 
-4. Redeploy (Vercel will auto-redeploy when env vars change)
+But the latest deployment is **BLOCKED**. Need to redeploy to pick up code changes.
+
+**Action needed:** Go to Vercel Dashboard → standout-local project → Deployments → Redeploy latest.
 
 ---
 
 ## Verification Pending
 
-After Vercel env vars are set and deployed:
+After redeploy:
 
 - [ ] Visit https://standoutlocal.dev/pricing
 - [ ] Click "Get Started" on Landing Page → should open Stripe checkout
@@ -115,4 +107,4 @@ Code changes: 2026-05-18 02:15 UTC
 Stripe products created: 2026-05-18 02:05 UTC  
 Report written: 2026-05-18 02:16 UTC
 
-**Status: STRIPE LIVE — awaiting Vercel env var setup**
+**Status: STRIPE LIVE — awaiting Vercel redeploy**
