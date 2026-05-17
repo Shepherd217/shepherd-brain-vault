@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-05-15T20:32:07.682Z",
+  "updatedAt": "2026-05-17T18:06:13.388Z",
   "entries": {
     "memory:memory/2026-05-13.md:78:107": {
       "key": "memory:memory/2026-05-13.md:78:107",
@@ -430,6 +430,99 @@
         "including",
         "relay",
         "auto"
+      ]
+    },
+    "memory:memory/2026-05-18.md:1:36": {
+      "key": "memory:memory/2026-05-18.md:1:36",
+      "path": "memory/2026-05-18.md",
+      "startLine": 1,
+      "endLine": 36,
+      "source": "memory",
+      "snippet": "--- date: 2026-05-18 type: stripe-integration-verification status: code-deployed-env-pending --- # StandoutLocal Stripe Integration — Verification Report ## Stripe Products Created (LIVE MODE) | Product | Price | Stripe Product ID | Stripe Price ID | Payment Link | |---------|-------|-------------------|-----------------|--------------| | **StandoutLocal Landing Page** | $897 one-time | `prod_UXDChSjUajcylh` | `price_1TY8mQJJYKnYUP2Q63oStQCG` | https://buy.stripe.com/bJe00k7Imgzt5C1c061RC0b | | **StandoutLocal Full Refresh** | $2,497 one-time | `prod_UXDCzyr45eJVSo` | `price_1TY8mRJJYKnYUP2Q4dUYHcvm` | https://buy.stripe.com/5kQ5kEbYC9711lLaW21RC09 | | **StandoutLocal Care Plan** | $249/m",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.7812778462004922,
+      "maxScore": 0.7812778462004922,
+      "firstRecalledAt": "2026-05-17T18:06:13.388Z",
+      "lastRecalledAt": "2026-05-17T18:06:13.388Z",
+      "queryHashes": [
+        "6e2878c8dd06"
+      ],
+      "recallDays": [
+        "2026-05-18"
+      ],
+      "conceptTags": [
+        "stripe-integration-verification",
+        "code-deployed-env-pending",
+        "one-time",
+        "prod-uxdchsjuajcylh",
+        "price-1ty8mqjjyknyup2q63ostqcg",
+        "prod-uxdczyr45ejvso",
+        "price-1ty8mrjjyknyup2q4duyhcvm",
+        "249/m"
+      ]
+    },
+    "memory:memory/2026-05-18.md:30:74": {
+      "key": "memory:memory/2026-05-18.md:30:74",
+      "path": "memory/2026-05-18.md",
+      "startLine": 30,
+      "endLine": 74,
+      "source": "memory",
+      "snippet": "<Route path=\"/thank-you\" element={<ThankYou />} /> ``` ### 2. `src/pages/Pricing.tsx` — 3 paid CTAs now open Stripe Payment Links - **Landing Page** button → `import.meta.env.VITE_STRIPE_LANDING_PAGE_URL` - **Full Refresh** button → `import.meta.env.VITE_STRIPE_REFRESH_URL` - **Care Plan** button → `import.meta.env.VITE_STRIPE_CARE_PLAN_URL` - **Trust Check** button → stays as internal scroll (free, no Stripe) Button logic updated: if `paymentUrl` exists → `window.open(url, '_blank')`, else → scroll to trust-check section. ### 3. `src/pages/ThankYou.tsx` — NEW FILE - Route: `/thank-you` (HashRouter compatible) - Design: Matches site aesthetic (navy bg, cyan accents, white text) - Content:",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.3856697082519531,
+      "maxScore": 0.3856697082519531,
+      "firstRecalledAt": "2026-05-17T18:06:13.388Z",
+      "lastRecalledAt": "2026-05-17T18:06:13.388Z",
+      "queryHashes": [
+        "6e2878c8dd06"
+      ],
+      "recallDays": [
+        "2026-05-18"
+      ],
+      "conceptTags": [
+        "router",
+        "thank-you",
+        "src/pages/pricing.tsx",
+        "window.open",
+        "trust-check",
+        "src/pages/thankyou.tsx",
+        "route",
+        "path"
+      ]
+    },
+    "memory:memory/2026-05-18.md:64:103": {
+      "key": "memory:memory/2026-05-18.md:64:103",
+      "path": "memory/2026-05-18.md",
+      "startLine": 64,
+      "endLine": 103,
+      "source": "memory",
+      "snippet": "| Vercel auto-deploy | ⏳ | Triggered by push (check Vercel dashboard) | | Vercel env vars set | ✅ | **ALREADY SET** — values match Stripe Payment Links | --- ## Required Action — Vercel Redeploy The environment variables are already configured correctly on Vercel: | Variable Name | Value | |---------------|-------| | `VITE_STRIPE_LANDING_PAGE_URL` | `https://buy.stripe.com/bJe00k7Imgzt5C1c061RC0b` | | `VITE_STRIPE_REFRESH_URL` | `https://buy.stripe.com/5kQ5kEbYC9711lLaW21RC09` | | `VITE_STRIPE_CARE_PLAN_URL` | `https://buy.stripe.com/3cIfZi3s6erl7K97JQ1RC0a` | But the latest deployment is **BLOCKED**. Need to redeploy to pick up code changes. **Action needed:** Go to Vercel Dashboard →",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.36139132380485534,
+      "maxScore": 0.36139132380485534,
+      "firstRecalledAt": "2026-05-17T18:06:13.388Z",
+      "lastRecalledAt": "2026-05-17T18:06:13.388Z",
+      "queryHashes": [
+        "6e2878c8dd06"
+      ],
+      "recallDays": [
+        "2026-05-18"
+      ],
+      "conceptTags": [
+        "auto-deploy",
+        "vite-stripe-landing-page-url",
+        "vite-stripe-refresh-url",
+        "vite-stripe-care-plan-url",
+        "vercel",
+        "auto",
+        "triggered",
+        "push"
       ]
     }
   }
