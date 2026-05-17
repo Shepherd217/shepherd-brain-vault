@@ -4,7 +4,7 @@ const fs = require("fs");
 const path = require("path");
 const http = require("http");
 
-const RELAY_URL = process.env.RELAY_URL || "http://localhost:7777/api/tasks";
+const RELAY_URL = process.env.RELAY_URL || "http://localhost:7777/tasks";
 const INBOX_PATH = process.env.INBOX_PATH || "/root/.openclaw/workspace/.coordination/tasks/inbox";
 
 /**
@@ -41,6 +41,7 @@ async function dispatchToRelay(task) {
   return new Promise((resolve, reject) => {
     const url = new URL(RELAY_URL);
     const data = JSON.stringify(task);
+    const token = process.env.RELAY_API_TOKEN || "test-token-123";
 
     const req = http.request(
       {
@@ -51,6 +52,7 @@ async function dispatchToRelay(task) {
         headers: {
           "Content-Type": "application/json",
           "Content-Length": Buffer.byteLength(data),
+          "Authorization": `Bearer ${token}`,
         },
         timeout: 5000,
       },

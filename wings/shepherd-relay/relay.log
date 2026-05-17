@@ -17,3 +17,32 @@
 [2026-05-16T07:19:08.957Z] 🔒 Auth failure: POST /message from ::1 — invalid or missing token
 [2026-05-16T07:19:08.995Z] 🔒 Auth failure: POST /message from ::1 — invalid or missing token
 [2026-05-16T07:19:09.030Z] 💬 test → all: auth-test
+[2026-05-16T07:26:27.540Z] 📝 Task created: Test Task (49f1e0df-f239-49e2-ba83-0bbdbc0d561e)
+[2026-05-16T07:26:27.643Z] 💾 Task cache flushed to disk (2 tasks)
+[2026-05-16T07:27:17.856Z] 🔒 Auth failure: POST /tasks from ::ffff:127.0.0.1 — invalid or missing token
+[2026-05-16T07:27:17.905Z] 🔒 Auth failure: POST /tasks from ::ffff:127.0.0.1 — invalid or missing token
+[2026-05-16T07:27:17.931Z] 🔒 Auth failure: POST /tasks from ::ffff:127.0.0.1 — invalid or missing token
+[2026-05-16T07:27:17.958Z] 🔒 Auth failure: POST /tasks from ::ffff:127.0.0.1 — invalid or missing token
+[2026-05-16T07:27:17.991Z] 🔒 Auth failure: POST /tasks from ::ffff:127.0.0.1 — invalid or missing token
+[2026-05-16T07:27:18.014Z] 🔒 Auth failure: POST /tasks from ::ffff:127.0.0.1 — invalid or missing token
+[2026-05-16T07:27:18.033Z] 🔒 Auth failure: POST /tasks from ::ffff:127.0.0.1 — invalid or missing token
+[2026-05-16T07:27:18.078Z] 🔒 Auth failure: POST /tasks from ::ffff:127.0.0.1 — invalid or missing token
+[2026-05-16T07:27:18.117Z] 🔒 Auth failure: POST /tasks from ::ffff:127.0.0.1 — invalid or missing token
+[2026-05-16T07:27:18.135Z] 🔒 Auth failure: POST /tasks from ::ffff:127.0.0.1 — invalid or missing token
+[2026-05-16T07:27:18.166Z] 🔒 Auth failure: POST /tasks from ::ffff:127.0.0.1 — invalid or missing token
+[2026-05-16T07:27:18.194Z] 🔒 Auth failure: POST /tasks from ::ffff:127.0.0.1 — invalid or missing token
+[2026-05-16T07:27:18.207Z] 🔒 Auth failure: POST /tasks from ::ffff:127.0.0.1 — invalid or missing token
+[2026-05-16T07:28:33.817Z] 📝 Task created: Nathan's Standing Instructions: GBrain priority: High — Nathan wants memory syst (b0d2af14-5b73-45a1-851f-da3a4e790331)
+[2026-05-16T07:28:33.846Z] 📝 Task created: ✅ Always scan .coordination/ before decisions/responses (2ea5384e-4d61-438c-a971-bf40e40a35a8)
+[2026-05-16T07:28:33.865Z] 📝 Task created: Cross-agent skill exchange — I drop it in shared skill space, it auto-triggers i (554cafbc-6853-4026-bef8-d02b4fbdd86a)
+[2026-05-16T07:28:33.883Z] 📝 Task created: Nathan's Standing Instructions: Eve setup: Nathan wants Ava + Hermes to decide h (926b253d-f894-412f-82cb-7f9a4c54c313)
+[2026-05-16T07:28:33.905Z] 📝 Task created: Nathan's Standing Instructions: GBrain priority: High — Nathan wants memory syst (707b01e7-73ef-4f20-b181-f7d69f9c8604)
+[2026-05-16T07:28:33.923Z] 📝 Task created: ✅ Always scan .coordination/ before decisions/responses (e7a8cdb9-b1c5-4132-9d2a-d6de5386e3d2)
+[2026-05-16T07:28:33.961Z] 📝 Task created: Cross-agent skill exchange — I drop it in shared skill space, it auto-triggers i (7eb7e75f-442f-46c9-94ce-7ff2a72e74cb)
+[2026-05-16T07:28:33.980Z] 📝 Task created: HermesAgent Dashboard (v0.13.0):; Crown jewel: Multi-Agent Kanban Board — "one i (1293001e-c3a0-4ad0-823d-51759277f437)
+[2026-05-16T07:28:34.033Z] 📝 Task created: Plugin confusion pattern: "What X?" misread as "Install X" (2e8df59c-96f4-4824-a759-fa244d2e3b66)
+[2026-05-16T07:28:34.071Z] 📝 Task created: Palace needs activation — currently storage, not living brain (d35d720d-ef70-4107-9cb4-fd60b82bded4)
+[2026-05-16T07:28:34.126Z] 📝 Task created: TEST before BUILD — validate before expanding (e0d8149e-fef2-43af-b288-0e5f0dd38121)
+[2026-05-16T07:28:34.189Z] 📝 Task created: Plugin confusion pattern: add intent-check before executing recommendations (3c373783-473e-4d97-9199-c405bb069c3c)
+[2026-05-16T07:28:34.262Z] 📝 Task created: Palace activation protocol: regular heartbeat + auto-processing (30031173-f173-4051-bf51-f057f20b1a42)
+[2026-05-16T07:28:34.365Z] 💾 Task cache flushed to disk (15 tasks)

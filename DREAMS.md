@@ -52,40 +52,27 @@ Possible Lasting Updates
 <!-- openclaw:dreaming:backfill-entry day=2026-05-15 source=/root/.openclaw/workspace/memory/2026-05-15.md -->
 
 What Happened
-1. What happened: Nathan asked if I could update to v2026.5.12; Core updated: 2026.4.14 → 2026.5.12 ✅; and Missing extension runtime sidecars: acpx, bluebubbles, diffs, discord, feishu ⚠️ [memory/2026-05-15.md:4, memory/2026-05-15.md:6, memory/2026-05-15.md:8]
-2. Status: Core version: 2026.5.12 (f066dd2); Some extensions may need reinstall; and Nathan seemed excited about new features (dreaming, music, etc.) available in newer versions [memory/2026-05-15.md:11, memory/2026-05-15.md:12, memory/2026-05-15.md:13]
+1. No grounded facts were extracted.
 
 Reflections
 1. No grounded reflections emerged from this note yet.
+
 ---
 
 *May 16, 2026*
 
-<!-- openclaw:dreaming:backfill-entry day=2026-05-15 source=/root/.openclaw/workspace/memory/2026-05-15.md -->
+<!-- openclaw:dreaming:backfill-entry day=2026-05-16 source=/root/.openclaw/workspace/memory/2026-05-16.md -->
 
 What Happened
-1. Built the Dream→Task Loop: 5-component architecture [memory/2026-05-16.md:1]
-2. Plugin confusion: misread "What plugins?" as "install plugins" — Nathan corrected [memory/2026-05-16.md:2]
-3. Vault integration: dream loop writes to drawers/dreams/ + rooms/patterns/ + coordination inbox [memory/2026-05-16.md:3]
-4. Cron jobs set for heartbeat (30min) and REM backfill (hourly) [memory/2026-05-16.md:4]
-5. Committed 23 files to shepherd-brain-vault [memory/2026-05-16.md:5]
-6. Nathan wants to TEST the palace/brain/gbrain wombo combo live [memory/2026-05-16.md:6]
+1. Test before announce — Nathan explicitly said "Test first, then update the team" [memory/2026-05-16.md:126]
 
 Reflections
-1. "What X?" vs "Install X" pattern recurring — intent parsing needs work [memory/2026-05-16.md:7]
-2. Palace is structurally sound but storage-only until actively used [memory/2026-05-16.md:8]
-3. Dream loop works mechanically but needs real friction to validate [memory/2026-05-16.md:9]
-4. Nathan wants proof of life, not more architecture [memory/2026-05-16.md:10]
+1. A stable rule or preference was stated explicitly, which suggests operating choices are being made legible instead of left implicit. [memory/2026-05-16.md:110, memory/2026-05-16.md:111, memory/2026-05-16.md:112]
+2. Important context tends to get externalized quickly into notes, trackers, or memory surfaces, which suggests a preference for explicit systems over holding context informally. [memory/2026-05-16.md:47, memory/2026-05-16.md:48, memory/2026-05-16.md:49]
 
 Candidates
-- [unclear] Plugin confusion pattern: "What X?" misread as "Install X" [memory/2026-05-16.md:2]
-- [unclear] Palace needs activation — currently storage, not living brain [memory/2026-05-16.md:8]
-- [unclear] TEST before BUILD — validate before expanding [memory/2026-05-16.md:1]
+- [unclear] Test before announce — Nathan explicitly said "Test first [memory/2026-05-16.md:126]
 
 Possible Lasting Updates
-- Plugin confusion pattern: add intent-check before executing recommendations [memory/2026-05-16.md:2]
-- Palace activation protocol: regular heartbeat + auto-processing [memory/2026-05-16.md:8]
-
----
-
+- Wants execution, not planning — explicitly said "I don’t want to hear about it, I want to see it"; P0-P3 priority system confirmed — he loved it, wants to keep using it; and Shares credentials freely — gave Telegram bot token, GitHub token without hesitation to accelerate connectivity [memory/2026-05-16.md:110, memory/2026-05-16.md:111, memory/2026-05-16.md:112]
 <!-- openclaw:dreaming:diary:end -->
