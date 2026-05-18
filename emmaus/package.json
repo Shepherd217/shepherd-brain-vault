@@ -1,0 +1,30 @@
+{
+  "name": "emmaus",
+  "version": "0.1.0",
+  "description": "Emmaus — A spiritual companion that walks with you. Formation, not information. Companion, not content.",
+  "main": "engine/companion.js",
+  "scripts": {
+    "test": "node tests/companion.test.js",
+    "demo": "node tests/demo.js"
+  },
+  "keywords": [
+    "spiritual-formation",
+    "faith",
+    "christianity",
+    "companion",
+    "spiritual-direction",
+    "emmaus",
+    "bible",
+    "prayer",
+    "meditation"
+  ],
+  "author": "Nathan Shepherd",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Shepherd217/shepherd-brain-vault"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
