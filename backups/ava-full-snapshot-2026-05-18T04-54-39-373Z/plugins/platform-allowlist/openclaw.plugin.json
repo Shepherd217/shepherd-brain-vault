@@ -1,0 +1,30 @@
+{
+  "id": "platform-allowlist",
+  "name": "Platform Allowlist",
+  "description": "Enforces per-agent platform/channel allowlists. Prevents agents from sending messages to unauthorized platforms. Logs violations for audit.",
+  "contracts": {
+    "tools": ["check_platform_access", "set_platform_allowlist", "get_allowlist", "log_allowlist_violation"]
+  },
+  "activation": {
+    "onStartup": true
+  },
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "enabled": {
+        "type": "boolean",
+        "default": true
+      },
+      "defaultPolicy": {
+        "type": "string",
+        "enum": ["allow", "deny"],
+        "default": "deny"
+      },
+      "logFile": {
+        "type": "string",
+        "default": "~/.openclaw/logs/allowlist-violations.jsonl"
+      }
+    }
+  }
+}

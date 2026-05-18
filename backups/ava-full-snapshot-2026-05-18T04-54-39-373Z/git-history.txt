@@ -1,0 +1,20 @@
+6629b00 feat: Agent Command Center + Full Capabilities Report
+792bd1f feat(plugins): Wave 6 complete — Agent Mesh + 3 new plugins
+06a4dbc feat(plugins): Wave 5 complete — 12 plugins total
+b9b3c02 docs: update task board — Waves 1-4 complete, 10 of 13 tasks done
+d1fc6b4 fix(plugins): correct openclaw.plugin.json format for 6 new plugins
+ef88bef feat(plugins): Waves 2-4 complete — 6 new plugins
+b974a74 feat(dashboard): Wave 3 Kanban Multi-Agent Board
+12ad99a feat(plugin): context-window-guard — token usage monitor
+bbb3b98 feat(plugin): file-mutation-verifier v1 with delta lint scaffolding
+ba9524c feat(plugin): file-mutation-verifier — verifies write/edit tool calls against disk
+54310dc docs: Hermes v0.13+v0.14 infiltration plan + 5 P0 task entries
+aca5669 Update Stripe integration status: deployed, pending domain fix
+bed174d Update Stripe verification report with deployment status
+506b6fa Add Stripe integration verification report
+3a00304 Add StandoutLocal Stripe integration brief - full codebase audit + implementation plan
+3b2652f feat: CONTEXT.md v2 — proper glossary format per mattpocock
+910601c feat: CONTEXT.md + agentmemory auto-start script
+fc3b2dd install: agentmemory + CloakBrowser + top-3 pattern dissection
+8cc0c2a team presentation: top 5 merged revenue plans for agent coordination
+e5b91da presentation: top 5 merged revenue plans — StandoutLocal, Compliance Auditor, Data Intel, Contracting, Marketplace

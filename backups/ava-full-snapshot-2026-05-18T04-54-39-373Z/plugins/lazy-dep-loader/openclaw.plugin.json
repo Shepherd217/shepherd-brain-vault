@@ -1,0 +1,29 @@
+{
+  "id": "lazy-dep-loader",
+  "name": "Lazy Dep Loader",
+  "description": "Auto-installs heavy dependencies (npm/pip/apt) on first use with local caching. Speeds up boot by deferring install until tool is actually invoked.",
+  "contracts": {
+    "tools": ["install_dep", "ensure_dep"]
+  },
+  "activation": {
+    "onStartup": true
+  },
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "enabled": {
+        "type": "boolean",
+        "default": true
+      },
+      "cacheDir": {
+        "type": "string",
+        "default": ".openclaw/deps"
+      },
+      "debug": {
+        "type": "boolean",
+        "default": false
+      }
+    }
+  }
+}

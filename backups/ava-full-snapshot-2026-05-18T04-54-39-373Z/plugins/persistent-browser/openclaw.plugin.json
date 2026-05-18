@@ -1,0 +1,25 @@
+{
+  "id": "persistent-browser",
+  "name": "Persistent Browser",
+  "description": "Keeps browser warm between tool calls. Pre-start + health checks + connection reuse for ~60x speedup on browser tool usage.",
+  "contracts": {
+    "tools": ["browser_warmup", "browser_health", "browser_stats"]
+  },
+  "activation": {
+    "onStartup": true
+  },
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "enabled": {
+        "type": "boolean",
+        "default": true
+      },
+      "autoWarmup": {
+        "type": "boolean",
+        "default": false
+      }
+    }
+  }
+}

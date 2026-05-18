@@ -1,0 +1,25 @@
+{
+  "id": "agent-specialization",
+  "name": "Agent Specialization",
+  "description": "Defines agent capability profiles and specializations. Enables agents to declare what they excel at and auto-suggests the right agent for each task type.",
+  "contracts": {
+    "tools": ["define_profile", "match_agent_to_task", "list_profiles"]
+  },
+  "activation": {
+    "onStartup": true
+  },
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "enabled": {
+        "type": "boolean",
+        "default": true
+      },
+      "profilesFile": {
+        "type": "string",
+        "default": "~/.openclaw/config/agent-profiles.json"
+      }
+    }
+  }
+}

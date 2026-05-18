@@ -1,0 +1,65 @@
+{
+  "id": "prompt-cache",
+  "name": "Prompt Cache",
+  "description": "Cross-session persistent prompt cache. Fingerprints memory + workspace context to skip redundant re-summarization. Auto-invalidates on file changes.",
+  "contracts": {
+    "tools": ["get_cached_prompt", "invalidate_cache"]
+  },
+  "activation": {
+    "onStartup": true
+  },
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "enabled": {
+        "type": "boolean",
+        "default": true
+      },
+      "cacheDir": {
+        "type": "string",
+        "default": ".openclaw/prompt-cache"
+      },
+      "maxEntries": {
+        "type": "number",
+        "default": 100
+      },
+      "ttlMinutes": {
+        "type": "number",
+        "default": 60
+      },
+      "memoryFiles": {
+        "type": "array",
+        "items": { "type": "string" },
+        "default": [
+          "SOUL.md",
+          "USER.md",
+          "MEMORY.md",
+          "AGENTS.md",
+          "IDENTITY.md",
+          "TOOLS.md",
+          "HEARTBEAT.md",
+          "CONTEXT.md"
+        ]
+      },
+      "criticalFiles": {
+        "type": "array",
+        "items": { "type": "string" },
+        "default": [
+          "package.json",
+          "Cargo.toml",
+          "requirements.txt",
+          "go.mod",
+          "Makefile",
+          "Dockerfile",
+          "tsconfig.json",
+          ".env.example"
+        ]
+      },
+      "checkIntervalMs": {
+        "type": "number",
+        "default": 5000
+      }
+    }
+  }
+}

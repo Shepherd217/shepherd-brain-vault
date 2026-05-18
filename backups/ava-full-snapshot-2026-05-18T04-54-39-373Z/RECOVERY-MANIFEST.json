@@ -1,0 +1,63 @@
+{
+  "snapshotVersion": "1.0.0",
+  "createdAt": "2026-05-18T04:54:39.740Z",
+  "agentName": "Ava",
+  "agentVersion": "1.0.0",
+  "totalPlugins": 15,
+  "wavesCompleted": 6,
+  "files": {
+    "plugins": 45,
+    "memory": "8+ daily files",
+    "config": 2,
+    "coordination": "task board + inbox + signals",
+    "dashboard": "full kanban + agent APIs",
+    "scripts": "report generator + more",
+    "docs": "CAPABILITIES.md + README"
+  },
+  "recoveryInstructions": {
+    "step1": "Clone shepherd-brain-vault repository",
+    "step2": "Copy plugins/ directory to new workspace",
+    "step3": "Copy memory/ files (SOUL.md, USER.md, MEMORY.md, etc.)",
+    "step4": "Update openclaw.json with plugin entries and load paths",
+    "step5": "Restart OpenClaw gateway to load all plugins",
+    "step6": "Restore coordination system from .coordination/",
+    "step7": "Verify all 15 plugins are active with 'openclaw plugins list'"
+  },
+  "pluginList": [
+    "file-mutation-verifier",
+    "context-window-guard",
+    "lazy-dep-loader",
+    "prompt-cache",
+    "persistent-browser",
+    "agent-handoff",
+    "checkpoint-v2",
+    "platform-allowlist",
+    "provider-manager",
+    "mcp-tool-bridge",
+    "prompt-context-triage",
+    "auto-model-fallback",
+    "agent-mesh",
+    "task-router",
+    "agent-specialization"
+  ],
+  "capabilities": [
+    "Write verification with SHA-256",
+    "Context window monitoring",
+    "Lazy dependency installation",
+    "Cross-session prompt caching",
+    "Persistent browser warm-up",
+    "Agent session capture/resume",
+    "DB-backed Kanban board",
+    "Agent heartbeat + zombie detection",
+    "Goal locking",
+    "Workspace checkpoints",
+    "Platform allowlists",
+    "Provider registry + fallbacks",
+    "MCP tool bridge",
+    "Smart context triage",
+    "Auto-model failover",
+    "Multi-agent mesh",
+    "Task routing",
+    "Agent specialization profiles"
+  ]
+}
