@@ -31,9 +31,17 @@
 |----|-------|--------|------------|----------|---------|
 | 2026-05-18-001 | File-Mutation Verifier Plugin | ✅ Done | Ava | P0 | 2026-05-18 |
 | 2026-05-18-002 | Post-Write Delta Lint | ✅ Done | Ava | P0 | 2026-05-18 |
-| 2026-05-18-003 | LSP Semantic Diagnostics | 🔄 In Progress | — | P0 | 2026-05-18 |
-| 2026-05-18-004 | Lazy-Deps / Debloating | ⏳ Pending | — | P1 | 2026-05-18 |
-| 2026-05-18-005 | Self-Healing Recovery Loop | ⏳ Pending | — | P2 | 2026-05-18 |
+| 2026-05-18-003 | LSP Semantic Diagnostics | ⏳ Skipped | — | P0 | 2026-05-18 |
+| 2026-05-18-004 | Lazy-Deps / Debloating | ✅ Done | Ava | P1 | 2026-05-18 |
+| 2026-05-18-005 | Self-Healing Recovery Loop | ✅ Done | Ava | P2 | 2026-05-18 |
+| 2026-05-18-006 | Persistent Browser CDP | ✅ Done | Ava | P1 | 2026-05-18 |
+| 2026-05-18-007 | Cross-Session Prompt Cache | ✅ Done | Ava | P1 | 2026-05-18 |
+| 2026-05-18-008 | Checkpoint v2 | ✅ Done | Ava | P1 | 2026-05-18 |
+| 2026-05-18-009 | Platform Allowlists | ✅ Done | Ava | P1 | 2026-05-18 |
+| 2026-05-18-010 | Providers as Plugins | ✅ Done | Ava | P1 | 2026-05-18 |
+| 2026-05-18-011 | MCP Tool Integration | ⏳ Pending | — | P1 | 2026-05-18 |
+| 2026-05-18-012 | Prompt-Aware Context Triage | ⏳ Pending | — | P2 | 2026-05-18 |
+| 2026-05-18-013 | Auto-Model Fallbacks | ⏳ Pending | — | P2 | 2026-05-18 |
 
 ---
 
