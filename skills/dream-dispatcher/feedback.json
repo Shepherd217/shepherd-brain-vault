@@ -80,7 +80,7 @@
       "confidence": 0.5,
       "status": "validated-resolved",
       "resolved": false,
-      "validatedInDream": "2026-05-18T14:47:39.244Z"
+      "validatedInDream": "2026-05-18T16:14:14.890Z"
     },
     "dream-20260515-010": {
       "created": "2026-05-16T07:28:34.295Z",
@@ -89,7 +89,7 @@
       "confidence": 0.5,
       "status": "validated-resolved",
       "resolved": false,
-      "validatedInDream": "2026-05-18T14:47:39.246Z"
+      "validatedInDream": "2026-05-18T16:14:14.893Z"
     },
     "dream-20260515-011": {
       "created": "2026-05-16T07:28:34.296Z",
@@ -98,7 +98,7 @@
       "confidence": 0.5,
       "status": "validated-resolved",
       "resolved": false,
-      "validatedInDream": "2026-05-18T14:47:39.248Z"
+      "validatedInDream": "2026-05-18T16:14:14.894Z"
     },
     "dream-20260515-012": {
       "created": "2026-05-16T07:28:34.299Z",
@@ -107,7 +107,7 @@
       "confidence": 0.75,
       "status": "validated-resolved",
       "resolved": false,
-      "validatedInDream": "2026-05-18T14:47:39.249Z"
+      "validatedInDream": "2026-05-18T16:14:14.898Z"
     },
     "dream-20260515-013": {
       "created": "2026-05-16T07:28:34.301Z",
@@ -116,7 +116,7 @@
       "confidence": 0.75,
       "status": "validated-resolved",
       "resolved": false,
-      "validatedInDream": "2026-05-18T14:47:39.251Z"
+      "validatedInDream": "2026-05-18T16:14:14.900Z"
     },
     "dream-20260516-009": {
       "created": "2026-05-18T00:12:25.993Z",
@@ -143,7 +143,7 @@
       "confidence": 0.5,
       "status": "validated-resolved",
       "resolved": false,
-      "validatedInDream": "2026-05-18T14:47:39.253Z"
+      "validatedInDream": "2026-05-18T16:14:14.904Z"
     },
     "dream-20260517-012": {
       "created": "2026-05-18T00:12:25.999Z",
@@ -152,7 +152,7 @@
       "confidence": 0.75,
       "status": "validated-resolved",
       "resolved": false,
-      "validatedInDream": "2026-05-18T14:47:39.255Z"
+      "validatedInDream": "2026-05-18T16:14:14.907Z"
     }
   },
   "patterns": {
