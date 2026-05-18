@@ -1,34 +1,65 @@
 {
-  "id": "openclaw-prompt-cache",
-  "name": "Cross-Session Prompt Cache",
-  "description": "Caches rendered system prompts across sessions. On restart, if the prompt hash matches, uses a reference token instead of the full prompt — cutting restart cost by ~60-80%.",
-  "version": "1.0.0",
-  "author": "Ava",
-  "license": "MIT",
-  "extensions": [
-    {
-      "id": "prompt-cache",
-      "name": "Prompt Cache",
-      "type": "tool",
-      "entry": "index.js",
-      "config": {
-        "schema": {
-          "cacheDir": {
-            "type": "string",
-            "default": "~/.openclaw/prompt-cache"
-          },
-          "maxCacheEntries": {
-            "type": "integer",
-            "default": 50
-          }
-        }
+  "id": "prompt-cache",
+  "name": "Prompt Cache",
+  "description": "Cross-session persistent prompt cache. Fingerprints memory + workspace context to skip redundant re-summarization. Auto-invalidates on file changes.",
+  "contracts": {
+    "tools": ["get_cached_prompt", "invalidate_cache"]
+  },
+  "activation": {
+    "onStartup": true
+  },
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "enabled": {
+        "type": "boolean",
+        "default": true
+      },
+      "cacheDir": {
+        "type": "string",
+        "default": ".openclaw/prompt-cache"
+      },
+      "maxEntries": {
+        "type": "number",
+        "default": 100
+      },
+      "ttlMinutes": {
+        "type": "number",
+        "default": 60
+      },
+      "memoryFiles": {
+        "type": "array",
+        "items": { "type": "string" },
+        "default": [
+          "SOUL.md",
+          "USER.md",
+          "MEMORY.md",
+          "AGENTS.md",
+          "IDENTITY.md",
+          "TOOLS.md",
+          "HEARTBEAT.md",
+          "CONTEXT.md"
+        ]
+      },
+      "criticalFiles": {
+        "type": "array",
+        "items": { "type": "string" },
+        "default": [
+          "package.json",
+          "Cargo.toml",
+          "requirements.txt",
+          "go.mod",
+          "Makefile",
+          "Dockerfile",
+          "tsconfig.json",
+          ".env.example"
+        ]
+      },
+      "checkIntervalMs": {
+        "type": "number",
+        "default": 5000
       }
-    }
-  ],
-  "permissions": {
-    "fs": {
-      "read": ["**/*"],
-      "write": ["**/*"]
     }
   }
 }

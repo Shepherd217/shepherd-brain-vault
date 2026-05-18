@@ -1,38 +1,33 @@
 {
-  "id": "openclaw-provider-manager",
+  "id": "provider-manager",
   "name": "Provider Manager",
   "description": "Manages LLM provider registry, health checks, fallbacks, and usage tracking. Enables pluggable provider architecture with automatic failover.",
-  "version": "1.0.0",
-  "author": "Ava",
-  "license": "MIT",
-  "extensions": [
-    {
-      "id": "provider-manager",
-      "name": "Provider Manager",
-      "type": "tool",
-      "entry": "index.js",
-      "config": {
-        "schema": {
-          "providersFile": {
-            "type": "string",
-            "default": "~/.openclaw/config/providers.json"
-          },
-          "healthCheckIntervalMs": {
-            "type": "integer",
-            "default": 60000
-          },
-          "defaultProvider": {
-            "type": "string",
-            "default": "kimi"
-          }
-        }
+  "contracts": {
+    "tools": ["list_providers", "add_provider", "set_fallback_chain", "provider_health_check", "record_provider_usage", "remove_provider"]
+  },
+  "activation": {
+    "onStartup": true
+  },
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "enabled": {
+        "type": "boolean",
+        "default": true
+      },
+      "providersFile": {
+        "type": "string",
+        "default": "~/.openclaw/config/providers.json"
+      },
+      "healthCheckIntervalMs": {
+        "type": "number",
+        "default": 60000
+      },
+      "defaultProvider": {
+        "type": "string",
+        "default": "kimi"
       }
-    }
-  ],
-  "permissions": {
-    "fs": {
-      "read": ["**/*"],
-      "write": ["**/*"]
     }
   }
 }

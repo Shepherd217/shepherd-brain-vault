@@ -1,35 +1,30 @@
 {
-  "id": "openclaw-platform-allowlist",
-  "name": "Platform Allowlist Enforcer",
+  "id": "platform-allowlist",
+  "name": "Platform Allowlist",
   "description": "Enforces per-agent platform/channel allowlists. Prevents agents from sending messages to unauthorized platforms. Logs violations for audit.",
-  "version": "1.0.0",
-  "author": "Ava",
-  "license": "MIT",
-  "extensions": [
-    {
-      "id": "platform-allowlist",
-      "name": "Platform Allowlist",
-      "type": "tool",
-      "entry": "index.js",
-      "config": {
-        "schema": {
-          "defaultPolicy": {
-            "type": "string",
-            "enum": ["allow", "deny"],
-            "default": "deny"
-          },
-          "logFile": {
-            "type": "string",
-            "default": "~/.openclaw/logs/allowlist-violations.jsonl"
-          }
-        }
+  "contracts": {
+    "tools": ["check_platform_access", "set_platform_allowlist", "get_allowlist", "log_allowlist_violation"]
+  },
+  "activation": {
+    "onStartup": true
+  },
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "enabled": {
+        "type": "boolean",
+        "default": true
+      },
+      "defaultPolicy": {
+        "type": "string",
+        "enum": ["allow", "deny"],
+        "default": "deny"
+      },
+      "logFile": {
+        "type": "string",
+        "default": "~/.openclaw/logs/allowlist-violations.jsonl"
       }
-    }
-  ],
-  "permissions": {
-    "fs": {
-      "read": ["**/*"],
-      "write": ["**/*"]
     }
   }
 }
