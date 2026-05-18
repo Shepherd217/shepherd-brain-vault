@@ -80,7 +80,7 @@
       "confidence": 0.5,
       "status": "validated-resolved",
       "resolved": false,
-      "validatedInDream": "2026-05-18T00:12:26.028Z"
+      "validatedInDream": "2026-05-18T13:49:16.408Z"
     },
     "dream-20260515-010": {
       "created": "2026-05-16T07:28:34.295Z",
@@ -89,7 +89,7 @@
       "confidence": 0.5,
       "status": "validated-resolved",
       "resolved": false,
-      "validatedInDream": "2026-05-18T00:12:26.030Z"
+      "validatedInDream": "2026-05-18T13:49:16.410Z"
     },
     "dream-20260515-011": {
       "created": "2026-05-16T07:28:34.296Z",
@@ -98,7 +98,7 @@
       "confidence": 0.5,
       "status": "validated-resolved",
       "resolved": false,
-      "validatedInDream": "2026-05-18T00:12:26.033Z"
+      "validatedInDream": "2026-05-18T13:49:16.413Z"
     },
     "dream-20260515-012": {
       "created": "2026-05-16T07:28:34.299Z",
@@ -107,7 +107,7 @@
       "confidence": 0.75,
       "status": "validated-resolved",
       "resolved": false,
-      "validatedInDream": "2026-05-18T00:12:26.035Z"
+      "validatedInDream": "2026-05-18T13:49:16.416Z"
     },
     "dream-20260515-013": {
       "created": "2026-05-16T07:28:34.301Z",
@@ -116,7 +116,7 @@
       "confidence": 0.75,
       "status": "validated-resolved",
       "resolved": false,
-      "validatedInDream": "2026-05-18T00:12:26.036Z"
+      "validatedInDream": "2026-05-18T13:49:16.418Z"
     },
     "dream-20260516-009": {
       "created": "2026-05-18T00:12:25.993Z",
@@ -141,18 +141,18 @@
       "dreamDate": "2026-05-17",
       "pattern": "Nathan is action-oriented — \"Sounds perfect. But remember we can install them an",
       "confidence": 0.5,
-      "status": "dispatched",
+      "status": "validated-resolved",
       "resolved": false,
-      "validatedInDream": null
+      "validatedInDream": "2026-05-18T13:49:16.421Z"
     },
     "dream-20260517-012": {
       "created": "2026-05-18T00:12:25.999Z",
       "dreamDate": "2026-05-17",
       "pattern": "Nathan is action-oriented — \"Sounds perfect. But remember we can install them an",
       "confidence": 0.75,
-      "status": "dispatched",
+      "status": "validated-resolved",
       "resolved": false,
-      "validatedInDream": null
+      "validatedInDream": "2026-05-18T13:49:16.423Z"
     }
   },
   "patterns": {
@@ -262,7 +262,7 @@
         "dream-20260517-011",
         "dream-20260517-012"
       ],
-      "resolved": false
+      "resolved": true
     }
   }
 }

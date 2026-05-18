@@ -1,0 +1,16 @@
+{
+  "id": "emmaus-mvp-v1",
+  "name": "Emmaus MVP v1.0",
+  "createdAt": "2026-05-18T13:38:41.541Z",
+  "files": 5,
+  "sizeBytes": 41204,
+  "sizeFormatted": "40.24 KB",
+  "fileHashes": {
+    "emmaus/PRD.md": "256ea57143dc46f1",
+    "emmaus/PRESENTATION.md": "a4e98ba6b1229ab3",
+    "emmaus/engine/companion.js": "7103edd904e1b373",
+    "emmaus/package.json": "3e246bc29db74d88",
+    "emmaus/tests/demo.js": "2425b0359ffedfec"
+  },
+  "description": "Emmaus spiritual companion MVP before multi-agent review swarm"
+}
