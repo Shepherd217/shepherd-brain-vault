@@ -1,9 +1,10 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import type { Task } from "@/types";
 
 const STORAGE_KEY = "shepherd-dashboard-tasks";
+const POLL_INTERVAL_MS = 5000;
 
 function loadFromStorage(): Task[] {
   try {
@@ -32,57 +33,50 @@ function saveToStorage(tasks: Task[]) {
 export function usePersistentTasks() {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [loaded, setLoaded] = useState(false);
+  const [isOnline, setIsOnline] = useState(true);
+  const lastSyncRef = useRef<number>(0);
 
-  // Load from localStorage on mount
-  useEffect(() => {
-    const stored = loadFromStorage();
-    setTasks(stored);
-    setLoaded(true);
-  }, []);
-
-  // Save to localStorage on every change
-  useEffect(() => {
-    if (loaded) {
-      saveToStorage(tasks);
-    }
-  }, [tasks, loaded]);
-
-  // Also try to sync with API (fire-and-forget)
-  const syncWithApi = useCallback(async () => {
+  // Load from API (primary), fallback to localStorage
+  const fetchTasks = useCallback(async () => {
     try {
       const res = await fetch("/api/tasks");
       if (res.ok) {
         const data = await res.json();
-        if (data.tasks?.length > 0) {
-          // Merge API tasks with local tasks (local wins on conflict)
-          const apiTasks = data.tasks as Task[];
-          setTasks((prev) => {
-            const localIds = new Set(prev.map((t) => t.id));
-            const newTasks = apiTasks.filter((t) => !localIds.has(t.id));
-            if (newTasks.length > 0) {
-              const merged = [...prev, ...newTasks];
-              saveToStorage(merged);
-              return merged;
-            }
-            return prev;
-          });
-        }
+        const apiTasks = (data.tasks as Task[]).map((t) => ({
+          ...t,
+          createdAt: new Date(t.createdAt),
+          startedAt: t.startedAt ? new Date(t.startedAt) : null,
+          completedAt: t.completedAt ? new Date(t.completedAt) : null,
+        }));
+        setTasks(apiTasks);
+        saveToStorage(apiTasks);
+        setIsOnline(true);
+        lastSyncRef.current = Date.now();
+        return;
       }
     } catch {
-      // API unavailable, localStorage is primary
+      // API unavailable
     }
+    // Fallback to localStorage
+    const stored = loadFromStorage();
+    setTasks(stored);
+    setIsOnline(false);
   }, []);
 
-  // Sync once on load
   useEffect(() => {
-    if (loaded) {
-      syncWithApi();
-    }
-  }, [loaded, syncWithApi]);
+    fetchTasks().then(() => setLoaded(true));
+  }, [fetchTasks]);
+
+  // Real-time polling
+  useEffect(() => {
+    if (!loaded) return;
+    const interval = setInterval(fetchTasks, POLL_INTERVAL_MS);
+    return () => clearInterval(interval);
+  }, [loaded, fetchTasks]);
 
   const addTask = useCallback(
     async (taskData: Partial<Task>) => {
-      const newTask: Task = {
+      const tempTask: Task = {
         id: crypto.randomUUID(),
         title: taskData.title || "Untitled",
         description: taskData.description || null,
@@ -105,30 +99,40 @@ export function usePersistentTasks() {
         nextTask: null,
       };
 
+      // Optimistic UI
       setTasks((prev) => {
-        const updated = [...prev, newTask];
+        const updated = [...prev, tempTask];
         saveToStorage(updated);
         return updated;
       });
 
-      // Also send to API
+      // Send to API
       try {
-        await fetch("/api/tasks", {
+        const res = await fetch("/api/tasks", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(taskData),
         });
+        if (res.ok) {
+          const data = await res.json();
+          // Replace temp with server task
+          setTasks((prev) =>
+            prev.map((t) => (t.id === tempTask.id ? data.task : t))
+          );
+          setIsOnline(true);
+        }
       } catch {
-        // API may fail, localStorage has it
+        setIsOnline(false);
       }
 
-      return newTask;
+      return tempTask;
     },
     []
   );
 
   const updateTask = useCallback(
     async (id: string, updates: Partial<Task>) => {
+      // Optimistic UI
       setTasks((prev) => {
         const updated = prev.map((t) =>
           t.id === id ? { ...t, ...updates } : t
@@ -137,34 +141,57 @@ export function usePersistentTasks() {
         return updated;
       });
 
-      // Also send to API
+      // Send to API
       try {
-        await fetch(`/api/tasks/${id}`, {
+        const res = await fetch(`/api/tasks/${id}`, {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(updates),
         });
+        if (res.ok) {
+          setIsOnline(true);
+        }
       } catch {
-        // API may fail
+        setIsOnline(false);
       }
     },
     []
   );
 
-  const removeTask = useCallback((id: string) => {
+  const claimTask = useCallback(
+    async (id: string, agentId: string, agentName: string) => {
+      return updateTask(id, {
+        owner: agentId,
+        status: "doing",
+        agentType: "openclaw",
+      });
+    },
+    [updateTask]
+  );
+
+  const removeTask = useCallback(async (id: string) => {
     setTasks((prev) => {
       const updated = prev.filter((t) => t.id !== id);
       saveToStorage(updated);
       return updated;
     });
+
+    try {
+      await fetch(`/api/tasks/${id}`, { method: "DELETE" });
+    } catch {
+      // Will be cleaned up on next sync
+    }
   }, []);
 
   return {
     tasks,
     loaded,
+    isOnline,
+    lastSync: lastSyncRef.current,
     addTask,
     updateTask,
+    claimTask,
     removeTask,
-    refresh: syncWithApi,
+    refresh: fetchTasks,
   };
 }

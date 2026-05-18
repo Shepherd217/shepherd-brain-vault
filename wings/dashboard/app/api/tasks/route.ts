@@ -1,14 +1,6 @@
 import { NextResponse } from "next/server";
 import type { Task, TaskStatus } from "@/types";
-
-// In-memory task store for serverless demo (replaces SQLite)
-// NOTE: On serverless, this resets per-instance. Frontend uses localStorage for persistence.
-const tasks: Task[] = [];
-
-// Load demo tasks if empty
-function getTasks(): Task[] {
-  return tasks;
-}
+import { getTasks, createTask, updateTask, deleteTask } from "@/lib/db";
 
 const validTransitions: Record<TaskStatus, TaskStatus[]> = {
   backlog: ["todo"],
@@ -31,7 +23,7 @@ export async function GET(request: Request) {
   const tag = searchParams.get("tag");
   const projectId = searchParams.get("projectId") ?? "shepherd";
   
-  let filtered = tasks.filter(t => t.projectId === projectId);
+  let filtered = getTasks().filter(t => t.projectId === projectId);
   
   if (status) {
     filtered = filtered.filter(t => t.status === status);
@@ -73,7 +65,7 @@ export async function POST(request: Request) {
       nextTask: null,
     };
     
-    tasks.push(task);
+    createTask(task);
     
     return NextResponse.json({ task }, { status: 201 });
   } catch (error) {

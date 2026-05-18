@@ -1,15 +1,6 @@
 import { NextResponse } from "next/server";
 import type { Task, TaskStatus } from "@/types";
-
-// Shared in-memory store (same as route.ts)
-declare global {
-  var __tasks: Task[] | undefined;
-}
-
-const tasks = globalThis.__tasks ?? [];
-if (!globalThis.__tasks) {
-  globalThis.__tasks = tasks;
-}
+import { getTaskById, updateTask, deleteTask } from "@/lib/db";
 
 const validTransitions: Record<TaskStatus, TaskStatus[]> = {
   backlog: ["todo"],
@@ -24,7 +15,7 @@ export async function GET(
   request: Request,
   { params }: { params: { id: string } }
 ) {
-  const task = tasks.find(t => t.id === params.id);
+  const task = getTaskById(params.id);
   
   if (!task) {
     return NextResponse.json({ error: "Task not found" }, { status: 404 });
@@ -39,13 +30,11 @@ export async function PATCH(
 ) {
   try {
     const body = await request.json();
+    const existing = getTaskById(params.id);
     
-    const existingIndex = tasks.findIndex(t => t.id === params.id);
-    if (existingIndex === -1) {
+    if (!existing) {
       return NextResponse.json({ error: "Task not found" }, { status: 404 });
     }
-    
-    const existing = tasks[existingIndex];
     
     // Validate status transition
     if (body.status && body.status !== existing.status) {
@@ -83,9 +72,9 @@ export async function PATCH(
       updates.attempts = (existing.attempts || 0) + 1;
     }
     
-    tasks[existingIndex] = { ...existing, ...updates };
+    const updated = updateTask(params.id, updates);
     
-    return NextResponse.json({ task: tasks[existingIndex] });
+    return NextResponse.json({ task: updated });
   } catch (error) {
     return NextResponse.json({ error: "Failed to update task" }, { status: 500 });
   }
@@ -95,11 +84,10 @@ export async function DELETE(
   request: Request,
   { params }: { params: { id: string } }
 ) {
-  const existingIndex = tasks.findIndex(t => t.id === params.id);
-  if (existingIndex === -1) {
+  const ok = deleteTask(params.id);
+  if (!ok) {
     return NextResponse.json({ error: "Task not found" }, { status: 404 });
   }
   
-  tasks.splice(existingIndex, 1);
   return NextResponse.json({ ok: true });
 }
