@@ -1,0 +1,42 @@
+{
+  "id": "agent-handoff",
+  "name": "Agent Handoff",
+  "description": "Capture and resume agent session state for live transfers between models, personas, or agent instances. Serialize memory + context + working files.",
+  "contracts": {
+    "tools": ["capture_agent_state", "resume_agent_state"]
+  },
+  "activation": {
+    "onStartup": true
+  },
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "enabled": {
+        "type": "boolean",
+        "default": true
+      },
+      "snapshotDir": {
+        "type": "string",
+        "default": ".coordination/snapshots"
+      },
+      "maxMessages": {
+        "type": "number",
+        "default": 50,
+        "description": "Max recent messages to include in snapshot"
+      },
+      "memoryFiles": {
+        "type": "array",
+        "items": { "type": "string" },
+        "default": [
+          "SOUL.md",
+          "USER.md",
+          "MEMORY.md",
+          "AGENTS.md",
+          "CONTEXT.md",
+          "TOOLS.md"
+        ]
+      }
+    }
+  }
+}

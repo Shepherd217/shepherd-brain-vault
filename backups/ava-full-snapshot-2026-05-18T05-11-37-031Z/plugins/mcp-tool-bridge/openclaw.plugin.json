@@ -1,0 +1,37 @@
+{
+  "id": "mcp-tool-bridge",
+  "name": "MCP Tool Bridge",
+  "description": "Model Context Protocol (MCP) integration for external tools. Discovers, registers, and executes MCP-compatible tools from external servers.",
+  "contracts": {
+    "tools": ["discover_mcp_tools", "call_mcp_tool", "list_mcp_servers", "add_mcp_server"]
+  },
+  "activation": {
+    "onStartup": true
+  },
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "enabled": {
+        "type": "boolean",
+        "default": true
+      },
+      "servers": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "url": { "type": "string" },
+            "auth": { "type": "object" }
+          }
+        },
+        "default": []
+      },
+      "timeoutMs": {
+        "type": "number",
+        "default": 30000
+      }
+    }
+  }
+}

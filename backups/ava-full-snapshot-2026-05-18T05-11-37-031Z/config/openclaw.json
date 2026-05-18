@@ -1,0 +1,591 @@
+{
+  "gateway": {
+    "auth": {
+      "mode": "token",
+      "token": "6e3ff3a8728e3c1f8e6342fd0797b2004635d79349ce47b5"
+    },
+    "port": 18789,
+    "mode": "local",
+    "bind": "loopback"
+  },
+  "meta": {
+    "lastTouchedVersion": "2026.5.12",
+    "lastTouchedAt": "2026-05-18T00:42:12.579Z"
+  },
+  "commands": {},
+  "agents": {
+    "defaults": {
+      "heartbeat": {
+        "every": "60m"
+      },
+      "compaction": {
+        "mode": "safeguard"
+      },
+      "thinkingDefault": "high",
+      "memorySearch": {
+        "remote": {
+          "baseUrl": "https://agent-gw.kimi.com/coding/v1",
+          "apiKey": "sk-kimi-buEJFxbf2idJNOXrdccV3AG4mC4B8In1FFGdSf1TUNTspbT1jlPpKzYbAtUNPlxg",
+          "headers": {
+            "User-Agent": "Kimi Claw Plugin",
+            "X-Msh-Device-Name": "openclaw-kimi-embedding"
+          }
+        },
+        "enabled": true,
+        "provider": "openai",
+        "model": "bge_m3_embed"
+      },
+      "model": {
+        "primary": "kimi/k2p6"
+      },
+      "models": {
+        "kimi/k2p6": {
+          "alias": "kimi-k2p6"
+        }
+      }
+    }
+  },
+  "skills": {
+    "load": {
+      "extraDirs": [
+        "/root/.openclaw/kimi-skills"
+      ]
+    },
+    "entries": {
+      "1password": {
+        "enabled": false
+      },
+      "apple-notes": {
+        "enabled": false
+      },
+      "apple-reminders": {
+        "enabled": false
+      },
+      "bear-notes": {
+        "enabled": false
+      },
+      "blogwatcher": {
+        "enabled": false
+      },
+      "blucli": {
+        "enabled": false
+      },
+      "camsnap": {
+        "enabled": false
+      },
+      "clawhub": {
+        "enabled": false
+      },
+      "coding-agent": {
+        "enabled": false
+      },
+      "discord": {
+        "enabled": false
+      },
+      "eightctl": {
+        "enabled": false
+      },
+      "gemini": {
+        "enabled": false
+      },
+      "gifgrep": {
+        "enabled": false
+      },
+      "gog": {
+        "enabled": false
+      },
+      "goplaces": {
+        "enabled": false
+      },
+      "himalaya": {
+        "enabled": false
+      },
+      "imsg": {
+        "enabled": false
+      },
+      "mcporter": {
+        "enabled": false
+      },
+      "model-usage": {
+        "enabled": false
+      },
+      "nano-pdf": {
+        "enabled": false
+      },
+      "notion": {
+        "enabled": false
+      },
+      "obsidian": {
+        "enabled": false
+      },
+      "openai-whisper": {
+        "enabled": false
+      },
+      "openai-whisper-api": {
+        "enabled": false
+      },
+      "openhue": {
+        "enabled": false
+      },
+      "oracle": {
+        "enabled": false
+      },
+      "ordercli": {
+        "enabled": false
+      },
+      "peekaboo": {
+        "enabled": false
+      },
+      "qqbot-channel": {
+        "enabled": false
+      },
+      "qqbot-media": {
+        "enabled": false
+      },
+      "qqbot-remind": {
+        "enabled": false
+      },
+      "qqbot-upgrade": {
+        "enabled": false
+      },
+      "sag": {
+        "enabled": false
+      },
+      "session-logs": {
+        "enabled": false
+      },
+      "sherpa-onnx-tts": {
+        "enabled": false
+      },
+      "slack": {
+        "enabled": false
+      },
+      "songsee": {
+        "enabled": false
+      },
+      "sonoscli": {
+        "enabled": false
+      },
+      "spotify-player": {
+        "enabled": false
+      },
+      "summarize": {
+        "enabled": false
+      },
+      "things-mac": {
+        "enabled": false
+      },
+      "trello": {
+        "enabled": false
+      },
+      "video-frames": {
+        "enabled": false
+      },
+      "voice-call": {
+        "enabled": false
+      },
+      "wacli": {
+        "enabled": false
+      },
+      "wecom-send-media": {
+        "enabled": false
+      },
+      "wecom-send-template-card": {
+        "enabled": false
+      },
+      "xurl": {
+        "enabled": false
+      }
+    }
+  },
+  "plugins": {
+    "entries": {
+      "feishu": {
+        "enabled": false
+      },
+      "openclaw-lark": {
+        "enabled": true
+      },
+      "dingtalk-connector": {
+        "enabled": true
+      },
+      "weibo-openclaw-plugin": {
+        "enabled": true
+      },
+      "wecom-openclaw-plugin": {
+        "enabled": true
+      },
+      "openclaw-weixin": {
+        "enabled": true
+      },
+      "openclaw-qqbot": {
+        "enabled": true
+      },
+      "kimi-claw": {
+        "enabled": true,
+        "config": {
+          "bridge": {
+            "url": "wss://www.kimi.com/api-claw/bots/agent-ws",
+            "kimiapiHost": "https://www.kimi.com/api-claw",
+            "promptTimeoutMs": 300000,
+            "bot_type": "remote",
+            "token": "km_b_prod_flimgCQfUrhzFxGvv0tUf6juq1J7vfqg",
+            "kimiFileDownloadDir": "./openclaw/kimi/downloads",
+            "mode": "acp",
+            "forwardThinking": false,
+            "forwardToolCalls": false,
+            "kimiCodeAPIKey": "sk-kimi-buEJFxbf2idJNOXrdccV3AG4mC4B8In1FFGdSf1TUNTspbT1jlPpKzYbAtUNPlxg",
+            "kimiPluginAPIKey": "sk-kimi-buEJFxbf2idJNOXrdccV3AG4mC4B8In1FFGdSf1TUNTspbT1jlPpKzYbAtUNPlxg",
+            "kimiCodeBaseURL": "https://agent-gw.kimi.com/coding"
+          },
+          "log": {
+            "enabled": true,
+            "verbose": false
+          },
+          "gateway": {
+            "url": "ws://127.0.0.1:18789",
+            "agentId": "main"
+          },
+          "retry": {
+            "baseMs": 1000,
+            "maxMs": 600000,
+            "maxAttempts": 0
+          },
+          "defaultModel": {
+            "enabled": true,
+            "provider": "kimi-coding",
+            "modelId": "k2p6",
+            "apiKey": "sk-kimi-buEJFxbf2idJNOXrdccV3AG4mC4B8In1FFGdSf1TUNTspbT1jlPpKzYbAtUNPlxg",
+            "baseUrl": "https://agent-gw.kimi.com/coding"
+          }
+        }
+      },
+      "kimi-search": {
+        "enabled": true,
+        "config": {
+          "search": {
+            "baseUrl": "https://agent-gw.kimi.com/coding/v1/search"
+          },
+          "fetch": {
+            "baseUrl": "https://agent-gw.kimi.com/coding/v1/fetch"
+          }
+        }
+      },
+      "browser": {
+        "enabled": true
+      },
+      "kimi": {
+        "enabled": true
+      },
+      "telegram": {
+        "enabled": true
+      },
+      "discord": {
+        "enabled": true
+      },
+      "slack": {
+        "enabled": true
+      },
+      "matrix": {
+        "enabled": true
+      },
+      "file-mutation-verifier": {
+        "enabled": true
+      },
+      "context-window-guard": {
+        "enabled": true
+      },
+      "agent-handoff": {
+        "enabled": true
+      },
+      "lazy-dep-loader": {
+        "enabled": true,
+        "config": {
+          "cacheDir": ".openclaw/deps",
+          "debug": false
+        }
+      },
+      "prompt-cache": {
+        "enabled": true,
+        "config": {
+          "cacheDir": ".openclaw/prompt-cache",
+          "maxEntries": 100,
+          "ttlMinutes": 60,
+          "memoryFiles": [
+            "SOUL.md",
+            "USER.md",
+            "MEMORY.md",
+            "AGENTS.md",
+            "IDENTITY.md",
+            "TOOLS.md",
+            "HEARTBEAT.md",
+            "CONTEXT.md"
+          ],
+          "criticalFiles": [
+            "package.json",
+            "Cargo.toml",
+            "requirements.txt",
+            "go.mod",
+            "Makefile",
+            "Dockerfile",
+            "tsconfig.json",
+            ".env.example"
+          ],
+          "checkIntervalMs": 5000
+        }
+      },
+      "persistent-browser": {
+        "enabled": true,
+        "config": {
+          "autoWarmup": false
+        }
+      },
+      "checkpoint-v2": {
+        "enabled": true,
+        "config": {
+          "checkpointDir": "~/.openclaw/checkpoints",
+          "maxCheckpoints": 20,
+          "maxTotalSizeMb": 500,
+          "autoCheckpointIntervalMinutes": 30,
+          "criticalFiles": [
+            "SOUL.md",
+            "USER.md",
+            "MEMORY.md",
+            "AGENTS.md",
+            "IDENTITY.md",
+            "TOOLS.md",
+            "HEARTBEAT.md",
+            ".coordination/tasks/task-board.md"
+          ]
+        }
+      },
+      "platform-allowlist": {
+        "enabled": true,
+        "config": {
+          "defaultPolicy": "deny",
+          "logFile": "~/.openclaw/logs/allowlist-violations.jsonl"
+        }
+      },
+      "provider-manager": {
+        "enabled": true,
+        "config": {
+          "providersFile": "~/.openclaw/config/providers.json",
+          "healthCheckIntervalMs": 60000,
+          "defaultProvider": "kimi"
+        }
+      },
+      "mcp-tool-bridge": {
+        "enabled": true
+      },
+      "prompt-context-triage": {
+        "enabled": true
+      },
+      "auto-model-fallback": {
+        "enabled": true
+      },
+      "agent-mesh": {
+        "enabled": true
+      },
+      "task-router": {
+        "enabled": true
+      },
+      "agent-specialization": {
+        "enabled": true
+      }
+    },
+    "allow": [
+      "agent-handoff",
+      "agent-mesh",
+      "agent-specialization",
+      "auto-model-fallback",
+      "bluebubbles",
+      "browser",
+      "checkpoint-v2",
+      "context-window-guard",
+      "dingtalk-connector",
+      "discord",
+      "feishu",
+      "file-mutation-verifier",
+      "googlechat",
+      "imessage",
+      "irc",
+      "kimi",
+      "kimi-claw",
+      "kimi-search",
+      "lazy-dep-loader",
+      "line",
+      "matrix",
+      "mattermost",
+      "mcp-tool-bridge",
+      "memory-core",
+      "msteams",
+      "nextcloud-talk",
+      "openclaw-lark",
+      "openclaw-qqbot",
+      "openclaw-weixin",
+      "persistent-browser",
+      "platform-allowlist",
+      "prompt-cache",
+      "prompt-context-triage",
+      "provider-manager",
+      "signal",
+      "slack",
+      "synology-chat",
+      "task-router",
+      "telegram",
+      "wecom-openclaw-plugin",
+      "weibo-openclaw-plugin",
+      "whatsapp",
+      "zalo",
+      "zalouser"
+    ],
+    "load": {
+      "paths": [
+        "/root/.openclaw/workspace/plugins/agent-handoff",
+        "/root/.openclaw/workspace/plugins/agent-mesh",
+        "/root/.openclaw/workspace/plugins/agent-specialization",
+        "/root/.openclaw/workspace/plugins/auto-model-fallback",
+        "/root/.openclaw/workspace/plugins/checkpoint-v2",
+        "/root/.openclaw/workspace/plugins/context-window-guard",
+        "/root/.openclaw/workspace/plugins/file-mutation-verifier",
+        "/root/.openclaw/workspace/plugins/lazy-dep-loader",
+        "/root/.openclaw/workspace/plugins/mcp-tool-bridge",
+        "/root/.openclaw/workspace/plugins/persistent-browser",
+        "/root/.openclaw/workspace/plugins/platform-allowlist",
+        "/root/.openclaw/workspace/plugins/prompt-cache",
+        "/root/.openclaw/workspace/plugins/prompt-context-triage",
+        "/root/.openclaw/workspace/plugins/provider-manager",
+        "/root/.openclaw/workspace/plugins/task-router"
+      ]
+    },
+    "bundledDiscovery": "compat"
+  },
+  "channels": {
+    "telegram": {
+      "botToken": "8439210595:AAG5NgZ79kcjn1pi5SgA-qS3HV-bPXn6gbI",
+      "dmPolicy": "allowlist",
+      "allowFrom": [
+        "tg:8484190420",
+        "-5225420950"
+      ]
+    }
+  },
+  "secrets": {
+    "providers": {
+      "lark-secrets": {
+        "source": "file",
+        "path": "~/.openclaw/credentials/lark.secrets.json"
+      }
+    }
+  },
+  "tools": {
+    "alsoAllow": [
+      "feishu_bitable_app",
+      "feishu_bitable_app_table",
+      "feishu_bitable_app_table_field",
+      "feishu_bitable_app_table_record",
+      "feishu_bitable_app_table_view",
+      "feishu_calendar_calendar",
+      "feishu_calendar_event",
+      "feishu_calendar_event_attendee",
+      "feishu_calendar_freebusy",
+      "feishu_chat",
+      "feishu_chat_members",
+      "feishu_create_doc",
+      "feishu_doc_comments",
+      "feishu_doc_media",
+      "feishu_drive_file",
+      "feishu_fetch_doc",
+      "feishu_get_user",
+      "feishu_im_bot_image",
+      "feishu_im_user_fetch_resource",
+      "feishu_im_user_get_messages",
+      "feishu_im_user_get_thread_messages",
+      "feishu_im_user_message",
+      "feishu_im_user_search_messages",
+      "feishu_oauth",
+      "feishu_oauth_batch_auth",
+      "feishu_search_doc_wiki",
+      "feishu_search_user",
+      "feishu_sheet",
+      "feishu_task_comment",
+      "feishu_task_subtask",
+      "feishu_task_task",
+      "feishu_task_agent",
+      "feishu_task_attachment",
+      "feishu_task_tasklist",
+      "feishu_update_doc",
+      "feishu_wiki_space",
+      "feishu_wiki_space_node"
+    ],
+    "profile": "full"
+  },
+  "browser": {
+    "defaultProfile": "openclaw",
+    "headless": true,
+    "noSandbox": true,
+    "executablePath": "/usr/bin/google-chrome"
+  },
+  "logging": {
+    "file": "/root/.openclaw/logs/openclaw.log"
+  },
+  "hooks": {
+    "internal": {
+      "enabled": true,
+      "entries": {
+        "memory-stm-refresh": {
+          "enabled": true
+        }
+      }
+    }
+  },
+  "session": {
+    "dmScope": "main"
+  },
+  "env": {
+    "KIMI_API_KEY": "sk-kimi-buEJFxbf2idJNOXrdccV3AG4mC4B8In1FFGdSf1TUNTspbT1jlPpKzYbAtUNPlxg",
+    "KIMI_PLUGIN_API_KEY": "sk-kimi-buEJFxbf2idJNOXrdccV3AG4mC4B8In1FFGdSf1TUNTspbT1jlPpKzYbAtUNPlxg"
+  },
+  "models": {
+    "mode": "merge",
+    "providers": {
+      "kimi-coding": {
+        "baseUrl": "https://agent-gw.kimi.com/coding",
+        "apiKey": "sk-kimi-buEJFxbf2idJNOXrdccV3AG4mC4B8In1FFGdSf1TUNTspbT1jlPpKzYbAtUNPlxg",
+        "api": "anthropic-messages",
+        "headers": {
+          "User-Agent": "Kimi Claw Plugin",
+          "X-Kimi-Claw-ID": "19e1dd54-37f2-8ee3-8000-0000bdd1e8ed"
+        },
+        "models": [
+          {
+            "id": "k2p6",
+            "name": "k2p6",
+            "input": [
+              "text",
+              "image"
+            ],
+            "reasoning": true,
+            "headers": {
+              "User-Agent": "Kimi Claw Plugin",
+              "X-Kimi-Claw-ID": "19e1dd54-37f2-8ee3-8000-0000bdd1e8ed"
+            },
+            "contextWindow": 131072,
+            "maxTokens": 32768
+          }
+        ]
+      }
+    }
+  },
+  "messages": {
+    "groupChat": {
+      "visibleReplies": "message_tool"
+    }
+  },
+  "wizard": {
+    "lastRunAt": "2026-05-18T00:42:11.238Z",
+    "lastRunVersion": "2026.5.12",
+    "lastRunCommand": "doctor",
+    "lastRunMode": "local"
+  }
+}

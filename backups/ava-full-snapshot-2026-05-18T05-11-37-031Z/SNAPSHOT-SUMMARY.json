@@ -1,0 +1,11 @@
+{
+  "timestamp": "2026-05-18T05-11-37-031Z",
+  "backupLocation": "/root/.openclaw/workspace/backups/ava-full-snapshot-2026-05-18T05-11-37-031Z",
+  "brainVaultLocation": "/root/.openclaw/workspace/shepherd-brain-vault/ava-snapshots/2026-05-18T05-11-37-031Z",
+  "size": "870.27 KB",
+  "fileCount": 174,
+  "plugins": 15,
+  "waves": 6,
+  "manifest": "RECOVERY-MANIFEST.json",
+  "guide": "RECOVERY-GUIDE.md"
+}

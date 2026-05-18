@@ -1,0 +1,29 @@
+{
+  "id": "agent-mesh",
+  "name": "Agent Mesh",
+  "description": "Multi-agent coordination mesh. Agents register themselves, discover other agents, and coordinate task execution across the mesh.",
+  "contracts": {
+    "tools": ["register_agent", "discover_agents", "send_agent_message", "get_agent_status"]
+  },
+  "activation": {
+    "onStartup": true
+  },
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "enabled": {
+        "type": "boolean",
+        "default": true
+      },
+      "meshFile": {
+        "type": "string",
+        "default": "~/.openclaw/config/agent-mesh.json"
+      },
+      "heartbeatTimeoutMs": {
+        "type": "number",
+        "default": 300000
+      }
+    }
+  }
+}

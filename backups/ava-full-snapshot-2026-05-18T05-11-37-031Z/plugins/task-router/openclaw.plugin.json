@@ -1,0 +1,25 @@
+{
+  "id": "task-router",
+  "name": "Task Router",
+  "description": "Intelligent task routing based on agent capabilities and workload. Routes tasks to the best available agent in the mesh.",
+  "contracts": {
+    "tools": ["route_task", "get_agent_workload", "rebalance_tasks"]
+  },
+  "activation": {
+    "onStartup": true
+  },
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "enabled": {
+        "type": "boolean",
+        "default": true
+      },
+      "maxTasksPerAgent": {
+        "type": "number",
+        "default": 5
+      }
+    }
+  }
+}
