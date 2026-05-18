@@ -1,0 +1,29 @@
+{
+  "id": "prompt-context-triage",
+  "name": "Prompt Context Triage",
+  "description": "Smart context window management. Analyzes prompt to determine what context is actually needed, triages files by relevance, and suggests what to include/exclude.",
+  "contracts": {
+    "tools": ["triage_context", "suggest_context_files", "analyze_prompt_needs"]
+  },
+  "activation": {
+    "onStartup": true
+  },
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "enabled": {
+        "type": "boolean",
+        "default": true
+      },
+      "maxContextFiles": {
+        "type": "number",
+        "default": 20
+      },
+      "relevanceThreshold": {
+        "type": "number",
+        "default": 0.6
+      }
+    }
+  }
+}

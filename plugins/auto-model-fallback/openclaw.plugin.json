@@ -1,0 +1,34 @@
+{
+  "id": "auto-model-fallback",
+  "name": "Auto Model Fallback",
+  "description": "Automatic model failover when primary provider fails. Monitors provider health and switches to backup models automatically.",
+  "contracts": {
+    "tools": ["check_model_health", "force_fallback", "get_fallback_status"]
+  },
+  "activation": {
+    "onStartup": true
+  },
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "enabled": {
+        "type": "boolean",
+        "default": true
+      },
+      "primaryProvider": {
+        "type": "string",
+        "default": "kimi"
+      },
+      "fallbackChain": {
+        "type": "array",
+        "items": { "type": "string" },
+        "default": ["kimi", "openai", "anthropic"]
+      },
+      "healthCheckIntervalMs": {
+        "type": "number",
+        "default": 300000
+      }
+    }
+  }
+}
