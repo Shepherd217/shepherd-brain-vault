@@ -78,41 +78,77 @@
       "dreamDate": "2026-05-15",
       "pattern": "Plugin confusion pattern: \"What X?\" misread as \"Install X\"",
       "confidence": 0.5,
-      "status": "dispatched",
+      "status": "validated-resolved",
       "resolved": false,
-      "validatedInDream": null
+      "validatedInDream": "2026-05-18T00:12:26.028Z"
     },
     "dream-20260515-010": {
       "created": "2026-05-16T07:28:34.295Z",
       "dreamDate": "2026-05-15",
       "pattern": "Palace needs activation — currently storage, not living brain",
       "confidence": 0.5,
-      "status": "dispatched",
+      "status": "validated-resolved",
       "resolved": false,
-      "validatedInDream": null
+      "validatedInDream": "2026-05-18T00:12:26.030Z"
     },
     "dream-20260515-011": {
       "created": "2026-05-16T07:28:34.296Z",
       "dreamDate": "2026-05-15",
       "pattern": "TEST before BUILD — validate before expanding",
       "confidence": 0.5,
-      "status": "dispatched",
+      "status": "validated-resolved",
       "resolved": false,
-      "validatedInDream": null
+      "validatedInDream": "2026-05-18T00:12:26.033Z"
     },
     "dream-20260515-012": {
       "created": "2026-05-16T07:28:34.299Z",
       "dreamDate": "2026-05-15",
       "pattern": "Plugin confusion pattern: add intent-check before executing recommendations",
       "confidence": 0.75,
-      "status": "dispatched",
+      "status": "validated-resolved",
       "resolved": false,
-      "validatedInDream": null
+      "validatedInDream": "2026-05-18T00:12:26.035Z"
     },
     "dream-20260515-013": {
       "created": "2026-05-16T07:28:34.301Z",
       "dreamDate": "2026-05-15",
       "pattern": "Palace activation protocol: regular heartbeat + auto-processing",
+      "confidence": 0.75,
+      "status": "validated-resolved",
+      "resolved": false,
+      "validatedInDream": "2026-05-18T00:12:26.036Z"
+    },
+    "dream-20260516-009": {
+      "created": "2026-05-18T00:12:25.993Z",
+      "dreamDate": "2026-05-16",
+      "pattern": "Test before announce — Nathan explicitly said \"Test first",
+      "confidence": 0.5,
+      "status": "dispatched",
+      "resolved": false,
+      "validatedInDream": null
+    },
+    "dream-20260516-010": {
+      "created": "2026-05-18T00:12:25.995Z",
+      "dreamDate": "2026-05-16",
+      "pattern": "Wants execution, not planning — explicitly said \"I don’t want to hear about it, ",
+      "confidence": 0.75,
+      "status": "dispatched",
+      "resolved": false,
+      "validatedInDream": null
+    },
+    "dream-20260517-011": {
+      "created": "2026-05-18T00:12:25.997Z",
+      "dreamDate": "2026-05-17",
+      "pattern": "Nathan is action-oriented — \"Sounds perfect. But remember we can install them an",
+      "confidence": 0.5,
+      "status": "dispatched",
+      "resolved": false,
+      "validatedInDream": null
+    },
+    "dream-20260517-012": {
+      "created": "2026-05-18T00:12:25.999Z",
+      "dreamDate": "2026-05-17",
+      "pattern": "Nathan is action-oriented — \"Sounds perfect. But remember we can install them an",
       "confidence": 0.75,
       "status": "dispatched",
       "resolved": false,
@@ -169,7 +205,7 @@
       "tasksCreated": [
         "dream-20260515-009"
       ],
-      "resolved": false
+      "resolved": true
     },
     "Palace needs activation — currently storage, not living brai": {
       "firstSeen": "2026-05-15",
@@ -177,7 +213,7 @@
       "tasksCreated": [
         "dream-20260515-010"
       ],
-      "resolved": false
+      "resolved": true
     },
     "TEST before BUILD — validate before expanding": {
       "firstSeen": "2026-05-15",
@@ -185,7 +221,7 @@
       "tasksCreated": [
         "dream-20260515-011"
       ],
-      "resolved": false
+      "resolved": true
     },
     "Plugin confusion pattern: add intent-check before executing ": {
       "firstSeen": "2026-05-15",
@@ -193,13 +229,38 @@
       "tasksCreated": [
         "dream-20260515-012"
       ],
-      "resolved": false
+      "resolved": true
     },
     "Palace activation protocol: regular heartbeat + auto-process": {
       "firstSeen": "2026-05-15",
       "occurrences": 1,
       "tasksCreated": [
         "dream-20260515-013"
+      ],
+      "resolved": true
+    },
+    "Test before announce — Nathan explicitly said \"Test first": {
+      "firstSeen": "2026-05-16",
+      "occurrences": 1,
+      "tasksCreated": [
+        "dream-20260516-009"
+      ],
+      "resolved": false
+    },
+    "Wants execution, not planning — explicitly said \"I don’t wan": {
+      "firstSeen": "2026-05-16",
+      "occurrences": 1,
+      "tasksCreated": [
+        "dream-20260516-010"
+      ],
+      "resolved": false
+    },
+    "Nathan is action-oriented — \"Sounds perfect. But remember we": {
+      "firstSeen": "2026-05-17",
+      "occurrences": 2,
+      "tasksCreated": [
+        "dream-20260517-011",
+        "dream-20260517-012"
       ],
       "resolved": false
     }

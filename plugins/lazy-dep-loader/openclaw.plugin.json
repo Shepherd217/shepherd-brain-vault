@@ -1,0 +1,26 @@
+{
+  "id": "openclaw-lazy-dep-loader",
+  "name": "Lazy Dependency Loader",
+  "description": "Installs heavy dependencies on first use instead of at plugin load time. Reduces startup time and memory footprint.",
+  "version": "1.0.0",
+  "author": "Ava",
+  "license": "MIT",
+  "extensions": [
+    {
+      "id": "lazy-dep-loader",
+      "name": "Lazy Dep Loader",
+      "type": "tool",
+      "entry": "index.js",
+      "config": {
+        "schema": {}
+      }
+    }
+  ],
+  "permissions": {
+    "fs": {
+      "read": ["**/*"],
+      "write": ["**/*"]
+    },
+    "process": true
+  }
+}

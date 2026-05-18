@@ -1,0 +1,34 @@
+{
+  "id": "openclaw-prompt-cache",
+  "name": "Cross-Session Prompt Cache",
+  "description": "Caches rendered system prompts across sessions. On restart, if the prompt hash matches, uses a reference token instead of the full prompt — cutting restart cost by ~60-80%.",
+  "version": "1.0.0",
+  "author": "Ava",
+  "license": "MIT",
+  "extensions": [
+    {
+      "id": "prompt-cache",
+      "name": "Prompt Cache",
+      "type": "tool",
+      "entry": "index.js",
+      "config": {
+        "schema": {
+          "cacheDir": {
+            "type": "string",
+            "default": "~/.openclaw/prompt-cache"
+          },
+          "maxCacheEntries": {
+            "type": "integer",
+            "default": 50
+          }
+        }
+      }
+    }
+  ],
+  "permissions": {
+    "fs": {
+      "read": ["**/*"],
+      "write": ["**/*"]
+    }
+  }
+}

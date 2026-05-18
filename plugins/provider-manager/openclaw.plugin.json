@@ -1,0 +1,38 @@
+{
+  "id": "openclaw-provider-manager",
+  "name": "Provider Manager",
+  "description": "Manages LLM provider registry, health checks, fallbacks, and usage tracking. Enables pluggable provider architecture with automatic failover.",
+  "version": "1.0.0",
+  "author": "Ava",
+  "license": "MIT",
+  "extensions": [
+    {
+      "id": "provider-manager",
+      "name": "Provider Manager",
+      "type": "tool",
+      "entry": "index.js",
+      "config": {
+        "schema": {
+          "providersFile": {
+            "type": "string",
+            "default": "~/.openclaw/config/providers.json"
+          },
+          "healthCheckIntervalMs": {
+            "type": "integer",
+            "default": 60000
+          },
+          "defaultProvider": {
+            "type": "string",
+            "default": "kimi"
+          }
+        }
+      }
+    }
+  ],
+  "permissions": {
+    "fs": {
+      "read": ["**/*"],
+      "write": ["**/*"]
+    }
+  }
+}

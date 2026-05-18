@@ -1,0 +1,39 @@
+{
+  "id": "openclaw-persistent-browser",
+  "name": "Persistent Browser CDP",
+  "description": "Manages a long-lived browser instance with persistent DevTools connection. Reuses the same browser across calls, reducing startup latency from ~3s to ~50ms per operation.",
+  "version": "1.0.0",
+  "author": "Ava",
+  "license": "MIT",
+  "extensions": [
+    {
+      "id": "persistent-browser",
+      "name": "Persistent Browser",
+      "type": "tool",
+      "entry": "index.js",
+      "config": {
+        "schema": {
+          "headless": {
+            "type": "boolean",
+            "default": true
+          },
+          "healthCheckIntervalMs": {
+            "type": "integer",
+            "default": 30000
+          },
+          "maxRestarts": {
+            "type": "integer",
+            "default": 3
+          }
+        }
+      }
+    }
+  ],
+  "permissions": {
+    "fs": {
+      "read": ["**/*"],
+      "write": ["**/*"]
+    },
+    "process": true
+  }
+}
