@@ -10,11 +10,11 @@
 
 ## 🎯 EXECUTIVE SUMMARY
 
-**Emmaus** is an AI spiritual companion that adapts to the user's emotional state, faith stage, and spiritual season — delivering formation, not information. Unlike existing Bible apps that push content, Emmaus walks alongside the user through grief, doubt, celebration, and dryness.
+**Emmaus** is a spiritual companion that adapts to your emotional state, faith stage, and spiritual season — delivering formation, not information. Unlike existing Bible apps that push content, Emmaus walks alongside you through grief, doubt, celebration, and dryness.
 
 **The Problem:** 73% of Christians feel spiritually stagnant despite daily app usage. Content is abundant; formation is absent.
 
-**The Solution:** A companion that reads spiritual state and responds with the right voice — Paul for the complacent, Keller for the skeptic, Manning for the broken, Peer for the veteran.
+**The Solution:** A companion that reads your spiritual state and responds with the right voice — Paul for the complacent, Keller for the skeptic, Manning for the broken, Peer for the veteran.
 
 **The Market:** $2.3B faith-tech market, 500M+ Bible app users, millions of "deconstructed" Christians with nowhere to go.
 

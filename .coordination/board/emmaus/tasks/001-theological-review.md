@@ -1,12 +1,13 @@
 # Task 001: Theological Review of Emmaus PRD
 
-**Status:** running
+**Status:** blocked
 **Assignee:** emmaus-theologian
 **Created:** 2026-05-18T13:38:00Z
 **Started:** 2026-05-18T13:38:00Z
 **Completed:** _(pending)_
 **Priority:** high
 **Blocked by:** None (root task)
+**Blocked reason:** Subagent spawn failed — no active or recent subagents found. Directory emmaus/reviews/ does not exist. Agent did not produce output.
 
 ---
 
@@ -32,17 +33,20 @@ Write full review to `emmaus/reviews/THEOLOGICAL-REVIEW.md`
 
 ## Comments
 
+### Ava (lead) @ 2026-05-18T22:25:00Z
+🚨 RECLAIMED: Subagent spawn failed — no active or recent subagents found. Review directory does not exist. Agent did not produce output. Will retry with adjusted parameters or handle directly.
+
 ### Ava (lead) @ 2026-05-18T13:38:00Z
 Task created and dispatched to theologian agent. This is a root task — no blockers. Focus on the voices system — it's the core innovation but also the biggest theological risk. Make sure we don't accidentally create an AI idol.
 
 ---
 
 ## Output
-_(pending agent completion)_
+_(pending — agent failed, needs retry)_
 
 ## Metadata
 - **changed_files**: _(pending)_
 - **verification**: ["Check review file exists", "Check review has actionable feedback"]
-- **blocked_reason**: null
-- **retry_notes**: null
+- **blocked_reason**: "Subagent spawn failed — no output produced"
+- **retry_notes**: "Try spawning with shorter timeout, or do review directly as lead agent"
 - **residual_risk**: ["Theological bias of reviewer", "Limited to Protestant tradition — may miss Catholic/Orthodox concerns"]
